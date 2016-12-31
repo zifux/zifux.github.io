@@ -10,8 +10,7 @@
 ## [动态实例化Prefabs](https://docs.unity3d.com/Manual/InstantiatingPrefabs.html)
 三个例子:建墙,发射火箭,机器人爆炸成许多碎片
 
-```C#
-
+```
 	public class Instantiation : MonoBehaviour {
 	    void Start() {
 	        for (int y = 0; y < 5; y++) {

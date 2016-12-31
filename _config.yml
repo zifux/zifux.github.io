@@ -1,7 +1,2 @@
 theme: jekyll-theme-cayman
 title: 一个人的次元笔记
-name: 一个人的次元笔记
-gems:
-  - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
-  - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
-

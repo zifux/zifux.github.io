@@ -10,18 +10,17 @@
 ## [动态实例化Prefabs](https://docs.unity3d.com/Manual/InstantiatingPrefabs.html)
 三个例子:建墙,发射火箭,机器人爆炸成许多碎片
 
-建墙
 ```C#
 
-public class Instantiation : MonoBehaviour {
-    void Start() {
-        for (int y = 0; y < 5; y++) {
-            for (int x = 0; x < 5; x++) {
-                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                cube.AddComponent();
-                cube.transform.position = new Vector3(x, y, 0);
-            }
-        }
-    }
-}
+	public class Instantiation : MonoBehaviour {
+	    void Start() {
+	        for (int y = 0; y < 5; y++) {
+	            for (int x = 0; x < 5; x++) {
+	                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+	                cube.AddComponent();
+	                cube.transform.position = new Vector3(x, y, 0);
+	            }
+	        }
+	    }
+	}
 ```

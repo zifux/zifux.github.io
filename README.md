@@ -11,7 +11,8 @@
 三个例子:建墙,发射火箭,机器人爆炸成许多碎片
 
 建墙
-``` C#
+```C#
+
 public class Instantiation : MonoBehaviour {
     void Start() {
         for (int y = 0; y < 5; y++) {

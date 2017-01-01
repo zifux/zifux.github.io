@@ -13,7 +13,7 @@
 直接创建物体 `CreatePrimitive`
 
 ```c#
-
+//key
 public class Instantiation : MonoBehaviour {
     void Start() {
         for (int y = 0; y < 5; y++) {

@@ -11,7 +11,9 @@
 三个例子:建墙,发射火箭,机器人爆炸成许多碎片
 1.建墙
 直接创建物体 `CreatePrimitive`
+
 ```c#
+
 	public class Instantiation : MonoBehaviour {
 	    void Start() {
 	        for (int y = 0; y < 5; y++) {
@@ -25,7 +27,9 @@
 	}
 ```
 使用Prefab `Instantiate`
+
 ```c#
+
 	public Transform brick;
 	
 	void Start() {

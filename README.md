@@ -304,7 +304,7 @@ Virtual Voice Count | 音频系统管理的虚拟声音数.数值应当大于游
 Real Voice Count | 音频系统管理的真实声音数,即同时真实可听到的声音数.超过设定数值时,部分较小的声音将不会被真正播放出来.<br>(参见 [AudioSettings5.0](https://docs.unity3d.com/Manual/UpgradeGuide5-Audio.html))
 Disable Audio | 在单独的构建中禁用声音系统. 这也会影响MovieTexture的音频.在编辑器中不受影响.
 
-###[Editor settings](https://docs.unity3d.com/Manual/class-EditorManager.html)
+### [Editor settings](https://docs.unity3d.com/Manual/class-EditorManager.html)
 
 ![](https://docs.unity3d.com/uploads/Main/EditorSettings.png)
 

@@ -11,7 +11,6 @@
 三个例子:建墙,发射火箭,破坏效果
 
 ### 1.建墙
-
 直接创建物体 `CreatePrimitive`
 
 ```c#
@@ -41,8 +40,8 @@ void Start() {
     }
 }
 ```
-### 2.发射火箭
 
+### 2.发射火箭
 实例化火箭
 
 ```c#
@@ -66,9 +65,9 @@ void Update () {
 }
 
 ```
+
 ### 3.破坏效果
 使用布娃娃系统或者组合体实现死亡或被破坏的效果
-
 在正常游戏中可以使用单个物体,当物体被破坏或者死亡时,瞬间切换成另一个展现破坏效果的Prefab,可以优化游戏性能.
 
 ```c#
@@ -92,6 +91,7 @@ void KillSelf () {
 }
 
 ```
+
 ## [游戏按键](https://docs.unity3d.com/Manual/ConventionalGameInput.html)
 使用` value = Input.GetAxis ("Horizontal"); `获取 Horizontal 按键的状态,值在-1到1之间.如果是鼠标等,值会大于1或小于-1.
 
@@ -125,6 +125,7 @@ float Choose (float[] probs) {
     return probs.Length - 1;
 }
 ```
+
 ### 连续随机变量
 如果需要大量的随机数,并且希望调节概率分布,可以使用`AnimationCurve`辅助
 
@@ -133,6 +134,7 @@ float CurveWeightedRandom(AnimationCurve curve) {
     return curve.Evaluate(Random.value);
 }
 ```
+
 ### 乱序
 有时我们希望将一个列表打乱顺序,比如卡牌游戏中的洗牌,这时可以在遍历过程中使用随机数,交换元素位置.
 
@@ -147,6 +149,7 @@ void Shuffle (int[] deck) {
     }
 }
 ```
+
 ### 不重复随机选取
 不重复的在一个集合中随机选取元素
 当有10个点,从中随机选取5个的时候.
@@ -180,6 +183,7 @@ Transform[] ChooseSet (int numRequired) {
     return result;
 }
 ```
+
 ### 随机坐标
 在空间中随机一个点
 `new Vector3(Random.value, Random.value, Random.value);`
@@ -190,12 +194,15 @@ Transform[] ChooseSet (int numRequired) {
 
 ## [旋转与方向](https://docs.unity3d.com/Manual/QuaternionAndEulerRotationsInUnity.html)
 在`Transform	`中的`Rotation`是分别以`x` `y` `z`为轴的旋转角度,但是在代码中一般使用Quaternions(四元数)
+
 ### Quaternions
 四元数组成为(x,y,z,w) 前三个是向量,第四个是以指定向量为轴的旋转角
 度
+
 > 这部分暂时略过 2017/1/1
 
 在脚本中角度的**错误**使用示例
+
 ```c#
 void Update () {
 
@@ -218,6 +225,7 @@ void Update () {
 }
 ```
 **正确的示例**
+
 ```c#
 //我们需要自己维持一个变量,用于改变角度.
 float x;
@@ -228,8 +236,11 @@ void Update () {
 
 }
 ```
+
 ## Unity3D个性化设置
+
 ### 全局
+
 设置 | 说明
 ------------ | -------------
 Auto Refresh | 自动更新Assets
@@ -242,6 +253,7 @@ Editor Skin (Plus/Pro only) | 选择编辑器皮肤
 Enable Alpha Numeric Sorting | 在 Hierarchy 窗口右上角添加一个按钮,允许你按字母排序
 
 ### 扩展工具
+
 设置 | 说明
 ------------ | -------------
 External Script Editor | 选择使用哪个编辑器编辑脚本. Unity支持 MonoDevelop, Xamarin Studio, Visual Studio (Express) 和 Visual Studio Code.
@@ -252,6 +264,7 @@ Image application |	选择打开图片所使用的程序.
 Revision Control Diff/Merge	|选择一个程序,用于解决本地文件与Asset服务器不同步的问题.
 
 ### GI缓存 (全局光照缓存)
+
 设置 | 说明
 ------------ | -------------
 Maximum Cache Size (GB) | 使用滑块设置缓存最大值.
@@ -260,11 +273,13 @@ Cache compression | 开启实时缓存文件压缩. 如果你想访问原始数�
 Clean Cache | 使用这个按钮清理缓存.
 
 ### 2D
+
 设置 | 说明
 ------------ | -------------
 Maximum Sprite Atlas Cache Size (GB) | 使用滑块设置2D贴图的缓存最大值
 
 ### 缓存服务器
+
 设置 | 说明
 ------------ | -------------
 Use Cache Server | 启用专用缓存服务器

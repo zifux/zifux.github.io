@@ -9,8 +9,9 @@
 
 ## [动态实例化Prefabs](https://docs.unity3d.com/Manual/InstantiatingPrefabs.html)
 三个例子:建墙,发射火箭,机器人爆炸成许多碎片
-
-```
+1.建墙
+直接创建物体 `CreatePrimitive`
+```c#
 	public class Instantiation : MonoBehaviour {
 	    void Start() {
 	        for (int y = 0; y < 5; y++) {
@@ -23,3 +24,17 @@
 	    }
 	}
 ```
+使用Prefab `Instantiate`
+```c#
+	public Transform brick;
+	
+	void Start() {
+	    for (int y = 0; y < 5; y++) {
+	        for (int x = 0; x < 5; x++) {
+	            Instantiate(brick, new Vector3(x, y, 0), Quaternion.identity);
+	        }
+	    }
+	}
+```
+2.发射火箭
+

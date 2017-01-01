@@ -1,6 +1,8 @@
 # Unity笔记1
 
 ## [停用GameObjects](https://docs.unity3d.com/Manual/DeactivatingGameObjects.html)
+![](https://docs.unity3d.com/uploads/Main/GOActiveBox.png)
+
 `GameObject`左上角的选框可以选择物体是否启用，对应脚本中`GameObject`中的`activeSelf`属性
 
 父物体关闭`activeSelf`会使得子物体均被停用,但是子物体的`activeSelf`没有发生改变,目的是保留原来的状态,以便在父物体重新启用时,子物体正常启用.
@@ -151,12 +153,12 @@ void Shuffle (int[] deck) {
 ```
 
 ### 不重复随机选取
-不重复的在一个集合中随机选取元素
-当有10个点,从中随机选取5个的时候.
-第一次选取,概率为5/10.
-当第一次选中时,概率变为4/9.
-当第一次未选中时,概率为5/9.
-以此类推,如果前5个均未被选中,则概率为5/5.
+不重复的在一个集合中随机选取元素.<br>
+当有10个点,从中随机选取5个的时候.<br>
+第一次选取,概率为5/10.<br>
+当第一次选中时,概率变为4/9.<br>
+当第一次未选中时,概率为5/9.<br>
+以此类推,如果前5个均未被选中,则概率为5/5.<br>
 这保证了必有5个被选中,由于是遍历,因此是不重复的
 
 ```c#
@@ -293,7 +295,7 @@ IP Address |缓存服务器的IP地址
 属性 | 功能
 ------------ | -------------
 Volume | 总音量
-Rolloff Scale |　设置衰减因子(参见 [Audio Source]()). 值越高衰减越快(值为１代表真实世界).
+Rolloff Scale | 设置衰减因子(参见 [Audio Source]()). 值越高衰减越快(值为１代表真实世界).
 Doppler Factor | 多普勒效应强弱.0代表关闭 1 代表对快速移动的物体效果很明显.
 Default Speaker Mode | 设置默认的扬声器模式,默认为双声道.<br>(参见 [AudioSpeakerMode]()).
 Sample Rate | 输出采样率.如果设置为0,则使用系统采样率. 注意,只有几个平台允许修改这项,例如 iOS 或 Android平台.

@@ -2,7 +2,7 @@
 > 17/1/1 unity5.5
 
 ## [停用GameObjects](https://docs.unity3d.com/Manual/DeactivatingGameObjects.html)
-![](https://docs.unity3d.com/uploads/Main/GOActiveBox.png)
+![](./pic/GOActiveBox.png)
 
 `GameObject`左上角的选框可以选择物体是否启用，对应脚本中`GameObject`中的`activeSelf`属性
 

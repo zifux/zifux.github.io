@@ -19,4 +19,4 @@
 
 ----------
 
-### [win10禁用全半角切换](/other/disableShiftSpace.html)
+### [win10禁用全半角切换](/other/IME-disableShiftSpace.html)

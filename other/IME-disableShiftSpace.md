@@ -18,4 +18,4 @@
 ## 使用编译后的AutoHotKey脚本程序
 AutoHotKey可以将脚本编译成可执行文件,无需安装AutoHotKey即可运行
 
-下载地址: [disableShiftSpace.exe](https://github.com/zifux/zifux.github.io/releases/tag/disableShiftSpace)
+下载地址: [disableShiftSpace.exe](https://github.com/zifux/zifux.github.io/releases/download/disableShiftSpace/disableShiftSpace.exe)

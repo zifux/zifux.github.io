@@ -4,7 +4,7 @@
 **仅对谷歌输入法有效**
 
 1. 打开 `regedit`
-2. 找到 `HKEY_CURRENT_USER/Control Panel/Input Method/Hot Keys`
+2. 找到 `HKEY_CURRENT_USER\Control Panel\Input Method\Hot Keys`
 3. 修改 `10` 与 `70` 文件夹中的 `Key Modifers` 为 `00 c0 00 00`
 4. 找到 `HKEY_USERS\.DEFAULT\Control Panel\Input Method\Hot Keys`
 5. 按步骤3进行相同操作

@@ -313,12 +313,13 @@
             zoomY = zy + picMouseDownPos.zoomY;
             refresh();
             refreshRect();
+            let time=new Date().getTime();
             picMouseDownPos.skip++;
-            if(picMouseDownPos.skip>4){
-                let time=new Date().getTime();
+            if(picMouseDownPos.skip>4&&time-picMouseDownPos.time>2){
+
                 let a=picMouseDownPos.oldx - event.layerX;
                 let b=picMouseDownPos.oldy - event.layerY;
-                if(Math.abs(a)+Math.abs(b)<2){
+                if(Math.abs(a)+Math.abs(b)<3){
                     a=0;b=0;
                 }
                 picMouseDownPos.vx= a/(time-picMouseDownPos.time);
@@ -430,6 +431,7 @@
     });
     zoom.addEventListener('mousedown', function (event) {
         clearInterval(picMouseDownPos.timer);
+        picMouseDownPos = {x: 0, y: 0, zoomX: zoomX, zoomY: zoomY,oldx:0,oldy:0,vx:0,vy:0,time:0,timer:-1,skip:0};
         picMouseDown = true;
         picMouseMove =false;
         away=false;
@@ -444,12 +446,14 @@
         away=false;
         let x=getX(event) - zoomX;
         let y = getY(event) - zoomY;
-        if(!picMouseMove){
+        if(!picMouseMove||(picMouseDownPos.vx===0&&picMouseDownPos.vy===0)){
             draw(event);
         }else{
             picMouseDownPos.timer=setInterval(function () {
-                picMouseDownPos.vx=picMouseDownPos.vx>2?2:picMouseDownPos.vx;
-                picMouseDownPos.vy=picMouseDownPos.vy>2?2:picMouseDownPos.vy;
+                picMouseDownPos.vx=picMouseDownPos.vx>3?3:picMouseDownPos.vx;
+                picMouseDownPos.vy=picMouseDownPos.vy>3?3:picMouseDownPos.vy;
+                picMouseDownPos.vx=picMouseDownPos.vx<-3?-3:picMouseDownPos.vx;
+                picMouseDownPos.vy=picMouseDownPos.vy<-3?-3:picMouseDownPos.vy;
                 zoomX+=picMouseDownPos.vx*20/scale;
                 zoomY+=picMouseDownPos.vy*20/scale;
                 picMouseDownPos.vx/=1.2;

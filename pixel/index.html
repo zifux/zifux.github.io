@@ -152,7 +152,7 @@
     zoomctx.fillStyle="#393d5c";
     zoomctx.font = "48px serif";
     zoomctx.fillText('正在加载...',80,80);
-    $.get('http://60.205.207.218:81/Index/index/getPic', function (dataStr) {
+    $.get('https://60.205.207.218:81/Index/index/getPic', function (dataStr) {
         var data = parsePic(dataStr);
         for (var index in data) {
             var pixelData = ctx.createImageData(1, 1);
@@ -181,7 +181,7 @@
         var color = getColorStr().substring(1);
         var con = {x: getX(event), y: getY(event), color: toRGB(color)};
         console.log(con);
-        $.post('http://60.205.207.218:81/Index/index/drawPixel', {x: con.x, y: con.y, color: color}, function (redata) {
+        $.post('https://60.205.207.218:81/Index/index/drawPixel', {x: con.x, y: con.y, color: color}, function (redata) {
             var data = JSON.parse(redata);
             if (data['err'] === 0) {
                 var pixelData = ctx.createImageData(1, 1);

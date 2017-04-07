@@ -283,6 +283,7 @@
         refreshRect();
     }
     rectX = 0, rectY = 0;
+    away=false;
     function willDraw(event) {
         picMouseMove=true;
         var x = getX(event);
@@ -301,8 +302,15 @@
                 zoomctx.stroke();
             }
         } else {
-            zoomX = -event.layerX/scale + picMouseDownPos.x + picMouseDownPos.zoomX;
-            zoomY = -event.layerY/scale + picMouseDownPos.y + picMouseDownPos.zoomY;
+            let zx=-event.layerX/scale + picMouseDownPos.x;
+            let zy=-event.layerY/scale + picMouseDownPos.y;
+            if(!away&&Math.abs(zx)+Math.abs(zy)<2){
+                zx=0;zy=0;
+            }else{
+                away=true;
+            }
+            zoomX = zx + picMouseDownPos.zoomX;
+            zoomY = zy + picMouseDownPos.zoomY;
             refresh();
             refreshRect();
             picMouseDownPos.skip++;
@@ -310,6 +318,9 @@
                 let time=new Date().getTime();
                 let a=picMouseDownPos.oldx - event.layerX;
                 let b=picMouseDownPos.oldy - event.layerY;
+                if(Math.abs(a)+Math.abs(b)<2){
+                    a=0;b=0;
+                }
                 picMouseDownPos.vx= a/(time-picMouseDownPos.time);
                 picMouseDownPos.vy= b/(time-picMouseDownPos.time);
                 picMouseDownPos.time=time;
@@ -421,6 +432,7 @@
         clearInterval(picMouseDownPos.timer);
         picMouseDown = true;
         picMouseMove =false;
+        away=false;
         picMouseDownPos.x = event.layerX/scale;
         picMouseDownPos.y = event.layerY/scale;
         picMouseDownPos.zoomX = zoomX;
@@ -429,6 +441,7 @@
     },false);
     zoom.addEventListener('mouseup', function (event) {
         picMouseDown = false;
+        away=false;
         let x=getX(event) - zoomX;
         let y = getY(event) - zoomY;
         if(!picMouseMove){

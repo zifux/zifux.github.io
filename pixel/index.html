@@ -314,8 +314,6 @@
             refresh();
             refreshRect();
             let time=new Date().getTime();
-            picMouseDownPos.skip++;
-            if(picMouseDownPos.skip>5&&time-picMouseDownPos.time>2){
                 let a=picMouseDownPos.oldx - event.layerX;
                 let b=picMouseDownPos.oldy - event.layerY;
                 if(Math.abs(a)+Math.abs(b)<3){
@@ -326,8 +324,7 @@
                 picMouseDownPos.time=time;
                 picMouseDownPos.oldx=event.layerX;
                 picMouseDownPos.oldy = event.layerY;
-                picMouseDownPos.skip=0;
-            }
+                //picMouseDownPos.skip=0;
         }
     }
     function refreshRect() {

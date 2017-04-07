@@ -316,8 +316,11 @@
             let time=new Date().getTime();
                 let a=picMouseDownPos.oldx - event.layerX;
                 let b=picMouseDownPos.oldy - event.layerY;
-                if(Math.abs(a)+Math.abs(b)<3){
-                    a=0;b=0;
+                if(Math.abs(a)<1.5){
+                    a=0;
+                }
+                if(Math.abs(b)<1.5){
+                    b=0;
                 }
                 picMouseDownPos.vx= a/(time-picMouseDownPos.time);
                 picMouseDownPos.vy= b/(time-picMouseDownPos.time);

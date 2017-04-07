@@ -376,7 +376,7 @@
     var reckMouseDown = false;
     var picMouseDown = false;
     var picMouseMove=false;
-    var picMouseDownPos = {x: 0, y: 0, zoomX: zoomX, zoomY: zoomY,oldx:0,oldy:0,vx:0,vy:0,time:0,timer:-1,skip:2};
+    var picMouseDownPos = {x: 0, y: 0, zoomX: zoomX, zoomY: zoomY,oldx:0,oldy:0,vx:0,vy:0,time:0,timer:-1,skip:0};
     function rectMove(event) {
         if (!reckMouseDown)return;
         var pos = getMousePos(picRect, event);
@@ -437,14 +437,15 @@
             picMouseDownPos.timer=setInterval(function () {
                 picMouseDownPos.vx=picMouseDownPos.vx>2?2:picMouseDownPos.vx;
                 picMouseDownPos.vy=picMouseDownPos.vy>2?2:picMouseDownPos.vy;
-                zoomX+=picMouseDownPos.vx*10/scale;
-                zoomY+=picMouseDownPos.vy*10/scale;
+                zoomX+=picMouseDownPos.vx*20/scale;
+                zoomY+=picMouseDownPos.vy*20/scale;
                 picMouseDownPos.vx/=1.2;
                 picMouseDownPos.vy/=1.2;
-                if(Math.abs( picMouseDownPos.vx)<0.01||Math.abs(picMouseDownPos.vy)<0.01){
+                refresh();
+                if(Math.abs( picMouseDownPos.vx)<0.001||Math.abs(picMouseDownPos.vy)<0.001){
                     clearInterval(picMouseDownPos.timer);
                 }
-            },10)
+            },20)
         }
     },false);
     $(zoom).on('mouseenter', function (event) {

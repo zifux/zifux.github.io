@@ -220,7 +220,6 @@
             }
 
         })
-        return false;
     }
     function downloadPic() {
         this.href=canvas.toDataURL('image/png');
@@ -290,7 +289,7 @@
         var y = getY(event);
         offsetX=event.layerX/scale-x;
         offsetY=event.layerY/scale-y;
-        if (!picMouseDown) {
+        if (picMouseDown===false) {
             if (rectX !== x || rectY !== y) {
                 zoomctx.fillStyle = '#e5e5e5';
                 zoomctx.fillRect((x - 50) * scale, (y - 50) * scale, 100 * scale, 100 * scale);
@@ -314,20 +313,20 @@
             refresh();
             refreshRect();
             let time=new Date().getTime();
-                let a=picMouseDownPos.oldx - event.layerX;
-                let b=picMouseDownPos.oldy - event.layerY;
-                if(Math.abs(a)<0.7){
-                    a=0;
-                }
-                if(Math.abs(b)<0.7){
-                    b=0;
-                }
-                picMouseDownPos.vx= a/(time-picMouseDownPos.time);
-                picMouseDownPos.vy= b/(time-picMouseDownPos.time);
-                picMouseDownPos.time=time;
-                picMouseDownPos.oldx=event.layerX;
-                picMouseDownPos.oldy = event.layerY;
-                //picMouseDownPos.skip=0;
+            let a=picMouseDownPos.oldx - event.layerX;
+            let b=picMouseDownPos.oldy - event.layerY;
+            if(Math.abs(a)<1.5){
+                a=0;
+            }
+            if(Math.abs(b)<1.5){
+                b=0;
+            }
+            picMouseDownPos.vx= a/(time-picMouseDownPos.time);
+            picMouseDownPos.vy= b/(time-picMouseDownPos.time);
+            picMouseDownPos.time=time;
+            picMouseDownPos.oldx=event.layerX;
+            picMouseDownPos.oldy = event.layerY;
+            //picMouseDownPos.skip=0;
         }
     }
     function refreshRect() {
@@ -439,8 +438,9 @@
         picMouseDownPos.zoomX = zoomX;
         picMouseDownPos.zoomY = zoomY;
         picMouseDownPos.time=new Date().getTime();
-    },false);
+    });
     zoom.addEventListener('mouseup', function (event) {
+        if(!picMouseDown)return;
         picMouseDown = false;
         away=false;
         let x=getX(event) - zoomX;
@@ -448,11 +448,14 @@
         if(!picMouseMove||(picMouseDownPos.vx===0&&picMouseDownPos.vy===0)){
             draw(event);
         }else{
-            picMouseDownPos.timer=setInterval(function () {
-                picMouseDownPos.vx=picMouseDownPos.vx>3?3:picMouseDownPos.vx;
+            if(Math.abs( picMouseDownPos.vx)<0.001||Math.abs(picMouseDownPos.vy)<0.001){
+                    return;
+                }
+                                picMouseDownPos.vx=picMouseDownPos.vx>3?3:picMouseDownPos.vx;
                 picMouseDownPos.vy=picMouseDownPos.vy>3?3:picMouseDownPos.vy;
                 picMouseDownPos.vx=picMouseDownPos.vx<-3?-3:picMouseDownPos.vx;
                 picMouseDownPos.vy=picMouseDownPos.vy<-3?-3:picMouseDownPos.vy;
+            picMouseDownPos.timer=setInterval(function () {
                 zoomX+=picMouseDownPos.vx*20/scale;
                 zoomY+=picMouseDownPos.vy*20/scale;
                 picMouseDownPos.vx/=1.2;
@@ -461,9 +464,9 @@
                 if(Math.abs( picMouseDownPos.vx)<0.001||Math.abs(picMouseDownPos.vy)<0.001){
                     clearInterval(picMouseDownPos.timer);
                 }
-            },20)
+            },20);
         }
-    },false);
+    });
     $(zoom).on('mouseenter', function (event) {
         picMouseDown = false;
     });

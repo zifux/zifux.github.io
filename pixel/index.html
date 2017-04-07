@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="//cdn.bootcss.com/spectrum/1.8.0/spectrum.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/spectrum/1.8.0/spectrum.js"></script>
     <!--<script src="/static/js/spectrum.js"></script>-->
     <!--<link href="/static/js/spectrum.css" rel='stylesheet'/>-->
-    <link href="//cdn.bootcss.com/spectrum/1.8.0/spectrum.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/spectrum/1.8.0/spectrum.min.css" rel="stylesheet">
     <!--<link href="/public/static/js/bootstrap.min.css" rel='stylesheet'/>-->
     <!--<link href="/static/js/bootstrap.min.css" rel='stylesheet'/>-->
-    <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             margin: 0px;
@@ -21,8 +21,6 @@
             image-rendering: -moz-crisp-edges;
             image-rendering: -webkit-optimize-contrast;
             -ms-interpolation-mode: nearest-neighbor;
-            border: solid 2px rgb(249, 106, 110);
-            margin-left: 2px;
         }
 
         .sp-initial {
@@ -33,18 +31,32 @@
         .sp-palette-container {
             float: none;
         }
-
         .full-spectrum {
-            top: 198px;
+            top: 228px;
             right: 0;
             width: 200px;
-            border: solid 2px rgb(249, 106, 110);
+            border: solid 2px #D5D5D5;
+            background-color: #D5D5D5;
+            border-radius:0 0 0 6px ;
+            /*box-shadow: 0px 0px 5px 0px rgba(0, 0, 0,0.5);*/
+        }
+        .sp-palette .sp-thumb-el{
+            border-color: #fefefe;
         }
         * {
             -webkit-user-select: none; /* webkit (safari, chrome) browsers */
             -moz-user-select: none; /* mozilla browsers */
             -khtml-user-select: none; /* webkit (konqueror) browsers */
             -ms-user-select: none; /* IE10+ */
+        }
+        #picRect{
+            border: solid 2px #D5D5D5;
+            border-top: none;
+        }
+        #info{
+            background-color:rgba(0, 0, 0, 0.17);
+            border-top: solid 2px rgb(141, 146, 166);
+            height: 100px;
         }
 
     </style>
@@ -56,12 +68,12 @@
             <canvas id="zoom" width="1270" height="600" style="position: static;z-index: 0;margin: 0;padding: 0"></canvas>
         </div>
     </div>
-    <div class="row" style="height: 96px;overflow: auto">
+    <div class="row" id="info" style="position: absolute; left:15px; right:15px;bottom:0;overflow: auto;">
         <div class="col-md-1">
-            <img src="files/test.png" height="96">
+            <img src="files/test.png" height="98">
         </div>
         <div class="col-md-4">
-        <h2>像素绘 ver.01 alpha</h2>
+        <h2>像素绘 ver.02 alpha</h2>
     </div>
         <div class="col-md-1">
             <a style="margin-top: 20px;" id="downloadPic" class="btn btn-info" href="#" download="pixelPic">
@@ -72,20 +84,20 @@
             <div style="margin-top: 20px">
                 放大倍率:<br>
                 <label class="radio-inline">
-                    <input type="radio" name="optionsRadios" id="x2" onclick="changeScale(2)">
-                    x2
-                </label>
-                <label class="radio-inline">
                     <input type="radio" name="optionsRadios" id="x4" onclick="changeScale(4)">
                     x4
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="optionsRadios" id="x8" onclick="changeScale(8)" checked>
+                    <input type="radio" name="optionsRadios" id="x8" onclick="changeScale(8)">
                     x8
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="optionsRadios" id="x16" onclick="changeScale(16)">
+                    <input type="radio" name="optionsRadios" id="x16" onclick="changeScale(16)" checked>
                     x16
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="optionsRadios" id="x32" onclick="changeScale(32)">
+                    x32
                 </label>
             </div>
         </div>
@@ -93,28 +105,36 @@
             说明<br/>
             鼠标拖动来移动画布<br/>
             点击或拖动右上角红框快速移动<br/>
-            双击画一个像素,测试阶段每秒可画一个像素<br/>
+            单击画一个像素,测试阶段每秒可画一个像素<br/>
         </div>
     </div>
 </div>
 <div style="position: absolute;right:0;top: 0;">
     <input type='text' id="full" value="#000000"/>
-    <canvas id="picRect" style="position: absolute;right: 0px;top: 0px;width: 200px;height: 200px;z-index:99"></canvas>
+    <canvas id="picRect" style=" position: absolute;right: 0px;top: 0px;width: 200px;height: 200px;z-index:99"></canvas>
     <canvas id="pic" style="position: absolute;right: 0px;top: 0px;width: 200px;height: 200px"></canvas>
     <canvas id="down" style="display: none"></canvas>
+    <canvas id="grid" style="display: none"></canvas>
+    <div id=" " style="position: absolute;right: 0px;top: 198px;width: 200px;height: 30px;background: #D5D5D5; line-height: 30px;align-content: center">
+        <label style="cursor: hand">
+            <input type="checkbox" id="gridShow" style="vertical-align:middle; margin: 2px" onclick="refresh()" checked> 显示像素网格
+        </label>
+    </div>
 </div>
 </body>
 <script>
 
     var scaleX = 300;
     var scaleY = 300;
-    var scale = 8;
+    var scale = 16;
     var showScale = scaleX / 200;
     var zoomX = 0;
     var zoomY = 0;
-    var zoomW = $(window).width() - 4, zoomH = $(window).height() - 100;
+    var zoomW = $(window).width(), zoomH = $(window).height();
     var left = $('#left');
     var right = $('#right');
+    var offsetX=0;
+    var offsetY=0;
 
     var canvas = document.getElementById('pic');
     var ctx = canvas.getContext('2d');
@@ -144,9 +164,13 @@
     zoomctx.webkitImageSmoothingEnabled = false;
     zoomctx.msImageSmoothingEnabled = false;
 
+    var grid = document.getElementById('grid');
+    var gridctx = grid.getContext('2d');
+
     var down = document.getElementById('down');
     var downCtx = down.getContext('2d');
     var idata;
+    var gridShow=document.getElementById("gridShow");
     ctx.fillStyle = "#fcfcfc";
     ctx.fillRect(0, 0, scaleX, scaleY);
     zoomctx.fillStyle="#393d5c";
@@ -172,10 +196,10 @@
 
     }
     function getX(event) {
-        return parseInt((event.layerX - 2) / scale) + zoomX;
+        return parseInt((event.layerX + zoomX*scale ) / scale);
     }
     function getY(event) {
-        return parseInt((event.layerY - 2) / scale) + zoomY;
+        return parseInt((event.layerY+ zoomY*scale) / scale);
     }
     function draw(event) {
         var color = getColorStr().substring(1);
@@ -209,6 +233,38 @@
             x * scale, y * scale,
             w * scale, h * scale);
     }
+    function drawGrid() {
+        if(!gridShow.checked)return;
+        zoomctx.drawImage(grid,
+            zoomX*scale,
+            zoomY*scale,
+            zoomW, zoomH,
+            0, 0,
+            zoomW, zoomH);
+    }
+    function initGrid(){
+        grid.width = scaleX*scale;
+        grid.height = scaleY*scale;
+        gridctx.imageSmoothingEnabled = false;
+        gridctx.mozImageSmoothingEnabled = false;
+        gridctx.webkitImageSmoothingEnabled = false;
+        gridctx.msImageSmoothingEnabled = false;
+        let m,n;
+        gridctx.clearRect(0,0,zoomW,zoomH);
+        gridctx.strokeStyle='rgba(229,229,229,0.4)';
+        gridctx.strokeWidth=1;
+        gridctx.beginPath();
+        for( m=1;m<scaleY*scale;m++){
+            gridctx.moveTo(0,m*scale);
+            gridctx.lineTo(scaleX*scale,m*scale);
+        }
+        for( n=1;n<scaleX*scale;n++){
+            gridctx.moveTo(n*scale,0);
+            gridctx.lineTo(n*scale,scaleY*scale);
+        }
+        gridctx.stroke();
+    }
+    initGrid();
     function refresh() {
         zoomctx.fillStyle = '#e5e5e5';
         zoomctx.fillRect(0, 0, zoomW, zoomH);
@@ -218,16 +274,21 @@
             zoomW / scale, zoomH / scale,
             0, 0,
             zoomW, zoomH);
+        drawGrid();
     }
     function changeScale(sc){
         scale=sc;
+        initGrid();
         refresh();
         refreshRect();
     }
     rectX = 0, rectY = 0;
     function willDraw(event) {
-        var x = getX(event) - zoomX;
-        var y = getY(event) - zoomY;
+        picMouseMove=true;
+        var x = getX(event);
+        var y = getY(event);
+        offsetX=event.layerX/scale-x;
+        offsetY=event.layerY/scale-y;
         if (!picMouseDown) {
             if (rectX !== x || rectY !== y) {
                 zoomctx.fillStyle = '#e5e5e5';
@@ -236,14 +297,26 @@
                 zoomctx.beginPath();
                 zoomctx.strokeStyle = getColorStr();
                 zoomctx.lineWidth = 2;
-                zoomctx.rect((x) * scale, (y) * scale, 1 * scale, 1 * scale);
+                zoomctx.rect((x) * scale-zoomX*scale, (y) * scale-zoomY*scale, 1 * scale, 1 * scale);
                 zoomctx.stroke();
             }
         } else {
-            zoomX = -x + picMouseDownPos.x + picMouseDownPos.zoomX;
-            zoomY = -y + picMouseDownPos.y + picMouseDownPos.zoomY;
+            zoomX = -event.layerX/scale + picMouseDownPos.x + picMouseDownPos.zoomX;
+            zoomY = -event.layerY/scale + picMouseDownPos.y + picMouseDownPos.zoomY;
             refresh();
             refreshRect();
+            picMouseDownPos.skip++;
+            if(picMouseDownPos.skip>4){
+                let time=new Date().getTime();
+                let a=picMouseDownPos.oldx - event.layerX;
+                let b=picMouseDownPos.oldy - event.layerY;
+                picMouseDownPos.vx= a/(time-picMouseDownPos.time);
+                picMouseDownPos.vy= b/(time-picMouseDownPos.time);
+                picMouseDownPos.time=time;
+                picMouseDownPos.oldx=event.layerX;
+                picMouseDownPos.oldy = event.layerY;
+                picMouseDownPos.skip=0;
+            }
         }
     }
     function refreshRect() {
@@ -302,7 +375,8 @@
     }
     var reckMouseDown = false;
     var picMouseDown = false;
-    var picMouseDownPos = {x: 0, y: 0, zoomX: zoomX, zoomY: zoomY};
+    var picMouseMove=false;
+    var picMouseDownPos = {x: 0, y: 0, zoomX: zoomX, zoomY: zoomY,oldx:0,oldy:0,vx:0,vy:0,time:0,timer:-1,skip:2};
     function rectMove(event) {
         if (!reckMouseDown)return;
         var pos = getMousePos(picRect, event);
@@ -343,23 +417,41 @@
     $(picRect).on('mouseenter', function (event) {
         reckMouseDown = false;
     });
-
     zoom.addEventListener('mousedown', function (event) {
+        clearInterval(picMouseDownPos.timer);
         picMouseDown = true;
-        picMouseDownPos.x = getX(event) - zoomX;
-        picMouseDownPos.y = getY(event) - zoomY;
+        picMouseMove =false;
+        picMouseDownPos.x = event.layerX/scale;
+        picMouseDownPos.y = event.layerY/scale;
         picMouseDownPos.zoomX = zoomX;
         picMouseDownPos.zoomY = zoomY;
-    });
+        picMouseDownPos.time=new Date().getTime();
+    },false);
     zoom.addEventListener('mouseup', function (event) {
         picMouseDown = false;
-    });
+        let x=getX(event) - zoomX;
+        let y = getY(event) - zoomY;
+        if(!picMouseMove){
+            draw(event);
+        }else{
+            picMouseDownPos.timer=setInterval(function () {
+                picMouseDownPos.vx=picMouseDownPos.vx>2?2:picMouseDownPos.vx;
+                picMouseDownPos.vy=picMouseDownPos.vy>2?2:picMouseDownPos.vy;
+                zoomX+=picMouseDownPos.vx*10/scale;
+                zoomY+=picMouseDownPos.vy*10/scale;
+                picMouseDownPos.vx/=1.2;
+                picMouseDownPos.vy/=1.2;
+                if(Math.abs( picMouseDownPos.vx)<0.01||Math.abs(picMouseDownPos.vy)<0.01){
+                    clearInterval(picMouseDownPos.timer);
+                }
+            },10)
+        }
+    },false);
     $(zoom).on('mouseenter', function (event) {
         picMouseDown = false;
     });
     picRect.addEventListener('mousemove', rectMove);
-    canvas.addEventListener('mousemove', pick);
-    zoom.addEventListener('dblclick', draw);
+    //canvas.addEventListener('mousemove', pick);
     zoom.addEventListener('mousemove', willDraw);
     left.on('click', moveLeft);
     right.on('click', moveRight);

@@ -204,7 +204,6 @@
     function draw(event) {
         var color = getColorStr().substring(1);
         var con = {x: getX(event), y: getY(event), color: toRGB(color)};
-        console.log(con);
         $.post('https://60.205.207.218:81/Index/index/drawPixel', {x: con.x, y: con.y, color: color}, function (redata) {
             var data = JSON.parse(redata);
             if (data['err'] === 0) {
@@ -303,8 +302,12 @@
         } else {
             let zx=-event.layerX/scale + picMouseDownPos.x;
             let zy=-event.layerY/scale + picMouseDownPos.y;
-            if(!away&&Math.abs(zx)+Math.abs(zy)<2){
-                zx=0;zy=0;
+            console.log(zx,zy);
+            if(!away){
+                if(Math.abs(zx)<2)
+                zx=0;
+                if(+Math.abs(zy)<2)
+                zy=0;
             }else{
                 away=true;
             }
@@ -312,9 +315,12 @@
             zoomY = zy + picMouseDownPos.zoomY;
             refresh();
             refreshRect();
+            picMouseDownPos.skip++;
             let time=new Date().getTime();
+            if(picMouseDownPos.skip>5&&time-picMouseDownPos.time>2){
             let a=picMouseDownPos.oldx - event.layerX;
             let b=picMouseDownPos.oldy - event.layerY;
+            console.log('ab-',a,b);
             if(Math.abs(a)<1.5){
                 a=0;
             }
@@ -326,7 +332,10 @@
             picMouseDownPos.time=time;
             picMouseDownPos.oldx=event.layerX;
             picMouseDownPos.oldy = event.layerY;
-            //picMouseDownPos.skip=0;
+            picMouseDownPos.skip=0;
+            }
+
+            
         }
     }
     function refreshRect() {
@@ -429,16 +438,19 @@
     });
     zoom.addEventListener('mousedown', function (event) {
         clearInterval(picMouseDownPos.timer);
-        picMouseDownPos = {x: 0, y: 0, zoomX: zoomX, zoomY: zoomY,oldx:0,oldy:0,vx:0,vy:0,time:0,timer:-1,skip:0};
+        //picMouseDownPos = {x: 0, y: 0, zoomX: zoomX, zoomY: zoomY,oldx:0,oldy:0,vx:0,vy:0,time:0,timer:-1,skip:0};
         picMouseDown = true;
         picMouseMove =false;
         away=false;
+        picMouseDownPos.skip=0;
         picMouseDownPos.x = event.layerX/scale;
         picMouseDownPos.y = event.layerY/scale;
+        picMouseDownPos.oldx=event.layerX;
+        picMouseDownPos.oldy=event.layerY;
         picMouseDownPos.zoomX = zoomX;
         picMouseDownPos.zoomY = zoomY;
         picMouseDownPos.time=new Date().getTime();
-    });
+    },false);
     zoom.addEventListener('mouseup', function (event) {
         if(!picMouseDown)return;
         picMouseDown = false;
@@ -451,7 +463,7 @@
             if(Math.abs( picMouseDownPos.vx)<0.001||Math.abs(picMouseDownPos.vy)<0.001){
                     return;
                 }
-                                picMouseDownPos.vx=picMouseDownPos.vx>3?3:picMouseDownPos.vx;
+                picMouseDownPos.vx=picMouseDownPos.vx>3?3:picMouseDownPos.vx;
                 picMouseDownPos.vy=picMouseDownPos.vy>3?3:picMouseDownPos.vy;
                 picMouseDownPos.vx=picMouseDownPos.vx<-3?-3:picMouseDownPos.vx;
                 picMouseDownPos.vy=picMouseDownPos.vy<-3?-3:picMouseDownPos.vy;
@@ -466,13 +478,13 @@
                 }
             },20);
         }
-    });
+    },false);
     $(zoom).on('mouseenter', function (event) {
         picMouseDown = false;
     });
     picRect.addEventListener('mousemove', rectMove);
     //canvas.addEventListener('mousemove', pick);
-    zoom.addEventListener('mousemove', willDraw);
+    zoom.addEventListener('mousemove', willDraw,false);
     left.on('click', moveLeft);
     right.on('click', moveRight);
     $("#full").spectrum({

@@ -1,0 +1,414 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/jquery-3.2.0.js"></script>
+    <script src="/static/js/spectrum.js"></script>
+    <link href="/static/js/spectrum.css" rel='stylesheet'/>
+    <link href="/public/static/js/bootstrap.min.css" rel='stylesheet'/>
+    <!--<link href="/static/js/bootstrap.min.css" rel='stylesheet'/>-->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0px;
+        }
+
+        canvas {
+            image-rendering: crisp-edges;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: -webkit-optimize-contrast;
+            -ms-interpolation-mode: nearest-neighbor;
+            border: solid 2px rgb(249, 106, 110);
+            margin-left: 2px;
+        }
+
+        .sp-initial {
+            float: none;
+            border: none;
+        }
+
+        .sp-palette-container {
+            float: none;
+        }
+
+        .full-spectrum {
+            top: 198px;
+            right: 0;
+            width: 200px;
+            border: solid 2px rgb(249, 106, 110);
+        }
+        * {
+            -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+            -moz-user-select: none; /* mozilla browsers */
+            -khtml-user-select: none; /* webkit (konqueror) browsers */
+            -ms-user-select: none; /* IE10+ */
+        }
+
+    </style>
+</head>
+<body>
+<div class="container-fluid" >
+    <div class="row">
+        <div class="col-md-12" style="padding: 0px">
+            <canvas id="zoom" width="1270" height="600" style="position: static;z-index: 0;margin: 0;padding: 0"></canvas>
+        </div>
+    </div>
+    <div class="row" style="height: 96px;overflow: auto">
+        <div class="col-md-1">
+            <img src="files/test.png" height="96">
+        </div>
+        <div class="col-md-4">
+        <h2>像素绘 ver.01 alpha</h2>
+    </div>
+        <div class="col-md-1">
+            <a style="margin-top: 20px;" id="downloadPic" class="btn btn-info" href="#" download="pixelPic">
+                下载整图
+            </a>
+        </div>
+        <div class="col-md-2">
+            <div style="margin-top: 20px">
+                放大倍率:<br>
+                <label class="radio-inline">
+                    <input type="radio" name="optionsRadios" id="x2" onclick="changeScale(2)">
+                    x2
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="optionsRadios" id="x4" onclick="changeScale(4)">
+                    x4
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="optionsRadios" id="x8" onclick="changeScale(8)" checked>
+                    x8
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="optionsRadios" id="x16" onclick="changeScale(16)">
+                    x16
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4" style="margin-top: 5px">
+            说明<br/>
+            鼠标拖动来移动画布<br/>
+            点击或拖动右上角红框快速移动<br/>
+            双击画一个像素,测试阶段每秒可画一个像素<br/>
+        </div>
+    </div>
+</div>
+<div style="position: absolute;right:0;top: 0;">
+    <input type='text' id="full" value="#000000"/>
+    <canvas id="picRect" style="position: absolute;right: 0px;top: 0px;width: 200px;height: 200px;z-index:99"></canvas>
+    <canvas id="pic" style="position: absolute;right: 0px;top: 0px;width: 200px;height: 200px"></canvas>
+    <canvas id="down" style="display: none"></canvas>
+</div>
+</body>
+<script>
+
+    var scaleX = 300;
+    var scaleY = 300;
+    var scale = 8;
+    var showScale = scaleX / 200;
+    var zoomX = 0;
+    var zoomY = 0;
+    var zoomW = $(window).width() - 4, zoomH = $(window).height() - 100;
+    var left = $('#left');
+    var right = $('#right');
+
+    var canvas = document.getElementById('pic');
+    var ctx = canvas.getContext('2d');
+    canvas.width = scaleX;
+    canvas.height = scaleY;
+    ctx.imageSmoothingEnabled = false;
+    ctx.mozImageSmoothingEnabled = false;
+    ctx.webkitImageSmoothingEnabled = false;
+    ctx.msImageSmoothingEnabled = false;
+
+    var picRect = document.getElementById('picRect');
+    var picRectCtx = picRect.getContext('2d');
+    picRect.width = 200;
+    picRect.height = 200;
+    picRectCtx.imageSmoothingEnabled = false;
+    picRectCtx.mozImageSmoothingEnabled = false;
+    picRectCtx.webkitImageSmoothingEnabled = false;
+    picRectCtx.msImageSmoothingEnabled = false;
+
+    var color = document.getElementById('color');
+    var zoom = document.getElementById('zoom');
+    var zoomctx = zoom.getContext('2d');
+    zoom.width = zoomW;
+    zoom.height = zoomH;
+    zoomctx.imageSmoothingEnabled = false;
+    zoomctx.mozImageSmoothingEnabled = false;
+    zoomctx.webkitImageSmoothingEnabled = false;
+    zoomctx.msImageSmoothingEnabled = false;
+
+    var down = document.getElementById('down');
+    var downCtx = down.getContext('2d');
+    var idata;
+    ctx.fillStyle = "#fcfcfc";
+    ctx.fillRect(0, 0, scaleX, scaleY);
+    zoomctx.fillStyle="#393d5c";
+    zoomctx.font = "48px serif";
+    zoomctx.fillText('正在加载...',80,80);
+    $.get('http://60.205.207.218:81/Index/index/getPic', function (dataStr) {
+        var data = parsePic(dataStr);
+        for (var index in data) {
+            var pixelData = ctx.createImageData(1, 1);
+            var d = data[index].split(',');
+            var co = toRGB(d[2]);
+            co.push(256);
+            pixelData.data[0] = co[0];
+            pixelData.data[1] = co[1];
+            pixelData.data[2] = co[2];
+            pixelData.data[3] = co[3];
+            ctx.putImageData(pixelData, d[0], d[1]);
+        }
+        refresh(zoomX, zoomY, zoomW, zoomH);
+    });
+    function parsePic(str) {
+        return str.split(':');
+
+    }
+    function getX(event) {
+        return parseInt((event.layerX - 2) / scale) + zoomX;
+    }
+    function getY(event) {
+        return parseInt((event.layerY - 2) / scale) + zoomY;
+    }
+    function draw(event) {
+        var color = getColorStr().substring(1);
+        var con = {x: getX(event), y: getY(event), color: toRGB(color)};
+        console.log(con);
+        $.post('http://60.205.207.218:81/Index/index/drawPixel', {x: con.x, y: con.y, color: color}, function (redata) {
+            var data = JSON.parse(redata);
+            if (data['err'] === 0) {
+                var pixelData = ctx.createImageData(1, 1);
+                pixelData.data[0] = con.color[0];
+                pixelData.data[1] = con.color[1];
+                pixelData.data[2] = con.color[2];
+                pixelData.data[3] = 255;
+                ctx.putImageData(pixelData, con.x, con.y);
+                refresh(con.x, con.y, 1, 1);
+            } else {
+                console.log(data);
+            }
+
+        })
+        return false;
+    }
+    function downloadPic() {
+        this.href=canvas.toDataURL('image/png');
+    }
+    function refresh(x, y, w, h) {
+        zoomctx.drawImage(canvas,
+            x,
+            y,
+            w, h,
+            x * scale, y * scale,
+            w * scale, h * scale);
+    }
+    function refresh() {
+        zoomctx.fillStyle = '#e5e5e5';
+        zoomctx.fillRect(0, 0, zoomW, zoomH);
+        zoomctx.drawImage(canvas,
+            zoomX,
+            zoomY,
+            zoomW / scale, zoomH / scale,
+            0, 0,
+            zoomW, zoomH);
+    }
+    function changeScale(sc){
+        scale=sc;
+        refresh();
+        refreshRect();
+    }
+    rectX = 0, rectY = 0;
+    function willDraw(event) {
+        var x = getX(event) - zoomX;
+        var y = getY(event) - zoomY;
+        if (!picMouseDown) {
+            if (rectX !== x || rectY !== y) {
+                zoomctx.fillStyle = '#e5e5e5';
+                zoomctx.fillRect((x - 50) * scale, (y - 50) * scale, 100 * scale, 100 * scale);
+                refresh(x - 50, y - 50, 100, 100);
+                zoomctx.beginPath();
+                zoomctx.strokeStyle = getColorStr();
+                zoomctx.lineWidth = 2;
+                zoomctx.rect((x) * scale, (y) * scale, 1 * scale, 1 * scale);
+                zoomctx.stroke();
+            }
+        } else {
+            zoomX = -x + picMouseDownPos.x + picMouseDownPos.zoomX;
+            zoomY = -y + picMouseDownPos.y + picMouseDownPos.zoomY;
+            refresh();
+            refreshRect();
+        }
+    }
+    function refreshRect() {
+        picRectCtx.clearRect(0, 0, 200, 200);
+        picRectCtx.beginPath();
+        picRectCtx.strokeStyle = "#e5434f";
+        picRectCtx.lineWidth = 2;
+        var w = zoomW / scale / showScale;
+        var h = zoomH / scale / showScale;
+        picRectCtx.rect(zoomX / showScale, zoomY / showScale, w, h);
+        picRectCtx.stroke();
+    }
+    function moveLeft() {
+        zoomX += -1;
+        refresh();
+    }
+    function moveRight() {
+        zoomX += 1;
+        refresh();
+    }
+    function toRGB(str) {
+        var c = str.match(/[0-9a-fA-F]{2}/g, 3);
+        var co = [];
+        for (var rgb in c) {
+            co.push(parseInt(c[rgb], 16))
+        }
+        return co;
+    }
+    function toStr(rgb) {
+        var str = '';
+        for (var s in rgb) {
+            var tmp = rgb[s].toString(16);
+            str += tmp.length < 2 ? '0' + tmp : tmp;
+        }
+        return str;
+    }
+    function getColorStr() {
+        return $('#full').val();
+    }
+    function pick(event) {
+        var x = event.layerX / scale;
+        var y = event.layerY / scale;
+        var pixel = ctx.getImageData(x, y, 1, 1);
+        var data = pixel.data;
+        var rgba = 'rgba(' + data[0] + ',' + data[1] +
+            ',' + data[2] + ',' + data[3] + ')';
+        color.style.background = rgba;
+        color.textContent = rgba;
+    }
+    function getMousePos(canvas, evt) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top
+        };
+    }
+    var reckMouseDown = false;
+    var picMouseDown = false;
+    var picMouseDownPos = {x: 0, y: 0, zoomX: zoomX, zoomY: zoomY};
+    function rectMove(event) {
+        if (!reckMouseDown)return;
+        var pos = getMousePos(picRect, event);
+        picRectCtx.clearRect(0, 0, 200, 200);
+        picRectCtx.beginPath();
+        picRectCtx.strokeStyle = "#e5434f";
+        picRectCtx.lineWidth = 2;
+        var w = zoomW / scale / showScale;
+        var h = zoomH / scale / showScale;
+        picRectCtx.rect((pos.x) - w / 2, (pos.y) - h / 2, w, h);
+        picRectCtx.stroke();
+        zoomX = parseInt(((pos.x) - w / 2) * showScale);
+        zoomY = parseInt(((pos.y) - h / 2) * showScale);
+        refresh()
+    }
+    $('#downloadPic').on('click',function (event) {
+        down.width = scaleX*scale;
+        down.height = scaleY*scale;
+        downCtx.imageSmoothingEnabled = false;
+        downCtx.mozImageSmoothingEnabled = false;
+        downCtx.webkitImageSmoothingEnabled = false;
+        downCtx.msImageSmoothingEnabled = false;
+        downCtx.drawImage(canvas,
+            0,
+            0,
+            scaleX, scaleY,
+            0, 0,
+            scaleX * scale, scaleY * scale);
+        $('#downloadPic').attr('href',down.toDataURL('image/png'));
+    });
+    picRect.addEventListener('mousedown', function (event) {
+        reckMouseDown = true;
+        rectMove(event);
+    });
+    picRect.addEventListener('mouseup', function (event) {
+        reckMouseDown = false;
+    });
+    $(picRect).on('mouseenter', function (event) {
+        reckMouseDown = false;
+    });
+
+    zoom.addEventListener('mousedown', function (event) {
+        picMouseDown = true;
+        picMouseDownPos.x = getX(event) - zoomX;
+        picMouseDownPos.y = getY(event) - zoomY;
+        picMouseDownPos.zoomX = zoomX;
+        picMouseDownPos.zoomY = zoomY;
+    });
+    zoom.addEventListener('mouseup', function (event) {
+        picMouseDown = false;
+    });
+    $(zoom).on('mouseenter', function (event) {
+        picMouseDown = false;
+    });
+    picRect.addEventListener('mousemove', rectMove);
+    canvas.addEventListener('mousemove', pick);
+    zoom.addEventListener('dblclick', draw);
+    zoom.addEventListener('mousemove', willDraw);
+    left.on('click', moveLeft);
+    right.on('click', moveRight);
+    $("#full").spectrum({
+        flat: true,
+        color: "#000000",
+        cancelText: '取消',
+        chooseText: '选择',
+        showButtons: true,
+        showInput: true,
+        allowEmpty: false,
+        showAlpha: false,
+        className: "full-spectrum",
+        showInitial: true,
+        showPalette: true,
+        showPaletteOnly: true,
+        showSelectionPalette: true,
+        maxSelectionSize: 10,
+        preferredFormat: "hex",
+        localStorageKey: "spectrum.pic",
+        move: function (color) {
+        },
+        show: function () {
+
+        },
+        beforeShow: function () {
+
+        },
+        hide: function () {
+
+        },
+        change: function () {
+
+        },
+        palette: [
+            ["rgb(0, 0, 0)", "rgb(67, 67, 67)", "rgb(102, 102, 102)",
+                "rgb(204, 204, 204)", "rgb(217, 217, 217)", "rgb(255, 255, 255)"],
+            ["rgb(152, 0, 0)", "rgb(255, 0, 0)", "rgb(255, 153, 0)", "rgb(255, 255, 0)", "rgb(0, 255, 0)",
+                "rgb(0, 255, 255)", "rgb(74, 134, 232)", "rgb(0, 0, 255)", "rgb(153, 0, 255)", "rgb(255, 0, 255)"],
+            ["rgb(230, 184, 175)", "rgb(244, 204, 204)", "rgb(252, 229, 205)", "rgb(255, 242, 204)", "rgb(217, 234, 211)",
+                "rgb(208, 224, 227)", "rgb(201, 218, 248)", "rgb(207, 226, 243)", "rgb(217, 210, 233)", "rgb(234, 209, 220)",
+                "rgb(221, 126, 107)", "rgb(234, 153, 153)", "rgb(249, 203, 156)", "rgb(255, 229, 153)", "rgb(182, 215, 168)",
+                "rgb(162, 196, 201)", "rgb(164, 194, 244)", "rgb(159, 197, 232)", "rgb(180, 167, 214)", "rgb(213, 166, 189)",
+                "rgb(204, 65, 37)", "rgb(224, 102, 102)", "rgb(246, 178, 107)", "rgb(255, 217, 102)", "rgb(147, 196, 125)",
+                "rgb(118, 165, 175)", "rgb(109, 158, 235)", "rgb(111, 168, 220)", "rgb(142, 124, 195)", "rgb(194, 123, 160)",
+                "rgb(166, 28, 0)", "rgb(204, 0, 0)", "rgb(230, 145, 56)", "rgb(241, 194, 50)", "rgb(106, 168, 79)",
+                "rgb(69, 129, 142)", "rgb(60, 120, 216)", "rgb(61, 133, 198)", "rgb(103, 78, 167)", "rgb(166, 77, 121)",
+                "rgb(91, 15, 0)", "rgb(102, 0, 0)", "rgb(120, 63, 4)", "rgb(127, 96, 0)", "rgb(39, 78, 19)",
+                "rgb(12, 52, 61)", "rgb(28, 69, 135)", "rgb(7, 55, 99)", "rgb(32, 18, 77)", "rgb(76, 17, 48)"]
+        ]
+    });
+
+</script>
+</html>

@@ -68,8 +68,6 @@
 
         }
         #nav{
-            float: right;
-            background-color:rgba(0, 0, 0, 0.47);
             border-top: solid 2px rgb(141, 146, 166);
             height: auto;
             color: #fefefe;
@@ -90,41 +88,19 @@
         </div>
     </div>
     <div class="row" id="info">
-        <div class="col-md-12 col-sm-12 col-xs-12" id="nav">
-            <div class="row">
-                <button onclick="move(0,-5)" id="up" class="col-md-12 col-sm-12 col-xs-12 btn btn-primary clickNav">
-                    <span class="glyphicon glyphicon-menu-up"></span>
-                </button>
-            </div>
-            <div class="row">
-                <button onclick="move(-5,0)" id="left" class="col-md-6 col-sm-6 col-xs-6  btn btn-primary clickNav">
-                    <span class="glyphicon glyphicon-menu-left"></span>
-                </button>
-                <button onclick="move(5,0)" id="right" class="col-md-6 col-sm-6 col-xs-6 btn btn-primary clickNav">
-                    <span class="glyphicon glyphicon-menu-right"></span>
-                </button>
-            </div>
-
-            <div class="row">
-                <button onclick="move(0,5)" id="down" class="col-md-12 col-sm-12 col-xs-12 btn btn-primary clickNav">
-                    <span class="glyphicon glyphicon-menu-down"></span>
-                </button>
-            </div>
-        </div>
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="row" id="infoBottom">
-                <div class="col-md-1 col-sm-1 col-xs-1">
-                    <img src="files/test.png" height="98">
-                </div>
-                <div class="col-md-4 col-sm-3 col-xs-2">
+                <!--<div class="col-md-1 col-sm-1 col-xs-1">
+                    <img src="files/test.png" height="auto">
+                </div>-->
+                <div class="col-md-6 col-sm-5 col-xs-3">
                     <h2>像素绘 ver.04</h2>
                 </div>
-                <div class="col-md-2 col-sm-3 col-xs-3">
+                <div class="col-md-3 col-sm-4 col-xs-4">
                     <div style="margin-top: 20px">
                         放大倍率:<strong id="scaleN">8.0</strong><br>
 
                         <input type="button" class="btn btn-primary" value="x04" onclick="changeScale(4)">
-
 
 
                         <input type="button" class="btn btn-primary"  value="x08" onclick="changeScale(8)">
@@ -136,11 +112,26 @@
                         <input type="button" class="btn btn-primary"  value="x32" onclick="changeScale(32)">
                     </div>
                 </div>
-                <div class="col-md-3  col-sm-3 col-xs-3" style="margin-top: 5px">
-                    说明<br/>
-                    鼠标拖动来移动画布<br/>
-                    点击或拖动右上角红框快速移动<br/>
-                    单击画一个像素,测试阶段每秒可画一个像素<br/>
+                <div class="col-md-1 col-sm-1 col-xs-2">
+                    <div class="row">
+                        <button onclick="move(0,-5)" id="up" class="col-md-12 col-sm-12 col-xs-12 btn btn-primary clickNav">
+                            <span class="glyphicon glyphicon-menu-up"></span>
+                        </button>
+                    </div>
+                    <div class="row">
+                        <button onclick="move(-5,0)" id="left" class="col-md-6 col-sm-6 col-xs-6  btn btn-primary clickNav">
+                            <span class="glyphicon glyphicon-menu-left"></span>
+                        </button>
+                        <button onclick="move(5,0)" id="right" class="col-md-6 col-sm-6 col-xs-6 btn btn-primary clickNav">
+                            <span class="glyphicon glyphicon-menu-right"></span>
+                        </button>
+                    </div>
+
+                    <div class="row">
+                        <button onclick="move(0,5)" id="down" class="col-md-12 col-sm-12 col-xs-12 btn btn-primary clickNav">
+                            <span class="glyphicon glyphicon-menu-down"></span>
+                        </button>
+                    </div>
                 </div>
                 <div class="col-md-2 col-sm-2 col-xs-3">
                     <a id="downloadPic" class="btn btn-warning" href="#" download="pixelPic" style="float: right; margin-top: 28px; line-height: 40px;padding-top: 0;padding-bottom: 0" >
@@ -166,14 +157,16 @@
         <label style="cursor: hand;margin: 0">
             <input type="checkbox" id="gridShow" style="margin: 0; vertical-align:middle;" onclick="refresh()"> 显示像素网格
         </label>
-
+        <button class="btn btn-primary" onclick="direction()">操作说明</button>
     </div>
 </div>
 </body>
 <script>
-
+function direction() {
+    $.miniNoty('<div style="font-size: 18pt">左键单击: 画像素<br>右键单击: 取色<br>右键拖动: 移动画布<br>滚轮: 缩放</div>','normal');
+}
     $.miniNotyConfig.set({ // set global config
-        timeoutToHide: 4000, // any params
+        timeoutToHide: 5000, // any params
         //timeoutAnimEnd: 600
     })
 

@@ -54,11 +54,28 @@
             border-top: none;
         }
         #info{
-            position: absolute; left:15px; right:15px;bottom:0;overflow: auto;
+            position: fixed; left:15px; right:15px;bottom:0;overflow: auto;
+
+
+        }
+        #infoBottom{
             background-color:rgba(0, 0, 0, 0.47);
             border-top: solid 2px rgb(141, 146, 166);
             height: auto;
             color: #fefefe;
+
+        }
+        #nav{
+            float: right;
+            background-color:rgba(0, 0, 0, 0.47);
+            border-top: solid 2px rgb(141, 146, 166);
+            height: auto;
+            color: #fefefe;
+            width: 100px;
+
+        }
+        .clickNav{
+
         }
 
     </style>
@@ -66,52 +83,79 @@
 <body>
 <div class="container-fluid" >
     <div class="row">
-        <div class="col-md-12" style="padding: 0px">
+        <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px">
             <canvas id="zoom" width="1270" height="600" style="position: static;z-index: 0;margin: 0;padding: 0"></canvas>
         </div>
     </div>
     <div class="row" id="info">
-        <div class="col-md-1 col-sm-1 col-xs-1">
-            <img src="files/test.png" height="98">
-        </div>
-        <div class="col-md-4 col-sm-3 col-xs-2">
-        <h2>像素绘 ver.03</h2>
-    </div>
-        <div class="col-md-2 col-sm-3 col-xs-3">
-            <div style="margin-top: 20px">
-                放大倍率:<strong id="scaleN">16</strong><br>
+        <div class="col-md-12 col-sm-12 col-xs-12" id="nav">
+            <div class="row">
+                <button onclick="move(0,-5)" id="up" class="col-md-12 col-sm-12 col-xs-12 btn btn-primary clickNav">
+                    <span class="glyphicon glyphicon-menu-up"></span>
+                </button>
+            </div>
+            <div class="row">
+                <button onclick="move(-5,0)" id="left" class="col-md-6 col-sm-6 col-xs-6  btn btn-primary clickNav">
+                    <span class="glyphicon glyphicon-menu-left"></span>
+                </button>
+                <button onclick="move(5,0)" id="right" class="col-md-6 col-sm-6 col-xs-6 btn btn-primary clickNav">
+                    <span class="glyphicon glyphicon-menu-right"></span>
+                </button>
+            </div>
 
-                    <input type="button" class="btn btn-primary" value="x04" onclick="changeScale(4)">
-
-
-
-                    <input type="button" class="btn btn-primary"  value="x08" onclick="changeScale(8)">
-
-
-                    <input type="button" class="btn btn-primary"  value="x16" onclick="changeScale(16)">
-
-
-                    <input type="button" class="btn btn-primary"  value="x32" onclick="changeScale(32)">
+            <div class="row">
+                <button onclick="move(0,5)" id="down" class="col-md-12 col-sm-12 col-xs-12 btn btn-primary clickNav">
+                    <span class="glyphicon glyphicon-menu-down"></span>
+                </button>
             </div>
         </div>
-        <div class="col-md-3  col-sm-3 col-xs-3" style="margin-top: 5px">
-            说明<br/>
-            鼠标拖动来移动画布<br/>
-            点击或拖动右上角红框快速移动<br/>
-            单击画一个像素,测试阶段每秒可画一个像素<br/>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="row" id="infoBottom">
+                <div class="col-md-1 col-sm-1 col-xs-1">
+                    <img src="files/test.png" height="98">
+                </div>
+                <div class="col-md-4 col-sm-3 col-xs-2">
+                    <h2>像素绘 ver.04</h2>
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-3">
+                    <div style="margin-top: 20px">
+                        放大倍率:<strong id="scaleN">16</strong><br>
+
+                        <input type="button" class="btn btn-primary" value="x04" onclick="changeScale(4)">
+
+
+
+                        <input type="button" class="btn btn-primary"  value="x08" onclick="changeScale(8)">
+
+
+                        <input type="button" class="btn btn-primary"  value="x16" onclick="changeScale(16)">
+
+
+                        <input type="button" class="btn btn-primary"  value="x32" onclick="changeScale(32)">
+                    </div>
+                </div>
+                <div class="col-md-3  col-sm-3 col-xs-3" style="margin-top: 5px">
+                    说明<br/>
+                    鼠标拖动来移动画布<br/>
+                    点击或拖动右上角红框快速移动<br/>
+                    单击画一个像素,测试阶段每秒可画一个像素<br/>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-3">
+                    <a id="downloadPic" class="btn btn-warning" href="#" download="pixelPic" style="float: right; margin-top: 28px; line-height: 40px;padding-top: 0;padding-bottom: 0" >
+                        下载整图
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="col-md-2 col-sm-2 col-xs-3">
-            <a id="downloadPic" class="btn btn-warning" href="#" download="pixelPic" style="float: right; margin-top: 28px; line-height: 40px;padding-top: 0;padding-bottom: 0" >
-                下载整图
-            </a>
-        </div>
+
     </div>
+
 </div>
 <div style="position: absolute;right:0;top: 0;">
     <input type='text' id="full" value="#000000"/>
     <canvas id="picRect" style=" position: absolute;right: 0px;top: 0px;width: 200px;height: 200px;z-index:99"></canvas>
     <canvas id="pic" style="position: absolute;right: 0px;top: 0px;width: 200px;height: 200px"></canvas>
-    <canvas id="down" style="display: none"></canvas>
+    <canvas id="download" style="display: none"></canvas>
     <canvas id="grid" style="display: none"></canvas>
     <div style="position: absolute;right: 0px;top: 198px;width: 200px;height: 30px;background: #D5D5D5;">
         <div id="color" style="width: auto; margin:2px;height: 22px; border:solid 1px #FFFFFF;border-radius:4px; background-color: #000000"></div>
@@ -133,8 +177,6 @@
     var zoomX = 0;
     var zoomY = 0;
     var zoomW = $(window).width(), zoomH = $(window).height();
-    var left = $('#left');
-    var right = $('#right');
     var offsetX=0;
     var offsetY=0;
 
@@ -170,7 +212,7 @@
     var grid = document.getElementById('grid');
     var gridctx = grid.getContext('2d');
 
-    var down = document.getElementById('down');
+    var down = document.getElementById('download');
     var downCtx = down.getContext('2d');
     var idata;
     var gridShow=document.getElementById("gridShow");
@@ -327,32 +369,35 @@
     rectX = 0, rectY = 0;
     away=false;
     function willDraw(event) {
-        picMouseMove=true;
+
         var x = getX(event);
         var y = getY(event);
         offsetX=event.layerX/scale-x;
         offsetY=event.layerY/scale-y;
-        if (picMouseDown===false) {
-            if (rectX !== x || rectY !== y) {
-                zoomctx.fillStyle = '#e5e5e5';
-                zoomctx.fillRect((x - 50) * scale, (y - 50) * scale, 100 * scale, 100 * scale);
-                refresh(x - 50, y - 50, 100, 100);
-                zoomctx.beginPath();
-                zoomctx.strokeStyle = getColorStr();
-                zoomctx.lineWidth = 2;
-                zoomctx.rect((x) * scale-zoomX*scale, (y) * scale-zoomY*scale, 1 * scale, 1 * scale);
-                zoomctx.stroke();
+        if(picMouseLeft===true){
+            let zx=-event.layerX/scale + picMouseDownPos.x;
+            let zy=-event.layerY/scale + picMouseDownPos.y;
+            if(!away){
+                if(Math.abs(zx)<zoomH/1800)
+                    zx=0;
+                if(Math.abs(zy)<zoomH/1800)
+                    zy=0;
+                if(zx!==0||zy!==0){
+                    picMouseMove=true;
+                }
             }
-        } else {
+        }else if(picMouseDown===true){
+            picMouseMove=true;
             let zx=-event.layerX/scale + picMouseDownPos.x;
             let zy=-event.layerY/scale + picMouseDownPos.y;
             if(!away){
                 if(Math.abs(zx)<zoomH/2000)
                     zx=0;
-                else if(Math.abs(zy)<zoomH/2000)
+                if(Math.abs(zy)<zoomH/2000)
                     zy=0;
-                else
+                if(zx!==0||zy!==0){
                     away=true;
+                }
             }
             zoomX = zx + picMouseDownPos.zoomX;
             zoomY = zy + picMouseDownPos.zoomY;
@@ -360,13 +405,13 @@
             refreshRect();
             picMouseDownPos.skip++;
             let time=new Date().getTime();
-            if(picMouseDownPos.skip>5&&time-picMouseDownPos.time>2){
+            if(picMouseDownPos.skip>5||time-picMouseDownPos.time>5){
                 let a=picMouseDownPos.oldx - event.layerX;
                 let b=picMouseDownPos.oldy - event.layerY;
-                if(Math.abs(a)<zoomW/300){
+                if(Math.abs(a)<zoomW/500){
                     a=0;
                 }
-                if(Math.abs(b)<zoomH/300){
+                if(Math.abs(b)<zoomH/500){
                     b=0;
                 }
                 picMouseDownPos.vx= a/(time-picMouseDownPos.time);
@@ -376,8 +421,18 @@
                 picMouseDownPos.oldy = event.layerY;
                 picMouseDownPos.skip=0;
             }
-
-            
+        }else{
+            if (rectX !== x || rectY !== y) {
+                picMouseMove=true;
+                zoomctx.fillStyle = '#e5e5e5';
+                zoomctx.fillRect((x - 50) * scale, (y - 50) * scale, 100 * scale, 100 * scale);
+                refresh(x - 50, y - 50, 100, 100);
+                zoomctx.beginPath();
+                zoomctx.strokeStyle = getColorStr();
+                zoomctx.lineWidth = 2;
+                zoomctx.rect((x) * scale-zoomX*scale, (y) * scale-zoomY*scale, 1 * scale, 1 * scale);
+                zoomctx.stroke();
+            }
         }
     }
     function refreshRect() {
@@ -390,12 +445,9 @@
         picRectCtx.rect(zoomX / showScale, zoomY / showScale, w, h);
         picRectCtx.stroke();
     }
-    function moveLeft() {
-        zoomX += -1;
-        refresh();
-    }
-    function moveRight() {
-        zoomX += 1;
+    function move(x,y) {
+        zoomX += x;
+        zoomY+=y;
         refresh();
     }
     function toRGB(str) {
@@ -519,7 +571,7 @@
             }
         }else if(picMouseLeft){
             picMouseLeft=false;
-            if(!picMouseMove||(picMouseDownPos.vx===0&&picMouseDownPos.vy===0)){
+            if(!picMouseMove/*||(picMouseDownPos.vx===0&&picMouseDownPos.vy===0)*/){
                 draw(event);
             }
         }
@@ -539,8 +591,6 @@
     picRect.addEventListener('mousemove', rectMove);
     //canvas.addEventListener('mousemove', pick);
     zoom.addEventListener('mousemove', willDraw,false);
-    left.on('click', moveLeft);
-    right.on('click', moveRight);
     $("#full").spectrum({
         flat: true,
         color: "#000000",

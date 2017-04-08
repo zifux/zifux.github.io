@@ -54,9 +54,11 @@
             border-top: none;
         }
         #info{
-            background-color:rgba(0, 0, 0, 0.17);
+            position: absolute; left:15px; right:15px;bottom:0;overflow: auto;
+            background-color:rgba(0, 0, 0, 0.47);
             border-top: solid 2px rgb(141, 146, 166);
-            height: 100px;
+            height: auto;
+            color: #fefefe;
         }
 
     </style>
@@ -68,44 +70,40 @@
             <canvas id="zoom" width="1270" height="600" style="position: static;z-index: 0;margin: 0;padding: 0"></canvas>
         </div>
     </div>
-    <div class="row" id="info" style="position: absolute; left:15px; right:15px;bottom:0;overflow: auto;">
-        <div class="col-md-1">
+    <div class="row" id="info">
+        <div class="col-md-1 col-sm-1 col-xs-1">
             <img src="files/test.png" height="98">
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-3 col-xs-2">
         <h2>像素绘 ver.03</h2>
     </div>
-        <div class="col-md-1">
-            <a style="margin-top: 20px;" id="downloadPic" class="btn btn-info" href="#" download="pixelPic">
-                下载整图
-            </a>
-        </div>
-        <div class="col-md-2">
+        <div class="col-md-2 col-sm-3 col-xs-3">
             <div style="margin-top: 20px">
-                放大倍率:<br>
-                <label class="radio-inline">
-                    <input type="radio" name="optionsRadios" id="x4" onclick="changeScale(4)">
-                    x4
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="optionsRadios" id="x8" onclick="changeScale(8)">
-                    x8
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="optionsRadios" id="x16" onclick="changeScale(16)" checked>
-                    x16
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="optionsRadios" id="x32" onclick="changeScale(32)">
-                    x32
-                </label>
+                放大倍率:<strong id="scaleN">16</strong><br>
+
+                    <input type="button" class="btn btn-primary" value="x04" onclick="changeScale(4)">
+
+
+
+                    <input type="button" class="btn btn-primary"  value="x08" onclick="changeScale(8)">
+
+
+                    <input type="button" class="btn btn-primary"  value="x16" onclick="changeScale(16)">
+
+
+                    <input type="button" class="btn btn-primary"  value="x32" onclick="changeScale(32)">
             </div>
         </div>
-        <div class="col-md-4" style="margin-top: 5px">
+        <div class="col-md-3  col-sm-3 col-xs-3" style="margin-top: 5px">
             说明<br/>
             鼠标拖动来移动画布<br/>
             点击或拖动右上角红框快速移动<br/>
             单击画一个像素,测试阶段每秒可画一个像素<br/>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-3">
+            <a id="downloadPic" class="btn btn-warning" href="#" download="pixelPic" style="float: right; margin-top: 28px; line-height: 40px;padding-top: 0;padding-bottom: 0" >
+                下载整图
+            </a>
         </div>
     </div>
 </div>
@@ -317,7 +315,7 @@
     function changeScale(sc){
         if(sc<1)sc=1;
         if(sc>32)sc=32;
-
+        scaleN.innerHTML=Number(sc).toFixed(1);
         //initGrid();
         zoomX+=(zoomW / scale-zoomW/sc)/2;
         zoomY+= (zoomH / scale-zoomH/sc)/2;

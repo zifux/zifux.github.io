@@ -34,12 +34,13 @@
             float: none;
         }
         .full-spectrum {
-            top: 228px;
+            top: 258px;
             right: 0;
             width: 200px;
             border: solid 2px #D5D5D5;
             background-color: #D5D5D5;
             border-radius:0 0 0 6px ;
+            padding-bottom: 20px;
             /*box-shadow: 0px 0px 5px 0px rgba(0, 0, 0,0.5);*/
         }
         .sp-palette .sp-thumb-el{
@@ -49,7 +50,14 @@
             -webkit-user-select: none; /* webkit (safari, chrome) browsers */
             -moz-user-select: none; /* mozilla browsers */
             -khtml-user-select: none; /* webkit (konqueror) browsers */
-            -ms-user-select: none; /* IE10+ */
+            -ms-user-select: none; /* IE10+ sp-palette-only*/
+        }
+        .sp-picker-container{
+            border-left: none;
+            margin-top: 15px;
+        }
+        .sp-palette-button-container{
+            z-index: 1000;
         }
         #picRect{
             border: solid 2px #D5D5D5;
@@ -146,11 +154,11 @@
     <div style="position: absolute;right: 0px;top: 198px;width: 200px;height: 30px;background: #D5D5D5;">
         <div id="color" style="width: auto; margin:2px;height: 22px; border:solid 1px #FFFFFF;border-radius:4px; background-color: #000000"></div>
     </div>
-    <div id=" " style="border-radius: 4px 0 0 4px;padding: 2px; position: absolute;right: 0px;top: 498px;width: auto;height: auto;background: #D5D5D5; line-height: 30px;align-content: center">
+    <div id=" " style="padding: 2px; position: absolute;right: 0px;top: 228px;width: 200px;height: auto;background: #D5D5D5; line-height: 30px;align-content: center">
         <label style="cursor: hand;margin: 0">
             <input type="checkbox" id="gridShow" style="margin: 0; vertical-align:middle;" onclick="refresh()"> 显示像素网格
         </label>
-        <button class="btn btn-primary" onclick="direction()">操作说明</button>
+        <button class="btn btn-primary" onclick="direction()" style="padding:2px">操作说明</button>
     </div>
 </div>
 </body>
@@ -613,6 +621,8 @@ function direction() {
         color: "#000000",
         cancelText: '取消',
         chooseText: '选择',
+        togglePaletteMoreText:'更多',
+        togglePaletteLessText:'隐藏',
         showButtons: true,
         showInput: true,
         allowEmpty: false,
@@ -620,9 +630,10 @@ function direction() {
         className: "full-spectrum",
         showInitial: true,
         showPalette: true,
-        showPaletteOnly: true,
+        showPaletteOnly: false,
+        togglePaletteOnly: true,
         showSelectionPalette: true,
-        maxSelectionSize: 10,
+        maxSelectionSize: 8,
         preferredFormat: "hex",
         localStorageKey: "spectrum.pic",
         move: function (color) {

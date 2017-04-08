@@ -5,12 +5,14 @@
     <title>像素绘</title>
     <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/spectrum/1.8.0/spectrum.js"></script>
+    <script src="./js/jquery.mininoty.min.js"></script>
     <!--<script src="/static/js/spectrum.js"></script>-->
     <!--<link href="/static/js/spectrum.css" rel='stylesheet'/>-->
     <link href="http://cdn.bootcss.com/spectrum/1.8.0/spectrum.min.css" rel="stylesheet">
     <!--<link href="/public/static/js/bootstrap.min.css" rel='stylesheet'/>-->
     <!--<link href="/static/js/bootstrap.min.css" rel='stylesheet'/>-->
     <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
     <style>
         body {
             margin: 0px;
@@ -170,6 +172,11 @@
 </body>
 <script>
 
+    $.miniNotyConfig.set({ // set global config
+        timeoutToHide: 4000, // any params
+        //timeoutAnimEnd: 600
+    })
+
     var scaleX = 300;
     var scaleY = 300;
     var scale = 8;
@@ -221,6 +228,7 @@
     zoomctx.fillStyle="#393d5c";
     zoomctx.font = "48px serif";
     zoomctx.fillText('正在加载...',80,80);
+    $.miniNoty("画布信息--正在加载","normal");
     $.get('http://60.205.207.218:81/Index/index/getPic', function (dataStr) {
         var data = parsePic(dataStr);
         for (var index in data) {
@@ -235,6 +243,7 @@
             ctx.putImageData(pixelData, d[0], d[1]);
         }
         refresh(zoomX, zoomY, zoomW, zoomH);
+        $.miniNoty("<strong>画布信息--载入完成</strong>","success");
     });
     function parsePic(str) {
         return str.split(':');
@@ -275,7 +284,20 @@
                     ctx.putImageData(pixelData, con.x, con.y);
                     refresh(con.x, con.y, 1, 1);
                 } else {
-                    console.log(data);
+                    switch (data['err']){
+                        case -1:
+                            $.miniNoty("<strong>不支持的像素色彩信息,无法绘制像素</strong>","error");
+                            break;
+                        case -2:
+                            $.miniNoty("<strong>非预期请求,无法绘制像素</strong>","error");
+                            break;
+                        case -3:
+                            $.miniNoty("<strong>超出绘制区域,无法绘制像素</strong>","warning");
+                            break;
+                        case -4:
+                            $.miniNoty("<strong>绘制时间限制,还不能绘制新像素</strong>","warning");
+                            break;
+                    }
                 }
 
             });

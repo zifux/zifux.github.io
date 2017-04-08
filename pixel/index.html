@@ -162,7 +162,7 @@
     </div>
     <div id=" " style="padding: 2px; position: absolute;right: 0px;top: 498px;width: auto;height: auto;background: #D5D5D5; line-height: 30px;align-content: center">
         <label style="cursor: hand;margin: 0">
-            <input type="checkbox" id="gridShow" style="margin: 0; vertical-align:middle;" onclick="refresh()" checked> 显示像素网格
+            <input type="checkbox" id="gridShow" style="margin: 0; vertical-align:middle;" onclick="refresh()"> 显示像素网格
         </label>
 
     </div>
@@ -294,7 +294,6 @@
             $("#full").spectrum("set", rgba);
             //color.textContent = rgba;
         }
-
     }
     $('canvas').mousedown(function(e){if(e.button===1)return false}).contextmenu(function (e) {
         return false;
@@ -374,20 +373,20 @@
         var y = getY(event);
         offsetX=event.layerX/scale-x;
         offsetY=event.layerY/scale-y;
-        if(picMouseLeft===true){
-            let zx=-event.layerX/scale + picMouseDownPos.x;
-            let zy=-event.layerY/scale + picMouseDownPos.y;
-            if(!away){
-                if(Math.abs(zx)<zoomH/1800)
-                    zx=0;
-                if(Math.abs(zy)<zoomH/1800)
-                    zy=0;
-                if(zx!==0||zy!==0){
-                    picMouseMove=true;
-                }
+        let zx=-event.layerX/scale + picMouseDownPos.x;
+        let zy=-event.layerY/scale + picMouseDownPos.y;
+        if(!away){
+            if(Math.abs(zx)<zoomH/1800)
+                zx=0;
+            if(Math.abs(zy)<zoomH/1800)
+                zy=0;
+            if(zx!==0||zy!==0){
+                picMouseMove=true;
             }
+        }
+        if(picMouseLeft===true){
+
         }else if(picMouseDown===true){
-            picMouseMove=true;
             let zx=-event.layerX/scale + picMouseDownPos.x;
             let zy=-event.layerY/scale + picMouseDownPos.y;
             if(!away){
@@ -470,7 +469,15 @@
         return $('#full').val();
     }
     function pick(event) {
-
+        var x = getX(event);
+        var y = getY(event);
+        var pixel = ctx.getImageData(x, y, 1, 1);
+        var data = pixel.data;
+        var rgba = 'rgba(' + data[0] + ',' + data[1] +
+            ',' + data[2] + ',' + data[3] + ')';
+        color.style.background = rgba;
+        $("#full").spectrum("set", rgba);
+        //color.textContent = rgba;
     }
     function getMousePos(canvas, evt) {
         var rect = canvas.getBoundingClientRect();
@@ -551,7 +558,8 @@
             away=false;
             let x=getX(event) - zoomX;
             let y = getY(event) - zoomY;
-            if(!picMouseMove||(picMouseDownPos.vx===0&&picMouseDownPos.vy===0)){
+            if(!picMouseMove){
+                pick(event);
             }else{
                 if(Math.abs( picMouseDownPos.vx)+Math.abs(picMouseDownPos.vy)<0.001)return;
                 picMouseDownPos.vx=picMouseDownPos.vx>3?3:picMouseDownPos.vx;

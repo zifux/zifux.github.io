@@ -119,7 +119,7 @@
                 </div>
                 <div class="col-md-2 col-sm-3 col-xs-3">
                     <div style="margin-top: 20px">
-                        放大倍率:<strong id="scaleN">16.0</strong><br>
+                        放大倍率:<strong id="scaleN">8.0</strong><br>
 
                         <input type="button" class="btn btn-primary" value="x04" onclick="changeScale(4)">
 
@@ -172,7 +172,7 @@
 
     var scaleX = 300;
     var scaleY = 300;
-    var scale = 16;
+    var scale = 8;
     var showScale = scaleX / 200;
     var zoomX = 0;
     var zoomY = 0;
@@ -311,8 +311,9 @@
     }
 
     function initGrid(){
-        grid.width = scaleX*scale;
-        grid.height = scaleY*scale;
+        var gridScale=16;
+        grid.width = scaleX*gridScale;
+        grid.height = scaleY*gridScale;
         gridctx.imageSmoothingEnabled = false;
         gridctx.mozImageSmoothingEnabled = false;
         gridctx.webkitImageSmoothingEnabled = false;
@@ -322,13 +323,13 @@
         gridctx.strokeStyle='rgba(229,229,229,0.6)';
         gridctx.strokeWidth=1;
         gridctx.beginPath();
-        for( m=1;m<scaleY*scale;m++){
-            gridctx.moveTo(0,m*scale);
-            gridctx.lineTo(scaleX*scale,m*scale);
+        for( m=1;m<scaleY*gridScale;m++){
+            gridctx.moveTo(0,m*gridScale);
+            gridctx.lineTo(scaleX*gridScale,m*gridScale);
         }
-        for( n=1;n<scaleX*scale;n++){
-            gridctx.moveTo(n*scale,0);
-            gridctx.lineTo(n*scale,scaleY*scale);
+        for( n=1;n<scaleX*gridScale;n++){
+            gridctx.moveTo(n*gridScale,0);
+            gridctx.lineTo(n*gridScale,scaleY*gridScale);
         }
         gridctx.stroke();
     }

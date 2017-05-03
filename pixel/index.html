@@ -85,7 +85,6 @@
         .clickNav{
 
         }
-
     </style>
 </head>
 <body>
@@ -169,7 +168,10 @@ function direction() {
     $.miniNotyConfig.set({ // set global config
         timeoutToHide: 5000, // any params
         //timeoutAnimEnd: 600
-    })
+    });
+    var debugFlag=false;
+                                                        debugFlag=true;
+    var serverUrl=debugFlag?'pixel.local/index':'60.205.207.218:81';
 
     var scaleX = 300;
     var scaleY = 300;
@@ -189,6 +191,8 @@ function direction() {
     ctx.mozImageSmoothingEnabled = false;
     ctx.webkitImageSmoothingEnabled = false;
     ctx.msImageSmoothingEnabled = false;
+    ctx.fillStyle = "#fcfcfc";
+    ctx.fillRect(0, 0, scaleX, scaleY);
 
     var picRect = document.getElementById('picRect');
     var picRectCtx = picRect.getContext('2d');
@@ -217,28 +221,83 @@ function direction() {
     var downCtx = down.getContext('2d');
     var idata;
     var gridShow=document.getElementById("gridShow");
-    ctx.fillStyle = "#fcfcfc";
-    ctx.fillRect(0, 0, scaleX, scaleY);
-    zoomctx.fillStyle="#393d5c";
-    zoomctx.font = "48px serif";
-    zoomctx.fillText('正在加载...',80,80);
-    $.miniNoty("画布信息--正在加载","normal");
-    $.get('http://60.205.207.218:81/Index/index/getPic', function (dataStr) {
-        var data = parsePic(dataStr);
-        for (var index in data) {
-            var pixelData = ctx.createImageData(1, 1);
-            var d = data[index].split(',');
-            var co = toRGB(d[2]);
-            co.push(256);
-            pixelData.data[0] = co[0];
-            pixelData.data[1] = co[1];
-            pixelData.data[2] = co[2];
-            pixelData.data[3] = co[3];
-            ctx.putImageData(pixelData, d[0], d[1]);
+    function init() {
+         scale = 8;
+         showScale = scaleX / 200;
+         zoomX = 0;
+         zoomY = 0;
+         zoomW = $(window).width(), zoomH = $(window).height();
+         offsetX=0;
+         offsetY=0;
+
+        canvas.width = scaleX;
+        canvas.height = scaleY;
+        ctx.imageSmoothingEnabled = false;
+        ctx.mozImageSmoothingEnabled = false;
+        ctx.webkitImageSmoothingEnabled = false;
+        ctx.msImageSmoothingEnabled = false;
+        ctx.fillStyle = "#fcfcfc";
+        ctx.fillRect(0, 0, scaleX, scaleY);
+
+        picRect.width = 200;
+        picRect.height = 200;
+        picRectCtx.imageSmoothingEnabled = false;
+        picRectCtx.mozImageSmoothingEnabled = false;
+        picRectCtx.webkitImageSmoothingEnabled = false;
+        picRectCtx.msImageSmoothingEnabled = false;
+
+        zoom.width = zoomW;
+        zoom.height = zoomH;
+        zoomctx.imageSmoothingEnabled = false;
+        zoomctx.mozImageSmoothingEnabled = false;
+        zoomctx.webkitImageSmoothingEnabled = false;
+        zoomctx.msImageSmoothingEnabled = false;
+
+        ctx.fillStyle = "#fcfcfc";
+        ctx.fillRect(0, 0, scaleX, scaleY);
+        zoomctx.fillStyle="#393d5c";
+        zoomctx.font = "48px serif";
+        zoomctx.fillText('正在加载...',80,80);
+        $.miniNoty("画布信息--正在加载","normal");
+    }
+
+    $.get('http://'+serverUrl+'/Index/index/getInfo', function (picInfo) {
+        var info=JSON.parse(picInfo);
+        var h=info['height'];
+        var w=info['width'];
+        if(!UorNorE(h)&&!UorNorE(w)){
+            scaleX=w;
+            scaleY=h;
+            init();
+            initGrid();
+        }else{
+            $.miniNoty("<strong>画布信息--载入失败,可能是由于网络不稳定或服务器出现未知故障</strong>","error");
         }
-        refresh(zoomX, zoomY, zoomW, zoomH);
-        $.miniNoty("<strong>画布信息--载入完成</strong>","success");
+        $.get('http://'+serverUrl+'/Index/index/getPic', function (dataStr) {
+            var data = parsePic(dataStr);
+            for (var index in data) {
+                var pixelData = ctx.createImageData(1, 1);
+                var d = data[index].split(',');
+                var co = toRGB(d[2]);
+                co.push(256);
+                pixelData.data[0] = co[0];
+                pixelData.data[1] = co[1];
+                pixelData.data[2] = co[2];
+                pixelData.data[3] = co[3];
+                ctx.putImageData(pixelData, d[0], d[1]);
+            }
+            refresh(zoomX, zoomY, zoomW, zoomH);
+            $.miniNoty("<strong>画布信息--载入完成</strong>","success");
+        });
     });
+
+/**
+ * @return {boolean}
+ */
+function UorNorE(obj) {
+        return (obj===undefined||obj===null||obj==='');
+    }
+
     function parsePic(str) {
         return str.split(':');
 
@@ -267,10 +326,19 @@ function direction() {
         function drLeft() {
             var color = getColorStr().substring(1);
             var con = {x: getX(event), y: getY(event), color: toRGB(color)};
-            $.post('http://60.205.207.218:81/Index/index/drawPixel', {x: con.x, y: con.y, color: color}, function (redata) {
+            var pixel = ctx.getImageData(con.x, con.y, 1, 1);
+            var ordata = pixel.data;
+            var pixelData = ctx.createImageData(1, 1);
+            pixelData.data[0] = con.color[0];
+            pixelData.data[1] = con.color[1];
+            pixelData.data[2] = con.color[2];
+            pixelData.data[3] = 80;
+            ctx.putImageData(pixelData, con.x, con.y);
+            refresh(con.x, con.y, 1, 1);
+            $.post('http://'+serverUrl+'/Index/index/drawPixel', {x: con.x, y: con.y, color: color}, function (redata) {
                 var data = JSON.parse(redata);
                 if (data['err'] === 0) {
-                    var pixelData = ctx.createImageData(1, 1);
+                    pixelData = ctx.createImageData(1, 1);
                     pixelData.data[0] = con.color[0];
                     pixelData.data[1] = con.color[1];
                     pixelData.data[2] = con.color[2];
@@ -278,6 +346,13 @@ function direction() {
                     ctx.putImageData(pixelData, con.x, con.y);
                     refresh(con.x, con.y, 1, 1);
                 } else {
+                    pixelData = ctx.createImageData(1, 1);
+                    pixelData.data[0] = ordata[0];
+                    pixelData.data[1] = ordata[1];
+                    pixelData.data[2] = ordata[2];
+                    pixelData.data[3] = ordata[3];
+                    ctx.putImageData(pixelData, con.x, con.y);
+                    refresh(con.x, con.y, 1, 1);
                     switch (data['err']){
                         case -1:
                             $.miniNoty("<strong>不支持的像素色彩信息,无法绘制像素</strong>","error");
@@ -349,7 +424,6 @@ function direction() {
         }
         gridctx.stroke();
     }
-    initGrid();
     function drawGrid() {
         if(!gridShow.checked)return;
         zoomctx.drawImage(grid,

@@ -1,22 +1,15 @@
 > Science Is Magic
 
-# Unity3D
+#Bili MP4
 
 ----------
 
-### [笔记1-17/1/1](/unity/note-1.html)
+### 感谢您的使用
 
-* 禁用GameObject
-* 动态实例化Prefabs 
-* 游戏按键 随机
-* 旋转与方向
-* Unity3D个性化设置
+本软件目前正在完善中,敬请期待.
 
-### [笔记2-17/1/2](/unity/note-2.html)
-* Setting Manager 设置管理器
+###捐赠
 
-# 其他
+如希望帮助开发者完善软件,可扫描下方二维码进行捐赠,非常感谢你的支持.
 
-----------
-
-### [win10禁用全半角切换](/other/IME-disableShiftSpace.html)
+![](./149417.jpg)

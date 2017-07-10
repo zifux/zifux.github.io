@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>http://www.cartoonmad.com</title>
+    </head>
+    <body>
+        
+        <div align="center">
+            <div id="info"></div>
+            <a href="#" id="next" align="center">
+            
+                <img id="show" src="">
+
+            </a><br/>
+            <a href="#" id="nextSe">下一章</a>
+            <form>
+                漫画ID<input type="text">
+                <input type="submit">
+            </form>
+            
+        </div>
+        <img id="buf1" src="" style="display:none">
+        <img id="buf2" src="" style="display:none">
+        <img id="buf3" src="" style="display:none">
+    </body>
+    <script>
+        var pa={}
+        var pas=document.location.search.substring(1).split("&")
+        for(var p in pas){
+            var tmp=pas[p].split("=");
+            pa[tmp[0]]=tmp[1];
+        }
+        var url="http://web3.cartoonmad.com/c86ns736r62/";
+        var nowPic=1;
+        var nowSe=207;
+        var nowMg=1698;
+        if(pa["mg"]!=null){
+            nowMg=parseInt(pa["mg"])
+        }
+        if(pa["se"]!=null){
+            nowSe=parseInt(pa["se"])
+        }
+        if(pa["pic"]!=null){
+            nowPic=parseInt(pa["pic"])
+        }
+        function To3(num){
+            if(num<10){
+                return "00"+num;
+            }else if(num<100){
+                return "0"+num;
+            }else{
+                return ""+num;
+            }
+        }
+        var show=document.getElementById("show");
+        var buf1=document.getElementById("buf1");
+        var buf2=document.getElementById("buf2")
+        var buf3=document.getElementById("buf3");
+        show.src=url+nowMg+"/"+To3(nowSe)+"/"+To3(nowPic)+".jpg";
+
+        document.getElementById("next").href=document.location.pathname+"?mg="+nowMg+"&se="+nowSe+"&pic="+(nowPic+1);
+        document.getElementById("nextSe").href=document.location.pathname+"?mg="+nowMg+"&se="+(nowSe+1)+"&pic=1";
+
+        buf1.src=url+nowMg+"/"+To3(nowSe)+"/"+To3(nowPic+1)+".jpg";
+        buf2.src=url+nowMg+"/"+To3(nowSe)+"/"+To3(nowPic+3)+".jpg";
+        buf3.src=url+nowMg+"/"+To3(nowSe)+"/"+To3(nowPic+5)+".jpg";
+        show.onload=function(){
+            if(show.naturalWidth<1130){
+                show.width="1130"
+            }else if(show.naturalWidth>1910){
+                show.width="1910"
+            }
+        }
+        show.onerror=function(){
+            if(pa["pic"]==1){
+                document.getElementById("info").innerHTML="已经没有了"
+            }else{
+                window.location.href=document.location.pathname+"?se="+(nowSe+1)+"&pic=1";
+            }
+        }
+        buf1.onerror=function(){
+            buf1.src=url+nowMg+"/"+To3(nowSe+1)+"/"+To3(1)+".jpg";
+        }
+        buf2.onerror=function(){
+            buf2.src=url+nowMg+"/"+To3(nowSe+1)+"/"+To3(2)+".jpg";
+        }
+        buf3.onerror=function(){
+            buf3.src=url+nowMg+"/"+To3(nowSe+1)+"/"+To3(3)+".jpg";
+        }
+
+    </script>
+</html>

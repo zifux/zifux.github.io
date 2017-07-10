@@ -16,7 +16,7 @@
                 漫画ID<input type="text" name="mg">
                 <input type="submit">
             </form>
-            <a href="http://www.cartoonmad.com">动漫狂网站</a>
+            <a href="http://www.cartoonmad.com" target="_blank">动漫狂网站</a>
         </div>
         <img id="buf1" src="" style="display:none">
         <img id="buf2" src="" style="display:none">
@@ -64,10 +64,10 @@
         buf2.src=url+nowMg+"/"+To3(nowSe)+"/"+To3(nowPic+3)+".jpg";
         buf3.src=url+nowMg+"/"+To3(nowSe)+"/"+To3(nowPic+5)+".jpg";
         show.onload=function(){
-            if(show.naturalWidth<1130){
-                show.width="1130"
-            }else if(show.naturalWidth>1910){
-                show.width="1910"
+            if(show.naturalWidth<window.innerWidth*0.62){
+                show.width=window.innerWidth*0.62
+            }else if(show.naturalWidth>window.innerWidth-40){
+                show.width=window.innerWidth-40
             }
             document.getElementById("info").innerHTML=""
         }

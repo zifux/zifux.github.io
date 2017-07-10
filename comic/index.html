@@ -6,15 +6,15 @@
     <body>
         
         <div align="center">
-            <div id="info"></div>
+            <div id="info">加载中...</div>
             <a href="#" id="next" align="center">
             
                 <img id="show" src="">
 
             </a><br/>
             <a href="#" id="nextSe">下一章</a>
-            <form>
-                漫画ID<input type="text">
+            <form action="" method="get">
+                漫画ID<input type="text" name="mg">
                 <input type="submit">
             </form>
             
@@ -32,7 +32,7 @@
         }
         var url="http://web3.cartoonmad.com/c86ns736r62/";
         var nowPic=1;
-        var nowSe=207;
+        var nowSe=1;
         var nowMg=1698;
         if(pa["mg"]!=null){
             nowMg=parseInt(pa["mg"])
@@ -70,6 +70,7 @@
             }else if(show.naturalWidth>1910){
                 show.width="1910"
             }
+            document.getElementById("info").innerHTML=""
         }
         show.onerror=function(){
             if(pa["pic"]==1){

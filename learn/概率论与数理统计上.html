@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>概率论与数理统计-上</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({"extensions":["tex2jax.js"],"jax":["input/TeX","output/HTML-CSS"],"messageStyle":"none","tex2jax":{"processEnvironments":false,"processEscapes":true,"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"TeX":{"extensions":["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]},"HTML-CSS":{"availableFonts":["TeX"]}});
+        </script>
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+        
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+html body {
+  background-color: #f5f5f5;
+  font-family: 'Source Han Sans', 'Consolas', 'Courier New', 'monospace';
+}
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <p><span class="mathjax-exps">$&#x5C;newcommand {&#x5C;intinf}{&#x5C;int_{-&#x5C;infty}^&#x5C;infty}&#x5C;newcommand {&#x5C;list}{&#x5C;begin{aligned}}&#x5C;newcommand {&#x5C;endlist}{&#x5C;end{aligned}}&#x5C;newcommand{&#x5C;cov}{&#x5C;mathrm{Cov}}&#x5C;newcommand{&#x5C;pto}{&#x5C;overset P&#x5C;to}$</span></p>
+<h1 class="mume-header" id="%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">第一章 基本概念</h1>
+
+<h2 class="mume-header" id="%E9%9A%8F%E6%9C%BA%E8%AF%95%E9%AA%8C">随机试验</h2>
+
+<p>当计算结果过于复杂,复杂到人类无法得知,那么这个计算结果对人类而言就是 <strong>随机</strong> 的.</p>
+<h3 class="mume-header" id="%E4%B8%89%E8%A6%81%E7%B4%A0">三要素</h3>
+
+<ul>
+<li>可以在相同条件下重复进行</li>
+<li>每次试验可能的结果不止一个并且事先明确所有可能的结果</li>
+<li>进行一次试验之前不能确定哪个结果会出现</li>
+</ul>
+<h2 class="mume-header" id="%E6%A0%B7%E6%9C%AC%E7%A9%BA%E9%97%B4-%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6">样本空间 随机事件</h2>
+
+<h3 class="mume-header" id="%E6%A0%B7%E6%9C%AC%E7%A9%BA%E9%97%B4">样本空间</h3>
+
+<p><strong>样本空间</strong> 是所有可能出现的结果的集合.</p>
+<blockquote>
+<p>例 一个箱子中有红色球与白色球各一个,每次仅取一个球,那么这个箱子就是取出球事件的样本空间.</p>
+</blockquote>
+<h3 class="mume-header" id="%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6">随机事件</h3>
+
+<p>在样本空间中满足一系列条件的子集叫做这个随机试验中的 <strong>随机事件</strong>.</p>
+<blockquote>
+<p>例 在上个例子中,&quot;抓出红球&quot;叫做条件,满足这一条件的子集是红球被抓出这一随机事件</p>
+</blockquote>
+<p>如果满足条件的子集只有一个元素,那么这一事件被叫做基本事件,上例就是一个基本事件<br>
+每次试验都发生的事件叫做 <strong>必然事件</strong></p>
+<blockquote>
+<p>例 在上例中,满足&quot;抓出红球或白球&quot;这一条件的事件是&quot;红球或白球被抓出&quot;,这一事件每次试验都会发生,因此&quot;红球或白球被抓出&quot;这一事件叫做必然事件</p>
+</blockquote>
+<p>每次试验都不发生的事件叫做 <strong>不可能事件</strong></p>
+<blockquote>
+<p>例 满足&quot;抓出绿球&quot;这一条件的事件&quot;绿球被抓出&quot;,是永远不会发生的,因此它叫做不可能事件</p>
+</blockquote>
+<p>事件就是一个集合,由样本空间中的元素构成或是空集,因此 <strong>事件相关运算与集合运算相同</strong> .两事件交集为空集,那么这两个事件 <strong>互斥</strong> .这意味着两事件不会同时发生.两事件互斥并且他们的并集为整个样本空间,那么这两个事件 <strong>对立</strong> 也就是说两事件中定有切仅有一个发生.</p>
+<h2 class="mume-header" id="%E6%A6%82%E7%8E%87">概率</h2>
+
+<p>重复多次试验得到一个事件发生的次数叫做这个事件的<strong>频数</strong>,频数在总试验次数中的占比叫做这个事件的<strong>频率</strong>.<br>
+频率是后验的,是做了足够多的实验后得到的结论.而<strong>概率是先验的,是在未进行实验时对频率的预言</strong>.概率使用1表示必然发生,使用0表示不可能发生</p>
+<h2 class="mume-header" id="%E7%AD%89%E5%8F%AF%E8%83%BD%E6%A6%82%E5%9E%8B">等可能概型</h2>
+
+<ul>
+<li>样本空间包含有限个元素</li>
+<li>实验中基本事件出现可能性相同</li>
+</ul>
+<p>这样的实验叫做<strong>等可能概型</strong>,也称为<strong>古典概型</strong>.由于每个基本事件的可能性相同,因此他们出现概率相等.由零个或多个基本事件组成的事件,它的可能性完全由基本事件的个数决定.<br>
+<div class="mathjax-exps">$$&#x5C;begin{aligned}&#x5C;text{事件A的概率}P(A)&amp;= &#x5C;sum_{j=1}^k P(&#x5C;{e_{i_{j}}&#x5C;}) &#x5C;&#x5C;[2em]&amp;=&#x5C;frac{k}{n}=&#x5C;frac{&#x5C;text{A包含的事件数}}{&#x5C;text{事件总数}}&#x5C;end{aligned}$$</div>其中,<span class="mathjax-exps">$e_{i}$</span>表示A中包含的基本事件,<span class="mathjax-exps">$k$</span>代表事件A包含的基本事件数,<span class="mathjax-exps">$n$</span>代表事件总数.</p>
+<h3 class="mume-header" id="%E8%B6%85%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83">超几何分布</h3>
+
+<p>N件产品中有D件次品,任取n件,恰有k件次品的概率.<br>
+取n件,其中k件次品,则有<span class="mathjax-exps">$n-k$</span>件良品.将产品看做各不相同的个体,每个个体第一次被选中的概率为<span class="mathjax-exps">$&#x5C;frac{1}{N}$</span>.<br>
+在D件次品中取k件次品的所有取出方式有<span class="mathjax-exps">$&#x5C;dbinom{D}{k}$</span>种,<br>
+在<span class="mathjax-exps">$N-D$</span>件良品中取出<span class="mathjax-exps">$n-k$</span>件良品的所有取出方式有<span class="mathjax-exps">$&#x5C;dbinom{D-N}{n-k}$</span>种.<br>
+因此恰有k件次品的概率为<br>
+<div class="mathjax-exps">$$&#x5C;begin{aligned}P(A)=&#x5C;frac{&#x5C;text{有k件次品被取出的所有组合}}{&#x5C;text{取n件产品的所有组合}}=&#x5C;frac{&#x5C;dbinom{D}{k}&#x5C;dbinom{D-N}{n-k}}{&#x5C;dbinom{N}{n}}&#x5C;end{aligned}$$</div>上式为<strong>超几何分布概率公式</strong></p>
+<h2 class="mume-header" id="%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87">条件概率</h2>
+
+<p>在事件A发生的情况下事件B发生的概率叫<strong>条件概率</strong>.记为:<span class="mathjax-exps">$P(B|A)$</span>.</p>
+<h3 class="mume-header" id="%E4%B8%89%E8%A6%81%E7%B4%A0-1">三要素</h3>
+
+<ul>
+<li>非负性: <span class="mathjax-exps">$P(B|A)&#x5C;geqslant0$</span>.</li>
+<li>规范性: 对于必然事件S,<span class="mathjax-exps">$P(S|A)=1$</span>.</li>
+<li>可列可加性:互斥事件<span class="mathjax-exps">$B_i$</span>有<span class="mathjax-exps">$P(&#x5C;bigcup_{i=1}^&#x5C;infty B_i|A)=&#x5C;sum_{i=1}^&#x5C;infty P(B_i|A)$</span>.</li>
+</ul>
+<p>条件概率<span class="mathjax-exps">$P(B|A)$</span>可以理解为对<span class="mathjax-exps">$P(AB)$</span>的缩放,其定义为:<br>
+<div class="mathjax-exps">$$P(B|A)=&#x5C;frac{P(AB)}{P(A)} &#x5C;text{ 其中}P(A)&#x5C;geqslant0$$</div></p>
+<h3 class="mume-header" id="%E4%B9%98%E6%B3%95%E5%AE%9A%E7%90%86">乘法定理</h3>
+
+<p>由条件概率公式可得<br>
+<div class="mathjax-exps">$$P(AB)=P(B|A)P(A)$$</div>其叫做乘法公式.可理解为,对在A条件下B发生的概率进行缩放.</p>
+<blockquote>
+<p>在A条件下B发生也就是说AB已经同时发生,但<span class="mathjax-exps">$P(B|A)$</span>的值是相对于<span class="mathjax-exps">$P(A)$</span>的,因此乘以<span class="mathjax-exps">$P(A)$</span>,转换为在整个样本空间下的概率.</p>
+</blockquote>
+<h3 class="mume-header" id="%E5%85%A8%E6%A6%82%E7%8E%87%E5%85%AC%E5%BC%8F%E5%92%8C%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F">全概率公式和贝叶斯公式</h3>
+
+<p>如果<span class="mathjax-exps">$B_i$</span>两两互斥且<span class="mathjax-exps">$&#x5C;bigcup_{i=1}^nB_i=&#x5C;text{样本空间S}$</span>,则<span class="mathjax-exps">$B_1,B_2,&#x5C;cdots,B_n$</span>j叫做S的一个<strong>划分</strong>.如下图:</p>
+<div class="code-chunk" data-id="code-chunk-id-0" data-cmd="gnuplot" data-code=""><div class="btn-group"><div class="run-btn btn"><span>▶︎</span></div><div class="run-all-btn btn">all</div></div><div class="status">running...</div><div class="output-div"></div></div>
+<p>B1,B2,B3,B4为样本空间S的一个划分.<br>
+设<span class="mathjax-exps">$B_i$</span>为样本空间S的一个划分.则有<br>
+<div class="mathjax-exps">$$P(A)=&#x5C;sum_{i=1}^nP(AB_i)=&#x5C;sum_{i=1}^nP(A|B_i)P(B_i)$$</div>上式称为<strong>全概率公式</strong>.</p>
+<div class="code-chunk" data-id="code-chunk-id-1" data-cmd="gnuplot" data-code=""><div class="btn-group"><div class="run-btn btn"><span>▶︎</span></div><div class="run-all-btn btn">all</div></div><div class="status">running...</div><div class="output-div"></div></div>
+<p>如上图所示,蓝线将矩形S划分为四个区域B1,B2,B3,B4.显然A的概率<span class="mathjax-exps">$P(A)=P(AB_1)+P(AB_2)+P(AB_3)+P(AB_4)$</span><br>
+由条件概率定义与全概率公式,可直接导出<strong>贝叶斯(Bayes)公式</strong>.<br>
+<div class="mathjax-exps">$$P(B_i|A)=&#x5C;frac{P(A|B_i)P(B_i)}{&#x5C;sum_{j=1}^nP(A|B_j)P(B_j)}$$</div></p>
+<h2 class="mume-header" id="%E7%8B%AC%E7%AB%8B%E6%80%A7">独立性</h2>
+
+<p>如果事件集合中的任意n个事件的积事件等于各事件的积,那么各个事件相互独立.<br>
+对于事件A,B,若<span class="mathjax-exps">$P(AB)=P(A)P(B)$</span>则A,B事件相互独立.由于两事件独立,因此事件是否发生互不影响,因此显然<span class="mathjax-exps">$P(B)=P(B|A)$</span>.</p>
+<h1 class="mume-header" id="%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83">随机变量及其分布</h1>
+
+<h2 class="mume-header" id="%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F">随机变量</h2>
+
+<p><strong>随机变量</strong><span class="mathjax-exps">$X$</span>是一个实值单值函数<span class="mathjax-exps">$F(e)$</span>.它是从样本空间到某一规定值的映射.其目的是量化样本空间,具体的量化标准可根据需求自由定义.<br>
+由于实验结果是随机的,因此<span class="mathjax-exps">$X$</span>也是随机的,使用<span class="mathjax-exps">$P&#x5C;{X=1&#x5C;}$</span>表示随机变量值为1的概率.</p>
+<blockquote>
+<p>要始终牢记<span class="mathjax-exps">$X$</span>是函数而不是值,<span class="mathjax-exps">$X=x_i$</span>代表<span class="mathjax-exps">$X(e)=x_i$</span>,与函数<span class="mathjax-exps">$y=x$</span>意义完全不同</p>
+</blockquote>
+<h2 class="mume-header" id="%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83">离散型随机变量及其分布</h2>
+
+<p>值域任意处不连续的随机变量叫做<strong>离散型随机变量</strong>,将所有可能取值的概率列出来,叫做随机变量X的<strong>分布律</strong>,分布律可以用表格形式表示:</p>
+<table>
+<thead>
+<tr>
+<th><span class="mathjax-exps">$P$</span></th>
+<th><span class="mathjax-exps">$x_1$</span></th>
+<th><span class="mathjax-exps">$x_2$</span></th>
+<th><span class="mathjax-exps">$&#x5C;cdots$</span></th>
+<th><span class="mathjax-exps">$x_n$</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="mathjax-exps">$p_k$</span></td>
+<td><span class="mathjax-exps">$p_1$</span></td>
+<td><span class="mathjax-exps">$p_2$</span></td>
+<td><span class="mathjax-exps">$&#x5C;cdots$</span></td>
+<td><span class="mathjax-exps">$p_n$</span></td>
+</tr>
+</tbody>
+</table>
+<h3 class="mume-header" id="0-1%E5%88%86%E5%B8%83">(0-1)分布</h3>
+
+<p>如果随机变量<span class="mathjax-exps">$X$</span>只可能取0或1,那么<span class="mathjax-exps">$X$</span>服从(0-1)分布.例如抛硬币,是否合格等布尔值可表示的问题.</p>
+<h3 class="mume-header" id="%E4%BA%8C%E9%A1%B9%E5%88%86%E5%B8%83">二项分布</h3>
+
+<p>设实验只有两个结果<span class="mathjax-exps">$A$</span>与<span class="mathjax-exps">$&#x5C;overline A$</span>,那么称此实验为<strong>伯努利(Bernoulli)实验</strong>,将此实验独立重复n次,叫做<strong>n重伯努利实验</strong>.<br>
+设随机变量<span class="mathjax-exps">$X$</span>表示在n重伯努利实验中<span class="mathjax-exps">$A$</span>发生的次数,那么:<br>
+<div class="mathjax-exps">$$&#x5C;begin{aligned}P&#x5C;{X=k&#x5C;}&amp;=k&#x5C;text{个A所有可能取法}&#x5C;cdot P(A)^kP(&#x5C;overline A)^{n-k}&#x5C;&#x5C;[1em]&amp;=&#x5C;dbinom{n}{k}p^k(n-p)^{n-k}&#x5C;end{aligned}$$</div>由于上式刚好是二项式<span class="mathjax-exps">$(p+q)^n$</span>展开式的<span class="mathjax-exps">$p^k$</span>那项,因此称随机变量<span class="mathjax-exps">$X$</span>服从参数为n,p的二项分布.记为<span class="mathjax-exps">$X&#x5C;thicksim b(n,p)$</span>,其中b是英文 <strong>Binomial(二项式)</strong> 的缩写.<br>
+下图为二项分布<span class="mathjax-exps">$X&#x5C;thicksim b(100,0.3)$</span>与<span class="mathjax-exps">$X&#x5C;thicksim b(100,0.5)$</span>的图像:</p>
+<div class="code-chunk" data-id="code-chunk-id-2" data-cmd="gnuplot" data-code=""><div class="btn-group"><div class="run-btn btn"><span>▶︎</span></div><div class="run-all-btn btn">all</div></div><div class="status">running...</div><div class="output-div"></div></div>
+<h3 class="mume-header" id="%E6%B3%8A%E6%9D%BE%E5%88%86%E5%B8%83">泊松分布</h3>
+
+<p>若<div class="mathjax-exps">$$P&#x5C;{X=k&#x5C;}=&#x5C;frac{&#x5C;lambda^ke^{-&#x5C;lambda}}{k!}$$</div>则称<span class="mathjax-exps">$X$</span>服从<strong>泊松分布</strong>,记为<span class="mathjax-exps">$X&#x5C;thicksim &#x5C;pi(&#x5C;lambda)$</span>.<br>
+泊松分布的图像如下所示:</p>
+<div class="code-chunk" data-id="code-chunk-id-3" data-cmd="gnuplot" data-code=""><div class="btn-group"><div class="run-btn btn"><span>▶︎</span></div><div class="run-all-btn btn">all</div></div><div class="status">running...</div><div class="output-div"></div></div>
+<p>此分布的详细意义可查阅第12章</p>
+<h4 class="mume-header" id="%E6%B3%8A%E6%9D%BE%E5%88%86%E5%B8%83%E7%9A%84%E4%B8%80%E8%88%AC%E6%84%8F%E4%B9%89">泊松分布的一般意义</h4>
+
+<p>泊松分布用于描述单位时间内某个事件发生的次数与概率之间的关系,例如在一段事件内公交车的到站数,客服接到电话数等.<br>
+泊松分布中的<span class="mathjax-exps">$&#x5C;lambda$</span>代表在单位时间内事件的平均发生次数.这里的单位时间可自由定义,一分钟一天等,只要给出对应时长的平均发生次数即可.<br>
+实际上泊松分布就是在连续时间上的二项分布,只不过二项分布的总次数n趋于无穷大.<br>
+设在单位时间内事件发生了k次,将事件分为n小段,则事件在每个小段中发生的概率为<span class="mathjax-exps">$&#x5C;lambda&#x2F;n$</span>.因此事件发生k次的概率为<br>
+<div class="mathjax-exps">$$&#x5C;dbinom{n}{k}(&#x5C;frac &#x5C;lambda n)^k(1-&#x5C;frac &#x5C;lambda n)^{n-k}$$</div>由于时间是连续的,分段<span class="mathjax-exps">$n&#x5C;to &#x5C;infty$</span>,因此<br>
+<div class="mathjax-exps">$$&#x5C;list P&#x5C;{A=k&#x5C;}&amp;=&#x5C;lim_{n&#x5C;to&#x5C;infty}&#x5C;dbinom{n}{k}(&#x5C;frac &#x5C;lambda n)^k(1-&#x5C;frac &#x5C;lambda n)^{n-k}&#x5C;&#x5C;&amp;=&#x5C;lim_{n&#x5C;to&#x5C;infty}&#x5C;frac{n!}{k!(n-k)!}&#x5C;frac {&#x5C;lambda^k}{n^k}(1-&#x5C;frac &#x5C;lambda n)^n(1-&#x5C;frac &#x5C;lambda n)^{-k}&#x5C;&#x5C;&amp;=&#x5C;frac{&#x5C;lambda^k}{k!}&#x5C;lim_{n&#x5C;to&#x5C;infty}&#x5C;frac{n!}{n^k(n-k)!}(1-&#x5C;frac &#x5C;lambda n)^n(1-&#x5C;frac &#x5C;lambda n)^{-k}&#x5C;&#x5C;&amp;=&#x5C;frac{&#x5C;lambda^k}{k!}&#x5C;lim_{n&#x5C;to&#x5C;infty} [(1-&#x5C;frac 1 n)&#x5C;cdots(1-&#x5C;frac {k-1} n)](1-&#x5C;frac &#x5C;lambda n)^n(1-&#x5C;frac &#x5C;lambda n)^{-k}&#x5C;&#x5C;&amp;=&#x5C;frac{&#x5C;lambda^k}{k!}&#x5C;cdot 1 &#x5C;cdot e^{-&#x5C;lambda}&#x5C;cdot 1 &#x5C;&#x5C;&amp;=&#x5C;frac{&#x5C;lambda^k}{k!} e^{-&#x5C;lambda} &#x5C;&#x5C;&#x5C;endlist$$</div></p>
+<h4 class="mume-header" id="%E6%B3%8A%E6%9D%BE%E5%AE%9A%E7%90%86">泊松定理</h4>
+
+<p>设<span class="mathjax-exps">$&#x5C;lambda &gt;0$</span>是常数,n是正整数,设<span class="mathjax-exps">$np=&#x5C;lambda$</span>,则对于非负整数<span class="mathjax-exps">$k$</span>有:<br>
+<div class="mathjax-exps">$$&#x5C;lim_{n&#x5C;to&#x5C;infty}&#x5C;dbinom{n}{k}p^k(1-p)^{n-k}=&#x5C;frac{&#x5C;lambda^ke^{-&#x5C;lambda}}{k!}$$</div>因此当n很大p很小时,可以使用泊松分布求值.一般来说当<span class="mathjax-exps">$n&#x5C;geqslant20,p&#x5C;leqslant0.05$</span>时近似效果很好.<br>
+如图,当<span class="mathjax-exps">$&#x5C;lambda=np$</span>时泊松分布图像几乎与二项分布重合:</p>
+<div class="code-chunk" data-id="code-chunk-id-4" data-cmd="gnuplot" data-code=""><div class="btn-group"><div class="run-btn btn"><span>▶︎</span></div><div class="run-all-btn btn">all</div></div><div class="status">running...</div><div class="output-div"></div></div>
+<h3 class="mume-header" id="%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0">随机变量的分布函数</h3>
+
+<p>我们称<br>
+<div class="mathjax-exps">$$F(x)=P&#x5C;{X&#x5C;leqslant x&#x5C;},-&#x5C;infty&lt;x&lt;&#x5C;infty$$</div>为随机变量<span class="mathjax-exps">$X$</span>的<strong>分布函数</strong>.分布函数可以是分段的.因此,不论随机变量连续与否,其均存在分布函数.</p>
+<h2 class="mume-header" id="%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E6%A6%82%E7%8E%87%E5%AF%86%E5%BA%A6">连续型随机变量及其概率密度</h2>
+
+<p>如果随机变量<span class="mathjax-exps">$X$</span>的分布函数存在非负可积函数,使对于任意实数<span class="mathjax-exps">$x$</span>有:<br>
+<div class="mathjax-exps">$$F(x)=&#x5C;int_{-&#x5C;infty}^xf(t)dt$$</div>那么<span class="mathjax-exps">$X$</span>就是<strong>连续型随机变量</strong>,<span class="mathjax-exps">$f(x)$</span>作为<span class="mathjax-exps">$F(x)$</span>的导数,叫做<span class="mathjax-exps">$X$</span>的概率密度,简称为<strong>概率密度</strong>.<br>
+如果画出<span class="mathjax-exps">$f(x)$</span>的图像,那么其y轴代表在当前点的概率密度,在x轴的一个区间上的面积代表落在此处的概率.<br>
+<strong>在以下分布讨论中,非定义域部分的概率默认均为0</strong>.</p>
+<h3 class="mume-header" id="%E5%9D%87%E5%8C%80%E5%88%86%E5%B8%83">均匀分布</h3>
+
+<p>若概率密度图像是一条平行于X轴的直线,也就是说在区间任意点概率密度相等,那么称<span class="mathjax-exps">$X$</span>在区间<span class="mathjax-exps">$(a,b)$</span>上<strong>均匀分布</strong>,记为<span class="mathjax-exps">$X&#x5C;thicksim U(a,b)$</span>.其中<span class="mathjax-exps">$U$</span>是Uniform(一致)的缩写.<br>
+如果<span class="mathjax-exps">$X$</span>是均匀分布,那么概率直接由所选区间与整个区间的比值决定.<div class="mathjax-exps">$$P&#x5C;{x_1&lt;X&#x5C;leqslant x_2&#x5C;}=&#x5C;frac{x_2-x_1}{b-a}$$</div>概率密度不变,为<span class="mathjax-exps">$&#x5C;frac{1}{b-a}$</span>.</p>
+<h3 class="mume-header" id="%E6%8C%87%E6%95%B0%E5%88%86%E5%B8%83">指数分布</h3>
+
+<p><strong>指数分布</strong>概率密度为<div class="mathjax-exps">$$f(x)=&#x5C;frac 1  &#x5C;theta e^{-&#x5C;frac x &#x5C;theta}$$</div><span class="mathjax-exps">$&#x5C;theta$</span>越小图像在第一象限越陡峭,越大月平缓.其拥有特殊的性质,<span class="mathjax-exps">$P&#x5C;{X&gt;s+t|X&gt;s&#x5C;}=p&#x5C;{X&gt;t&#x5C;}$</span>.这种性质叫做<strong>无记忆性</strong>.即其概率不受后验的影响,连续工作10小时的灯可以继续工作10小时的概率与它刚开始工作时可工作10小时的概率相同.灯对其之前工作的10小时没有记忆.</p>
+<h3 class="mume-header" id="%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E9%AB%98%E6%96%AF%E5%88%86%E5%B8%83">正态分布(高斯分布)</h3>
+
+<p><strong>正态分布</strong>的概率密度为<br>
+<div class="mathjax-exps">$$f(x)=&#x5C;frac 1 {&#x5C;sqrt{2&#x5C;pi&#x5C;sigma}}e^{-&#x5C;frac{(x-&#x5C;mu)^2}{2&#x5C;sigma^2}}$$</div>其图像如下图:</p>
+<div class="code-chunk" data-id="code-chunk-id-5" data-cmd="gnuplot" data-code=""><div class="btn-group"><div class="run-btn btn"><span>▶︎</span></div><div class="run-all-btn btn">all</div></div><div class="status">running...</div><div class="output-div"></div></div>
+<p>图像关于<span class="mathjax-exps">$x=&#x5C;mu$</span>对称,并且<span class="mathjax-exps">$&#x5C;sigma$</span>越大图像越平缓,越小越陡峭,与指数分布<span class="mathjax-exps">$&#x5C;theta$</span>的变化类似.记为<span class="mathjax-exps">$X&#x5C;thicksim N(&#x5C;mu,&#x5C;sigma^2)$</span>.<br>
+特别的当<span class="mathjax-exps">$&#x5C;mu=0,&#x5C;sigma=1$</span>时,称为<strong>标准正太分布</strong>.非标准的正太分布可以由标准正太分布线性转换后得到.因此在计算正太分布概率时,可以使用<span class="mathjax-exps">$&#x5C;Phi(x)$</span>函数表方便的计算.具体计算公式如下:<br>
+<div class="mathjax-exps">$$P&#x5C;{X&#x5C;leqslant x&#x5C;}=&#x5C;Phi(&#x5C;frac{x-&#x5C;mu} &#x5C;sigma)$$</div></p>
+<h4 class="mume-header" id="%E4%B8%89%E4%B8%AA%E5%B8%B8%E7%94%A8%E6%A6%82%E7%8E%87">三个常用概率</h4>
+
+<p><span class="mathjax-exps">$X$</span>落在<span class="mathjax-exps">$&#x5C;mu&#x5C;pm&#x5C;sigma$</span>的概率为<span class="mathjax-exps">$68.26&#x5C;%$</span>.<br>
+<span class="mathjax-exps">$X$</span>落在<span class="mathjax-exps">$&#x5C;mu&#x5C;pm2&#x5C;sigma$</span>的概率为<span class="mathjax-exps">$95.44&#x5C;%$</span>.<br>
+<span class="mathjax-exps">$X$</span>落在<span class="mathjax-exps">$&#x5C;mu&#x5C;pm3&#x5C;sigma$</span>的概率为<span class="mathjax-exps">$99.74&#x5C;%$</span>.<br>
+随机变量几乎总是在<span class="mathjax-exps">$&#x5C;mu&#x5C;pm3&#x5C;sigma$</span>这个区间中,这被叫做<span class="mathjax-exps">$3&#x5C;sigma$</span>法则.</p>
+<h2 class="mume-header" id="%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%88%86%E5%B8%83">随机变量的函数的分布</h2>
+
+<p>随机变量<span class="mathjax-exps">$X$</span>,有时需要作为某个函数的参数.也就是说需要对测得的随机变量进行一定变换,而变换后的概率分布情况才是我们真正关心的.在进行这种计算中,应始终将其转换为<span class="mathjax-exps">$P&#x5C;{?&lt;X&#x5C;leqslant ?&#x5C;}$</span>后求出,即使用分布函数<span class="mathjax-exps">$F(x)$</span>求出.<br>
+对于一般情况<span class="mathjax-exps">$Y=g(X)$</span>有:<br>
+<div class="mathjax-exps">$$f_y(y)=f_x[h(y)]|h&#x27;(y)|,&#x5C;alpha&lt;y&lt;&#x5C;beta$$</div>其中<span class="mathjax-exps">$y$</span>在<span class="mathjax-exps">$g(x)$</span>的值域<span class="mathjax-exps">$(&#x5C;alpha,&#x5C;beta)$</span>中,<span class="mathjax-exps">$h(x)$</span>是<span class="mathjax-exps">$g(x)$</span>的反函数.</p>
+<h1 class="mume-header" id="%E5%A4%9A%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83">多维随机变量及其分布</h1>
+
+<p>由于一维随机变量能表达的情形有限,因此使用多维随机变量用于解决复杂情况下的概率分布问题.</p>
+<h2 class="mume-header" id="%E4%BA%8C%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F">二维随机变量</h2>
+
+<p><span class="mathjax-exps">$(X,Y)$</span><strong>二维随机变量</strong>是由两个随机变量组成的,它也被叫做<strong>二维随机向量</strong>.<span class="mathjax-exps">$X,Y$</span>分别将样本空间的数据映射到X轴与Y轴.二维随机变量的<strong>分布函数</strong>为<div class="mathjax-exps">$$F(x,y)=P&#x5C;{(X&#x5C;leqslant x)&#x5C;cap(Y&#x5C;leqslant y)&#x5C;}=P&#x5C;{X&#x5C;leqslant x,Y&#x5C;leqslant y&#x5C;}$$</div>它也被称为<strong>联合分布函数</strong>.<br>
+由此可推导出n维随机变量的分布函数<span class="mathjax-exps">$F(x_1,x_2,&#x5C;cdots,x_n)=P&#x5C;{X_1&#x5C;leqslant x_1,X_2&#x5C;leqslant x_2,&#x5C;cdots,X_n&#x5C;leqslant x_n&#x5C;}$</span></p>
+<blockquote>
+<p>可以想象二维随机变量的概率密度与其组成一个三维物体,概率是对体积的积分</p>
+</blockquote>
+<h2 class="mume-header" id="%E8%BE%B9%E7%BC%98%E5%88%86%E5%B8%83">边缘分布</h2>
+
+<p>在离散型随机变量中边缘分布是在一个变量正无穷的情况下另一个变量的分布,它在分布函数的边缘,因此称为边缘分布.<br>
+边缘分布的概率密度叫<strong>边缘概率密度</strong>,由二维随机变量的分布函数<br>
+<div class="mathjax-exps">$$F(x,y)=&#x5C;int_{-&#x5C;infty}^x&#x5C;int_{-&#x5C;infty}^yf(x,y)dxdy$$</div>可得边缘分布函数为<br>
+<div class="mathjax-exps">$$F_X(x)=&#x5C;int_{-&#x5C;infty}^x&#x5C;int_{-&#x5C;infty}^&#x5C;infty f(x,y)dydx$$</div>显然边缘概率密度为<br>
+<div class="mathjax-exps">$$f_X(x)=&#x5C;frac{d[F_x(x)]}{dx}=&#x5C;int_{-&#x5C;infty}^&#x5C;infty f(x,y)dy$$</div></p>
+<h2 class="mume-header" id="%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B8%83">条件分布</h2>
+
+<p>对于离散型二维随机变量(X,Y),其X的边缘分布率为在X为特定值时,所有Y值的概率之和.<br>
+在Y=y的情况下X的条件分布可自己由条件概率公式得出,直接替换事件A,B可得<br>
+<div class="mathjax-exps">$$P&#x5C;{X=x_i|Y=y_j&#x5C;}=&#x5C;frac{P&#x5C;{X=x_i,Y=y_j&#x5C;}}{P&#x5C;{Y=y_j&#x5C;}}$$</div>实际上,<span class="mathjax-exps">$X=x_i$</span>这种形式就是表示一个事件,这与直接用字母A,B表示没有区别.<br>
+将其一一列出,即可描述<strong>条件分布律</strong>.<br>
+对于连续型二维随机变量(X,Y),其概率密度为<span class="mathjax-exps">$f(x,y)$</span>,Y的边缘概率密度为<span class="mathjax-exps">$f_Y(y)$</span>,则可得到在Y=y时X的条件概率密度<br>
+<div class="mathjax-exps">$$f_{X|Y}(x|y)=&#x5C;frac{f(x,y)}{f_Y(y)}$$</div>即共同的概率密度除以Y的边缘概率密度,得到在Y=y条件下x是概率密度,这与条件概率的求法相似.</p>
+<h2 class="mume-header" id="%E7%9B%B8%E4%BA%92%E7%8B%AC%E7%AB%8B%E7%9A%84%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F">相互独立的随机变量</h2>
+
+<p>实际上<span class="mathjax-exps">$X=x$</span>等类似等式表示的就是一个事件,因此,独立随机变量与独立事件相似.<br>
+根据独立事件的公式有<br>
+<div class="mathjax-exps">$$P(AB)=P(A)P(B)$$</div>因此直接有<br>
+<div class="mathjax-exps">$$P&#x5C;{X&#x5C;leq x,Y&#x5C;leq y&#x5C;}=P&#x5C;{X&#x5C;leq x,Y&#x5C;leq &#x5C;infty&#x5C;}P&#x5C;{X&#x5C;leq &#x5C;infty,Y&#x5C;leq y&#x5C;}$$</div>即<br>
+<div class="mathjax-exps">$$F(x,y)=F_X(x)F_Y(y)$$</div>则称这两个随机变量相互独立.<br>
+概率密度函数有同样规律<br>
+<div class="mathjax-exps">$$f(x,y)=f_X(x)f_Y(y)$$</div>一般在应用时,由边缘分布以及相互独立得出联合概率密度,进而求出概率.<br>
+这种相互独立的性质不仅适用于单个随机变量,也适用于多个随机变量组成的联合分布之间.例如<span class="mathjax-exps">$F(x_1,x_2,y_1,y_2)=F(x_1,x_2)F(y_1,y_2)$</span>.<br>
+若随机变量XY独立,连续函数h,g,则<span class="mathjax-exps">$h(X),g(Y)$</span>相互独立.</p>
+<h2 class="mume-header" id="%E4%B8%A4%E4%B8%AA%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E5%87%BD%E6%95%B0%E5%88%86%E5%B8%83">两个随机变量的函数分布</h2>
+
+<h3 class="mume-header" id="zxy%E5%88%86%E5%B8%83"><span class="mathjax-exps">$Z=X+Y$</span>分布</h3>
+
+<p>Z=X+Y实际上为<span class="mathjax-exps">$Z(e)=X(e)+Y(e)$</span>,因此Z仍然是连续型随机变量,而且由于没有旋转,增量在各个直线上相等,这类似于边缘分布,只不过积分不在是垂直于坐标轴,而是以<span class="mathjax-exps">$y=-x+z$</span>进行积分.因此Z的密度函数<span class="mathjax-exps">$f_{X+Y}(z)=&#x5C;int_{-&#x5C;infty}^&#x5C;infty f(x,-x+z)dx=&#x5C;int_{-&#x5C;infty}^&#x5C;infty f(-x+z,y)dy$</span>.<br>
+若XY相互独立<span class="mathjax-exps">$f(-x+z,y)=f_X(-x+z)f_Y(y)$</span>,则联合密度函数<span class="mathjax-exps">$f_{X+Y}(z)=&#x5C;int_{-&#x5C;infty}^&#x5C;infty f_X(-x+z)f_Y(y)dy$</span><br>
+这称为卷积公式,记为<span class="mathjax-exps">$f_X*f_Y$</span>.它表示Z=X+Y的概率密度.</p>
+<p>据此可证(P77)有限个正太分布的随机变量的和依然是正太分布<br>
+<div class="mathjax-exps">$$Z&#x5C;sim N(&#x5C;mu_1+&#x5C;cdots+&#x5C;mu_n,&#x5C;sigma^2_1+&#x5C;cdots+&#x5C;sigma^2_n)$$</div>有限个伽马分布的随机变量和依然是伽马分布<br>
+<div class="mathjax-exps">$$Z&#x5C;sim &#x5C;Gamma(&#x5C;alpha_1+&#x5C;cdots+&#x5C;alpha_n,&#x5C;beta)$$</div></p>
+<h3 class="mume-header" id="zfrac-y-xzxy%E5%88%86%E5%B8%83"><span class="mathjax-exps">$Z=&#x5C;frac Y X,Z=XY$</span>分布</h3>
+
+<p>在推导概率密度时,一般是由分布函数推导,去掉对z的积分得到概率密度函数.(P80)<br>
+<div class="mathjax-exps">$$f_{Y&#x2F;X}(z)=&#x5C;int_{-&#x5C;infty}^&#x5C;infty |x|f(x,zx)dx$$</div><div class="mathjax-exps">$$f_{XY}(z)=&#x5C;int_{-&#x5C;infty}^&#x5C;infty |&#x5C;frac 1 x|f(x,&#x5C;frac z x)dx$$</div></p>
+<h3 class="mume-header" id="mmaxxymminxy%E5%88%86%E5%B8%83"><span class="mathjax-exps">$M=&#x5C;max&#x5C;{X,Y&#x5C;},M=&#x5C;min&#x5C;{X,Y&#x5C;}$</span>分布</h3>
+
+<p>对于独立随机变量X,Y.<span class="mathjax-exps">$M=&#x5C;max&#x5C;{X,Y&#x5C;}$</span>意味着<br>
+<div class="mathjax-exps">$$P&#x5C;{M&#x5C;leq m&#x5C;}=P&#x5C;{X&#x5C;leq m,Y&#x5C;leq m&#x5C;}$$</div>由于XY相互独立,因此<br>
+<div class="mathjax-exps">$$P&#x5C;{X&#x5C;leq m,Y&#x5C;leq m&#x5C;}=P&#x5C;{X&#x5C;leq m&#x5C;}P&#x5C;{Y&#x5C;leq m&#x5C;}$$</div>即<br>
+<div class="mathjax-exps">$$F_&#x5C;max(m)=F_X(m)F_Y(m)$$</div>同理可得<br>
+<div class="mathjax-exps">$$F_&#x5C;min(m)=1-(1-F_X(m))(1-F_Y(m))$$</div>以上规律对于n个独立随机变量依然适用</p>
+<h1 class="mume-header" id="%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B">数学期望</h1>
+
+<h2 class="mume-header" id="%E5%AE%9A%E4%B9%89">定义</h2>
+
+<p><strong>数学期望</strong>是考虑概率的平均值,用来比平均值更好的描述数据的普遍规律.<br>
+数学期望简称为<strong>期望</strong>,又称<strong>均值</strong>.用<span class="mathjax-exps">$E(X)$</span>表示对X的期望.<br>
+计算上一般对概率密度与值的乘积进行积分得到数学期望.<br>
+若Y是X的函数:<span class="mathjax-exps">$Y=g(X)$</span>则对于离散型其期望为<br>
+<div class="mathjax-exps">$$E(Y)=&#x5C;sum_{k=1}^&#x5C;infty g(x_k)p_k$$</div>对于连续型为<br>
+<div class="mathjax-exps">$$E(Y)=&#x5C;intinf g(x)f(x)dx$$</div>以上定理适用于n个随机变量的情况,例如将<span class="mathjax-exps">$g(x),f(x),dx$</span>替换为<span class="mathjax-exps">$g(x,y),f(x,y),dxdy$</span>.<br>
+对于两个随机变量X,Y有<br>
+<div class="mathjax-exps">$$E(Y)=&#x5C;intinf &#x5C;intinf yf(x,y)dydx=&#x5C;intinf yf_Y(y)dy$$</div></p>
+<h3 class="mume-header" id="%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B%E7%9A%84%E6%80%A7%E8%B4%A8">数学期望的性质</h3>
+
+<ul>
+<li>C是常数,<span class="mathjax-exps">$E(C)=C$</span></li>
+<li><span class="mathjax-exps">$E(C+X)=C+E(X)$</span></li>
+<li><span class="mathjax-exps">$E(CX)=CE(X)$</span></li>
+<li><span class="mathjax-exps">$E(X+Y)=E(X)+E(Y)$</span></li>
+<li>若XY相互独立,则<span class="mathjax-exps">$E(XY)=E(X)E(Y)$</span></li>
+</ul>
+<h2 class="mume-header" id="%E6%96%B9%E5%B7%AE">方差</h2>
+
+<p><strong>方差</strong>用于描述值的稳定性.它是对期望与实际值的差距的期望<span class="mathjax-exps">$E&#x5C;{X-E(X)&#x5C;}$</span>,由于差距可正可负,因此方差实际描述的是差距平方的期望<span class="mathjax-exps">$E&#x5C;{[X-E(X)]^2&#x5C;}$</span>,记为<span class="mathjax-exps">$D(X)$</span>.<br>
+对方差开方称为<strong>标准差</strong>或<strong>均方差</strong>,记为<span class="mathjax-exps">$&#x5C;sigma(X)=&#x5C;sqrt{D(X)}$</span>.<br>
+求方差实际上就是一个随机变量<span class="mathjax-exps">$Y=g(X)=[X-E(X)]^2$</span>,因此使用上节公式直接可得<br>
+<div class="mathjax-exps">$$D(X)=E(g(X))=&#x5C;intinf g(x)f(x)dx=&#x5C;intinf [x-E(x)]^2f(x)dx$$</div>对于离散型同理不在叙述.<br>
+方差也可安以下公式计算<br>
+<div class="mathjax-exps">$$&#x5C;list D(X)&amp;=E&#x5C;{[X-E(X)]^2&#x5C;}&#x5C;&#x5C;&amp;=E(X^2)-E[2E(X)X]+E[E(X)^2]&#x5C;&#x5C;&amp;=E(X^2)-E(X)^2&#x5C;endlist$$</div><br>
+若一个随机变量X有期望<span class="mathjax-exps">$&#x5C;mu$</span>方差<span class="mathjax-exps">$&#x5C;sigma^2$</span>,随机变量<span class="mathjax-exps">$X^*$</span><br>
+<div class="mathjax-exps">$$X^*=&#x5C;frac{X-&#x5C;mu}{&#x5C;sigma}$$</div>它的期望为0方差为1,称<span class="mathjax-exps">$X^*$</span>为X的<strong>标准化变量</strong>.<br>
+泊松分布的期望与方差相等均为<span class="mathjax-exps">$&#x5C;lambda$</span>,指数分布期望为<span class="mathjax-exps">$&#x5C;theta$</span>,方差为<span class="mathjax-exps">$&#x5C;theta^2$</span>.<br>
+正太分布<span class="mathjax-exps">$X&#x5C;sim N(&#x5C;mu,&#x5C;sigma^2)$</span>的期望为<span class="mathjax-exps">$&#x5C;mu$</span>方差为<span class="mathjax-exps">$&#x5C;sigma^2$</span>.由之前的性质可知,多个正太分布的独立变量的和也是正太分布,因此<br>
+<div class="mathjax-exps">$$C_1X_1+&#x5C;cdots+C_nX_n&#x5C;sim N(&#x5C;sum_{i=1}^n C_i&#x5C;mu_i,&#x5C;sum_{i=1}^n C_i^2&#x5C;sigma_i^2)$$</div>这可以解决例如<span class="mathjax-exps">$Z=3X+7Y$</span>这种问题</p>
+<h3 class="mume-header" id="%E6%96%B9%E5%B7%AE%E7%9A%84%E6%80%A7%E8%B4%A8">方差的性质</h3>
+
+<ul>
+<li><span class="mathjax-exps">$D(C)=0$</span></li>
+<li><span class="mathjax-exps">$D(C+X)=D(X)$</span></li>
+<li><span class="mathjax-exps">$D(CX)=C^2D(X)$</span></li>
+<li><span class="mathjax-exps">$D(X+Y)=D(X)+D(Y)+2E&#x5C;{[X-E(X)][Y-E(Y)]&#x5C;}$</span><br>
+也就是两倍协方差<span class="mathjax-exps">$(+2&#x5C;cov(X,Y))$</span></li>
+<li>若X,Y独立,则<span class="mathjax-exps">$D(X+Y)=D(X)+D(Y)$</span></li>
+<li><span class="mathjax-exps">$D(X)=0$</span>的充要条件是X始终为期望(X没有任何波动)<span class="mathjax-exps">$P&#x5C;{X=E(X)&#x5C;}=1$</span>.</li>
+</ul>
+<p>设<span class="mathjax-exps">$E(X)=&#x5C;mu,D(X)=&#x5C;sigma^2$</span>则对于任意数<span class="mathjax-exps">$b$</span>,有<br>
+<div class="mathjax-exps">$$P&#x5C;{|X-&#x5C;mu|&#x5C;geqslant b&#x5C;}&#x5C;leqslant&#x5C;frac{&#x5C;sigma^2}{b^2}$$</div>这是<strong>切比雪夫不等式</strong>,其意义是X与期望的差距大于b的概率不超过方差与<span class="mathjax-exps">$b^2$</span>的比值.证(P105)<br>
+它的意义是在仅知道期望与方差时可以估计概率的界限.比较粗糙</p>
+<h2 class="mume-header" id="%E5%8D%8F%E6%96%B9%E5%B7%AE%E5%8F%8A%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0">协方差及相关系数</h2>
+
+<p>方差的对于一个变量考虑的,协方差显示了两个变量之间的关系,具体来说是两个变量与期望的偏离是否是同步的,若同步则协方差为正,若相反协方差为负,记为<span class="mathjax-exps">$&#x5C;cov(X,Y)$</span>.<br>
+<div class="mathjax-exps">$$&#x5C;cov(X,Y)=E&#x5C;{[X-E(X)][Y-E(Y)]&#x5C;}$$</div>将<br>
+<div class="mathjax-exps">$$&#x5C;rho_{XY}=&#x5C;frac{&#x5C;cov(X,Y)}{&#x5C;sigma_X&#x5C;sigma_Y}$$</div>称为XY的相关系数.之所以除以各自标准差,是为了缩放协方差,使得相关系数落在<span class="mathjax-exps">$[-1,1]$</span>中.若其为0,则称XY<strong>不相关</strong>.虽然叫做不相关,但则仅仅意味着XY<strong>线性不相关</strong>,不意味着XY独立.<br>
+将协方差展开后可得<br>
+<div class="mathjax-exps">$$&#x5C;list&#x5C;cov(X,Y)=E(XY)-E(X)E(Y)&#x5C;&#x5C;E(XY)=E(X)E(Y)+&#x5C;cov(X,Y)&#x5C;endlist$$</div>通常使用这个式子计算协方差.</p>
+<h3 class="mume-header" id="%E5%8D%8F%E6%96%B9%E5%B7%AE%E7%9A%84%E6%80%A7%E8%B4%A8">协方差的性质</h3>
+
+<ul>
+<li><span class="mathjax-exps">$&#x5C;cov(aX,bY)=ab&#x5C;cov(X,Y)$</span></li>
+<li><span class="mathjax-exps">$&#x5C;cov(X_1+X_2,Y)=&#x5C;cov(X_1,Y)+&#x5C;cov(X_2,Y)$</span></li>
+</ul>
+<h3 class="mume-header" id="%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8">相关系数的性质</h3>
+
+<ul>
+<li><span class="mathjax-exps">$&#x5C;rho_{XY} &#x5C;in [-1,1]$</span></li>
+<li><span class="mathjax-exps">$|&#x5C;rho_{XY} |=1$</span>的充要条件是<span class="mathjax-exps">$P&#x5C;{Y=a+bX&#x5C;}=1$</span>(线性相关)</li>
+</ul>
+<h2 class="mume-header" id="%E7%9F%A9-%E5%8D%8F%E6%96%B9%E5%B7%AE%E7%9F%A9%E9%98%B5">矩 协方差矩阵</h2>
+
+<ul>
+<li><span class="mathjax-exps">$E(X^k)$</span>称为k阶<strong>原点距</strong></li>
+<li><span class="mathjax-exps">$E([X-E(X)]^k)$</span>称为k阶<strong>中心距</strong></li>
+<li><span class="mathjax-exps">$E(X^kY^k)$</span> 称为k+l阶<strong>混合距</strong></li>
+<li><span class="mathjax-exps">$E&#x5C;{[X-E(X)]^k[Y-E(Y)]^l&#x5C;}$</span>称为k+l阶<strong>混合中心距</strong></li>
+</ul>
+<p>原点距与混合距表示数字分布情况,中心距与混合中心距表示分散程度.</p>
+<h3 class="mume-header" id="%E5%8D%8F%E6%96%B9%E5%B7%AE%E7%9F%A9%E9%98%B5">协方差矩阵</h3>
+
+<p>对于二维随机变量来说,有四个2阶中心距,将其排列为矩阵形式<br>
+<div class="mathjax-exps">$$V$$</div><br>
+这个矩阵称为其协方差矩阵 .同理n个变量有<span class="mathjax-exps">$n&#x5C;times n$</span>个中心距,可排成n阶协方差矩阵.且为对称阵.<br>
+n维正态随机变量的分布与协方差矩阵的应用(P111)</p>
+<h1 class="mume-header" id="%E5%A4%A7%E6%95%B0%E5%AE%9A%E5%BE%8B%E5%8F%8A%E4%B8%AD%E5%BF%83%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86">大数定律及中心极限定理</h1>
+
+<p><strong>弱大数定理</strong>(辛钦大数定理) 多个相互独立的随机变量,服从同一分布,具有相同的数学期望,那么随着变量的增多,其平均值会越来越接近期望.<br>
+若一系列相同分布的随机变量随着数量的增加,其平均值无限接近a,则称这一系列随机变量<strong>依概率收敛于a</strong>.记为<br>
+<div class="mathjax-exps">$$Y_n&#x5C;pto a$$</div>依概率收敛有以下性质<br>
+设<span class="mathjax-exps">$X_n&#x5C;pto a,Y_n&#x5C;pto b$</span> ,若<span class="mathjax-exps">$g(x,y)$</span>是连续函数,则 <span class="mathjax-exps">$g(X_n,Y_n)&#x5C;pto g(a,b)$</span>.</p>
+<p><strong>伯努利大数定理</strong> 在n次独立重复实验中,事件A的频率随着n的增加,无限接近与概率p(一次实验中A发生的概率).</p>
+<h2 class="mume-header" id="%E4%B8%AD%E5%BF%83%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86">中心极限定理</h2>
+
+<p>生活中的随机变量一般是由非常多的独立随机变量共同影响的,它往往服从正太分布,中心极限定理就是为了在理论上证明为何其服从正太分布并且给出受大量独立随机变量影响的随机变量的近似计算方法.</p>
+<blockquote>
+<p>所谓中心极限,可以想象打靶子,弹孔以靶心为中心扩散在靶子上,只要足够多次(极限),弹孔以中心为期望近似服从正态分布.</p>
+</blockquote>
+<h3 class="mume-header" id="%E5%AE%9A%E7%90%86%E4%B8%80-%E7%8B%AC%E7%AB%8B%E5%90%8C%E5%88%86%E5%B8%83%E7%9A%84%E4%B8%AD%E5%BF%83%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86">定理一 独立同分布的中心极限定理</h3>
+
+<p>对于一系列独立随机变量,若其同分布且<span class="mathjax-exps">$E(X_k)=&#x5C;mu,D(X_k)=&#x5C;sigma^2$</span>,则对<span class="mathjax-exps">$M_n=&#x5C;sum_{k=1}^nX_k$</span>的标准化变量(根据期望与方差的计算性质化简后)<br>
+<div class="mathjax-exps">$$Y_n=&#x5C;frac{M_n-E(M_n)}{&#x5C;sqrt{D(M_n)}}=&#x5C;frac{M_n-n&#x5C;mu}{&#x5C;sqrt n &#x5C;sigma}$$</div>它的分布函数服从正态分布<span class="mathjax-exps">$F_n(x)=&#x5C;phi(x)$</span></p>
+<h3 class="mume-header" id="%E5%AE%9A%E7%90%86%E4%BA%8C-%E6%9D%8E%E9%9B%85%E6%99%AE%E8%AF%BA%E5%A4%AB%E5%AE%9A%E7%90%86">定理二 李雅普诺夫定理</h3>
+
+<p>对于一系列独立随机变量,分别有期望与方差<span class="mathjax-exps">$E(X_k)=&#x5C;mu_k,D(X_k)=&#x5C;sigma_k^2$</span>.<br>
+记<br>
+<div class="mathjax-exps">$$B_n^2=&#x5C;sum_{k=1}^n&#x5C;sigma_k^2$$</div>如果存在一个正数<span class="mathjax-exps">$&#x5C;delta$</span>使得<br>
+<div class="mathjax-exps">$$&#x5C;frac 1 {B_n^{2+&#x5C;delta}}&#x5C;sum_{k=1}^nE&#x5C;{|X_k-&#x5C;mu_k|^{2+&#x5C;delta}&#x5C;}&#x5C;to 0$$</div>则对<span class="mathjax-exps">$&#x5C;sum_{k=1}^nX_k$</span>的标准化变量<br>
+<div class="mathjax-exps">$$Z_n=&#x5C;frac{&#x5C;sum_{k=1}^nX_k-&#x5C;sum_{k=1}^n&#x5C;mu_k}{B_n}$$</div>它的分布函数服从正态分布<span class="mathjax-exps">$F_n(x)=&#x5C;phi(x)$</span></p>
+<h3 class="mume-header" id="%E5%AE%9A%E7%90%86%E4%B8%89-%E6%A3%A3%E8%8E%AB%E4%BD%9B-%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E5%AE%9A%E7%90%86">定理三 棣莫佛－拉普拉斯定理</h3>
+
+<p>这是定理一的一种特殊情况<br>
+设一系列独立随机变量,服从二项分布<span class="mathjax-exps">$b(n,p)$</span>,则根据定理一有<br>
+<div class="mathjax-exps">$$Y_n=&#x5C;frac{M_n-n&#x5C;mu}{&#x5C;sqrt n &#x5C;sigma}=&#x5C;frac{M_n-np}{&#x5C;sqrt {np(1-p)}}$$</div>它的分布函数服从正态分布<span class="mathjax-exps">$F_n(x)=&#x5C;phi(x)$</span><br>
+这个定理告诉我们正太分布的二项分布的极限分布,在n很大时,可以用正态分布求其近似值.</p>
+<h1 class="mume-header" id="%E6%A0%B7%E6%9C%AC%E5%8F%8A%E5%85%B6%E6%8A%BD%E6%A0%B7%E5%88%86%E5%B8%83">样本及其抽样分布</h1>
+
+<p>请阅读<a href="./%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1-%E4%B8%8B.md">概率论与数理统计-下</a></p>
+
+      </div>
+      <div class="md-sidebar-toc"><ul>
+<li><a href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">第一章 基本概念</a>
+<ul>
+<li><a href="#%E9%9A%8F%E6%9C%BA%E8%AF%95%E9%AA%8C">随机试验</a>
+<ul>
+<li><a href="#%E4%B8%89%E8%A6%81%E7%B4%A0">三要素</a></li>
+</ul>
+</li>
+<li><a href="#%E6%A0%B7%E6%9C%AC%E7%A9%BA%E9%97%B4-%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6">样本空间 随机事件</a>
+<ul>
+<li><a href="#%E6%A0%B7%E6%9C%AC%E7%A9%BA%E9%97%B4">样本空间</a></li>
+<li><a href="#%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6">随机事件</a></li>
+</ul>
+</li>
+<li><a href="#%E6%A6%82%E7%8E%87">概率</a></li>
+<li><a href="#%E7%AD%89%E5%8F%AF%E8%83%BD%E6%A6%82%E5%9E%8B">等可能概型</a>
+<ul>
+<li><a href="#%E8%B6%85%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83">超几何分布</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87">条件概率</a>
+<ul>
+<li><a href="#%E4%B8%89%E8%A6%81%E7%B4%A0-1">三要素</a></li>
+<li><a href="#%E4%B9%98%E6%B3%95%E5%AE%9A%E7%90%86">乘法定理</a></li>
+<li><a href="#%E5%85%A8%E6%A6%82%E7%8E%87%E5%85%AC%E5%BC%8F%E5%92%8C%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F">全概率公式和贝叶斯公式</a></li>
+</ul>
+</li>
+<li><a href="#%E7%8B%AC%E7%AB%8B%E6%80%A7">独立性</a></li>
+</ul>
+</li>
+<li><a href="#%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83">随机变量及其分布</a>
+<ul>
+<li><a href="#%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F">随机变量</a></li>
+<li><a href="#%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83">离散型随机变量及其分布</a>
+<ul>
+<li><a href="#0-1%E5%88%86%E5%B8%83">(0-1)分布</a></li>
+<li><a href="#%E4%BA%8C%E9%A1%B9%E5%88%86%E5%B8%83">二项分布</a></li>
+<li><a href="#%E6%B3%8A%E6%9D%BE%E5%88%86%E5%B8%83">泊松分布</a>
+<ul>
+<li><a href="#%E6%B3%8A%E6%9D%BE%E5%88%86%E5%B8%83%E7%9A%84%E4%B8%80%E8%88%AC%E6%84%8F%E4%B9%89">泊松分布的一般意义</a></li>
+<li><a href="#%E6%B3%8A%E6%9D%BE%E5%AE%9A%E7%90%86">泊松定理</a></li>
+</ul>
+</li>
+<li><a href="#%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0">随机变量的分布函数</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E6%A6%82%E7%8E%87%E5%AF%86%E5%BA%A6">连续型随机变量及其概率密度</a>
+<ul>
+<li><a href="#%E5%9D%87%E5%8C%80%E5%88%86%E5%B8%83">均匀分布</a></li>
+<li><a href="#%E6%8C%87%E6%95%B0%E5%88%86%E5%B8%83">指数分布</a></li>
+<li><a href="#%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E9%AB%98%E6%96%AF%E5%88%86%E5%B8%83">正态分布(高斯分布)</a>
+<ul>
+<li><a href="#%E4%B8%89%E4%B8%AA%E5%B8%B8%E7%94%A8%E6%A6%82%E7%8E%87">三个常用概率</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%88%86%E5%B8%83">随机变量的函数的分布</a></li>
+</ul>
+</li>
+<li><a href="#%E5%A4%9A%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83">多维随机变量及其分布</a>
+<ul>
+<li><a href="#%E4%BA%8C%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F">二维随机变量</a></li>
+<li><a href="#%E8%BE%B9%E7%BC%98%E5%88%86%E5%B8%83">边缘分布</a></li>
+<li><a href="#%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B8%83">条件分布</a></li>
+<li><a href="#%E7%9B%B8%E4%BA%92%E7%8B%AC%E7%AB%8B%E7%9A%84%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F">相互独立的随机变量</a></li>
+<li><a href="#%E4%B8%A4%E4%B8%AA%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E5%87%BD%E6%95%B0%E5%88%86%E5%B8%83">两个随机变量的函数分布</a>
+<ul>
+<li><a href="#zxy%E5%88%86%E5%B8%83"><span class="mathjax-exps">$Z=X+Y$</span>分布</a></li>
+<li><a href="#zfrac-y-xzxy%E5%88%86%E5%B8%83"><span class="mathjax-exps">$Z=&#x5C;frac Y X,Z=XY$</span>分布</a></li>
+<li><a href="#mmaxxymminxy%E5%88%86%E5%B8%83"><span class="mathjax-exps">$M=&#x5C;max&#x5C;{X,Y&#x5C;},M=&#x5C;min&#x5C;{X,Y&#x5C;}$</span>分布</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B">数学期望</a>
+<ul>
+<li><a href="#%E5%AE%9A%E4%B9%89">定义</a>
+<ul>
+<li><a href="#%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B%E7%9A%84%E6%80%A7%E8%B4%A8">数学期望的性质</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%B9%E5%B7%AE">方差</a>
+<ul>
+<li><a href="#%E6%96%B9%E5%B7%AE%E7%9A%84%E6%80%A7%E8%B4%A8">方差的性质</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8D%8F%E6%96%B9%E5%B7%AE%E5%8F%8A%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0">协方差及相关系数</a>
+<ul>
+<li><a href="#%E5%8D%8F%E6%96%B9%E5%B7%AE%E7%9A%84%E6%80%A7%E8%B4%A8">协方差的性质</a></li>
+<li><a href="#%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8">相关系数的性质</a></li>
+</ul>
+</li>
+<li><a href="#%E7%9F%A9-%E5%8D%8F%E6%96%B9%E5%B7%AE%E7%9F%A9%E9%98%B5">矩 协方差矩阵</a>
+<ul>
+<li><a href="#%E5%8D%8F%E6%96%B9%E5%B7%AE%E7%9F%A9%E9%98%B5">协方差矩阵</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%A4%A7%E6%95%B0%E5%AE%9A%E5%BE%8B%E5%8F%8A%E4%B8%AD%E5%BF%83%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86">大数定律及中心极限定理</a>
+<ul>
+<li><a href="#%E4%B8%AD%E5%BF%83%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86">中心极限定理</a>
+<ul>
+<li><a href="#%E5%AE%9A%E7%90%86%E4%B8%80-%E7%8B%AC%E7%AB%8B%E5%90%8C%E5%88%86%E5%B8%83%E7%9A%84%E4%B8%AD%E5%BF%83%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86">定理一 独立同分布的中心极限定理</a></li>
+<li><a href="#%E5%AE%9A%E7%90%86%E4%BA%8C-%E6%9D%8E%E9%9B%85%E6%99%AE%E8%AF%BA%E5%A4%AB%E5%AE%9A%E7%90%86">定理二 李雅普诺夫定理</a></li>
+<li><a href="#%E5%AE%9A%E7%90%86%E4%B8%89-%E6%A3%A3%E8%8E%AB%E4%BD%9B-%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E5%AE%9A%E7%90%86">定理三 棣莫佛－拉普拉斯定理</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E6%A0%B7%E6%9C%AC%E5%8F%8A%E5%85%B6%E6%8A%BD%E6%A0%B7%E5%88%86%E5%B8%83">样本及其抽样分布</a></li>
+</ul>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    </body>
+    
+    
+    
+    
+    
+    <script>
+(function bindTaskListEvent() {
+  var taskListItemCheckboxes = document.body.getElementsByClassName('task-list-item-checkbox')
+  for (var i = 0; i < taskListItemCheckboxes.length; i++) {
+    var checkbox = taskListItemCheckboxes[i]
+    var li = checkbox.parentElement
+    if (li.tagName !== 'LI') li = li.parentElement
+    if (li.tagName === 'LI') {
+      li.classList.add('task-list-item')
+    }
+  }
+}())    
+</script>
+    
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+      
+  </html>

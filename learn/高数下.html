@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>高数下</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({"extensions":["tex2jax.js"],"jax":["input/TeX","output/HTML-CSS"],"messageStyle":"none","tex2jax":{"processEnvironments":false,"processEscapes":true,"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"TeX":{"extensions":["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]},"HTML-CSS":{"availableFonts":["TeX"]}});
+        </script>
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+        
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+html body {
+  background-color: #f5f5f5;
+  font-family: 'Source Han Sans', 'Consolas', 'Courier New', 'monospace';
+}
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <p><span class="mathjax-exps">$&#x5C;newcommand{&#x5C;d}[2]{&#x5C;frac{d#1}{d#2}}&#x5C;newcommand{&#x5C;pd}[2]{&#x5C;frac{&#x5C;partial #1}{&#x5C;partial #2}}$</span></p>
+<h1 class="mume-header" id="%E5%90%91%E9%87%8F%E4%BB%A3%E6%95%B0%E4%B8%8E%E7%A9%BA%E9%97%B4%E8%A7%A3%E6%9E%90%E5%87%A0%E4%BD%95">向量代数与空间解析几何</h1>
+
+<h2 class="mume-header" id="%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E7%BA%BF%E6%80%A7%E8%BF%90%E7%AE%97">向量及其线性运算</h2>
+
+<h3 class="mume-header" id="%E6%A6%82%E5%BF%B5">概念</h3>
+
+<p>用于表示方向与大小的量叫<strong>向量</strong>,也叫矢量,用<span class="mathjax-exps">$&#x5C;vec a,&#x5C;bf a$</span>表示.若向量大小相等,方向相同,则向量<strong>相等</strong>.<br>
+向量的大小叫做向量的模,用<span class="mathjax-exps">$|&#x5C;vec a|,|&#x5C;bf a|$</span>表示.<br>
+若<span class="mathjax-exps">$|&#x5C;mathbf{a}|=1$</span>则,向量a叫单位向量.<span class="mathjax-exps">$|&#x5C;mathbf{a}|=0$</span>叫零向量.<br>
+两向量所夹的<strong>较小</strong>角叫做<strong>向量夹角</strong>.记为<span class="mathjax-exps">$&#x5C;hat{(a,b)}$</span>.规定与零向量的夹角为<span class="mathjax-exps">$0-&#x5C;pi$</span>任意值.<br>
+若夹角为0,则平行,也称<strong>共线</strong>.同理,在同一平面则<strong>共面</strong>.</p>
+<h3 class="mume-header" id="%E7%BA%BF%E6%80%A7%E8%BF%90%E7%AE%97">线性运算</h3>
+
+<p>使用三角形法则计算.</p>
+<ul>
+<li><strong>交换律</strong>:<span class="mathjax-exps">$a+b=b+a$</span></li>
+<li><strong>结合律</strong>:<span class="mathjax-exps">$(a+b)+c=a+(b+c),m(n&#x5C;vec a)=n(m&#x5C;vec a)=mn&#x5C;vec a$</span></li>
+<li><strong>分配率</strong>:<span class="mathjax-exps">$(m+n)&#x5C;vec a=m&#x5C;vec a +n &#x5C;vec a$</span></li>
+</ul>
+<p>以上为向量的线性运算.<br>
+向量平行的充要条件是<span class="mathjax-exps">$&#x5C;vec b=m&#x5C;vec a$</span></p>
+<h3 class="mume-header" id="%E7%A9%BA%E9%97%B4%E7%9B%B4%E8%A7%92%E5%9D%90%E6%A0%87%E7%B3%BB">空间直角坐标系</h3>
+
+<p>由右手定则确定,大拇指指向z轴,四指由x轴握向y轴.使用逆时针顺序表示<strong>坐标面</strong>,<span class="mathjax-exps">$xOy,yOz,zOx$</span>.由上到下,逆时针数1-8<strong>卦限</strong>.</p>
+<h3 class="mume-header" id="%E5%88%A9%E7%94%A8%E5%9D%90%E6%A0%87%E8%BF%9B%E8%A1%8C%E5%90%91%E9%87%8F%E8%AE%A1%E7%AE%97">利用坐标进行向量计算</h3>
+
+<p>向量相加减等于各坐标相加减,与常数相乘等于常数与各坐标相乘.</p>
+<h3 class="mume-header" id="%E5%90%91%E9%87%8F%E7%9A%84%E6%A8%A1-%E6%96%B9%E5%90%91%E8%A7%92-%E6%8A%95%E5%BD%B1">向量的模 方向角 投影</h3>
+
+<h4 class="mume-header" id="%E6%A8%A1">模</h4>
+
+<p><strong>模</strong>可直接由勾股定理得出.</p>
+<h4 class="mume-header" id="%E6%96%B9%E5%90%91%E8%A7%92">方向角</h4>
+
+<p><strong>方向角</strong>是向量与3个坐标轴之间的夹角,与xyz之间的夹角分别为<span class="mathjax-exps">$&#x5C;alpha,&#x5C;beta,&#x5C;gamma$</span>.对其取余弦,叫<strong>方向余弦</strong>,其值的坐标是与向量同方向的<strong>单位向量</strong><span class="mathjax-exps">$(&#x5C;cos&#x5C;alpha,&#x5C;cos&#x5C;beta,&#x5C;cos&#x5C;gamma)$</span>.</p>
+<h4 class="mume-header" id="%E6%8A%95%E5%BD%B1">投影</h4>
+
+<p>向量在xyz轴的投影即坐标,向量在u轴上的投影记为<span class="mathjax-exps">$Prj_ur$</span>或<span class="mathjax-exps">$(r)_u$</span>.<br>
+<div class="mathjax-exps">$$Prj_ua=|a|&#x5C;cos&#x5C;varphi$$</div><div class="mathjax-exps">$$Prj_u(a+b)=Prj_ua+Prj_ub$$</div><div class="mathjax-exps">$$Prj_u(&#x5C;lambda a)=&#x5C;lambda Prj_ua$$</div></p>
+<h2 class="mume-header" id="%E6%95%B0%E9%87%8F%E7%A7%AF-%E5%90%91%E9%87%8F%E7%A7%AF-%E6%B7%B7%E5%90%88%E7%A7%AF">数量积 向量积 混合积</h2>
+
+<p><strong>数量积</strong> <span class="mathjax-exps">$a&#x5C;cdot b=|a||b|&#x5C;cos&#x5C;theta$</span><br>
+<strong>向量积</strong> <span class="mathjax-exps">$a&#x5C;times b=|a||b|&#x5C;sin&#x5C;theta &#x5C;hat n,a&#x5C;times b=-b&#x5C;times a,有分配律$</span><br>
+<strong>混合积</strong> <span class="mathjax-exps">$[abc]=(a&#x5C;times b)&#x5C;cdot c$</span><br>
+数量积是在指定方向上数量的乘积,例如可用于计算力在位移上的做功.即向量在同方向的作用.<br>
+向量积是力矩的抽象,用来描述向量在垂直方向上的作用,结果垂直于两向量,用于表示作用方向.</p>
+<p>向量积可由带<span class="mathjax-exps">$i,j,k$</span>的行列式求得:<br>
+<div class="mathjax-exps">$$a&#x5C;times b=&#x5C;begin{vmatrix}i&amp;j&amp;k&#x5C;&#x5C;a_x&amp;a_y&amp;a_z&#x5C;&#x5C;b_x&amp;b_y&amp;b_z&#x5C;end{vmatrix}$$</div><br>
+这是一种形式写法,但也有其几何意义,具体意义可参见视频.<br>
+混合积实际上就是三维矩阵的行列式,表示三维矩阵在空间转换中的缩放量.也就是三向量围成平行六面体的体积.可写为<span class="mathjax-exps">$[abc]=(a&#x5C;times b)&#x5C;cdot c$</span>,不过这只是形式化的公式,其实际上就是行列式计算中间过程的缩写.</p>
+<h2 class="mume-header" id="%E5%B9%B3%E9%9D%A2%E5%8F%8A%E5%85%B6%E6%96%B9%E7%A8%8B">平面及其方程</h2>
+
+<h3 class="mume-header" id="%E6%9B%B2%E9%9D%A2%E6%96%B9%E7%A8%8B%E4%B8%8E%E7%A9%BA%E9%97%B4%E6%9B%B2%E7%BA%BF%E6%96%B9%E7%A8%8B">曲面方程与空间曲线方程</h3>
+
+<p><span class="mathjax-exps">$F(x,y,z)=0$</span>叫做曲面方程,两曲面方程的交线可以确定一条曲线,因此曲线方程可表示为<br>
+<div class="mathjax-exps">$$&#x5C;begin{cases}F(x,y,z)=0&#x5C;&#x5C;G(x,y,z)=0&#x5C;end{cases}$$</div></p>
+<h3 class="mume-header" id="%E5%B9%B3%E9%9D%A2%E7%9A%84%E7%82%B9%E6%B3%95%E5%BC%8F%E6%96%B9%E7%A8%8B">平面的点法式方程</h3>
+
+<p>设一垂直于平面的向量<span class="mathjax-exps">$n=(A,B,C)$</span>,点<span class="mathjax-exps">$M_0=(x_0,y_0,z_0)$</span>是平面上的点,那么在平面上过M的直线定垂直与n,有:<br>
+<div class="mathjax-exps">$$n&#x5C;cdot &#x5C;overrightarrow{M_0M}=0$$</div>即:<div class="mathjax-exps">$$A(x-x_0)+B(y-y_0)+C(z-z_0)=0$$</div>称为平面的<strong>点法式方程</strong>,在求解时可用向量积求垂直关系</p>
+<h3 class="mume-header" id="%E5%B9%B3%E9%9D%A2%E7%9A%84%E4%B8%80%E8%88%AC%E6%96%B9%E7%A8%8B">平面的一般方程</h3>
+
+<p><span class="mathjax-exps">$Ax+By+Cz+D=0$</span>是平面的一般方程,其<span class="mathjax-exps">$ABC$</span>与点法方程对应,是平面的法向量<span class="mathjax-exps">$n=(A,B,C)$</span>.两种方程可互相转换.<br>
+将一般方程变形为<span class="mathjax-exps">$&#x5C;frac x a+&#x5C;frac y b+&#x5C;frac z c=1$</span>叫做平面的<strong>截距方程</strong>,<span class="mathjax-exps">$a,b,c$</span>分别是对应截距.</p>
+<h3 class="mume-header" id="%E4%B8%A4%E5%B9%B3%E9%9D%A2%E7%9A%84%E5%A4%B9%E8%A7%92">两平面的夹角</h3>
+
+<p>平面夹角可由平面法向量夹角求得,平面关系也可由此求得.<br>
+另外:<div class="mathjax-exps">$$&#x5C;cos &#x5C;theta =&#x5C;frac{|aA+bB+cC|}{&#x5C;sqrt{a^2+b^2+c^2}&#x5C;sqrt{A^2+B^2+C^2}}$$</div></p>
+<h3 class="mume-header" id="%E7%A9%BA%E9%97%B4%E7%9B%B4%E7%BA%BF%E5%8F%8A%E5%85%B6%E6%96%B9%E7%A8%8B">空间直线及其方程</h3>
+
+<h4 class="mume-header" id="%E4%B8%80%E8%88%AC%E6%96%B9%E7%A8%8B">一般方程</h4>
+
+<p>类似于空间曲线方程,空间直线方程由两平面方程组成.若一向量与直线平行,那么这向量称为<strong>方向向量</strong>.</p>
+<h4 class="mume-header" id="%E5%AF%B9%E7%A7%B0%E6%96%B9%E7%A8%8B%E4%B8%8E%E5%8F%82%E6%95%B0%E6%96%B9%E7%A8%8B">对称方程与参数方程</h4>
+
+<p>显然,若给定空间一点<span class="mathjax-exps">$M_0=(x_0,y_0,z_0)$</span>与方向向量<span class="mathjax-exps">$s=(m,n,p)$</span>,那么可唯一确定一条直线,以此写出的直线方程为:<br>
+<div class="mathjax-exps">$$&#x5C;frac {x-x_0}{m}=&#x5C;frac {y-y_0}{n}=&#x5C;frac {z-z_0}{p}$$</div>这叫做<strong>点向式方程</strong>.此方程可由向量平行成比例得出.<span class="mathjax-exps">$m,n,p$</span>叫做方向数,s的方向余弦就是该直线的方向余弦.若使该方程等于t,则可导出<strong>参数方程</strong><br>
+<div class="mathjax-exps">$$&#x5C;begin{cases}x=x_0+mt&#x5C;&#x5C;y=y_0+nt&#x5C;&#x5C;z=z_0+pt&#x5C;end{cases}$$</div></p>
+<h4 class="mume-header" id="%E7%9B%B4%E7%BA%BF%E4%B8%8E%E7%9B%B4%E7%BA%BF%E7%9A%84%E5%A4%B9%E8%A7%92">直线与直线的夹角</h4>
+
+<p>两直线的夹角可由两直线方向向量的夹角决定.在一般方程中方向向量可由两平面的法向量的叉积决定.</p>
+<h4 class="mume-header" id="%E7%9B%B4%E7%BA%BF%E4%B8%8E%E5%B9%B3%E9%9D%A2%E5%A4%B9%E8%A7%92">直线与平面夹角</h4>
+
+<p>可由方向向量与法向量夹角得出</p>
+<h3 class="mume-header" id="%E6%9B%B2%E9%9D%A2%E5%8F%8A%E5%85%B6%E6%96%B9%E7%A8%8B">曲面及其方程</h3>
+
+<h4 class="mume-header" id="%E6%97%8B%E8%BD%AC%E6%9B%B2%E9%9D%A2">旋转曲面</h4>
+
+<p>实际上,旋转曲面是平面方程与另一维度的圆方程决定的,绕哪轴旋转,哪轴就不变,另一变量由<span class="mathjax-exps">$a^2+b^2=r^2$</span>可得<span class="mathjax-exps">$r=&#x5C;pm&#x5C;sqrt{a^2+b^2}$</span>例如,替换<span class="mathjax-exps">$f(r,y)=0$</span>即<span class="mathjax-exps">$f(&#x5C;pm&#x5C;sqrt{a^2+b^2},y)=0$</span> 具体几何体P40</p>
+<h4 class="mume-header" id="%E6%9F%B1%E9%9D%A2">柱面</h4>
+
+<p>显然,方程中若不存在某变量,则为以缺失变量轴为方向的柱面.</p>
+<h4 class="mume-header" id="%E4%BA%8C%E6%AC%A1%E6%9B%B2%E9%9D%A2">二次曲面</h4>
+
+<p>平面为一次曲面,三元二次方程<span class="mathjax-exps">$F(x,y,z)=0$</span>表示的曲面为二次曲面.</p>
+<ul>
+<li>椭圆锥面:<span class="mathjax-exps">$&#x5C;frac{x^2}{a^2}+&#x5C;frac{y^2}{b^2}=z^2$</span> 图P42 直线绕z轴旋转</li>
+<li>椭球面:<span class="mathjax-exps">$&#x5C;frac{x^2+y^2}{a^2}+&#x5C;frac{z^2}{c^2}=1$</span> 图P43 椭圆绕z轴旋转</li>
+<li>单叶双曲面:<span class="mathjax-exps">$&#x5C;frac{x^2}{a^2}+&#x5C;frac{y^2}{b^2}-&#x5C;frac{z^2}{c^2}=1$</span> 图P40  双曲线绕x轴旋转</li>
+<li>双叶双曲面:<span class="mathjax-exps">$&#x5C;frac{x^2}{a^2}-&#x5C;frac{y^2}{b^2}-&#x5C;frac{z^2}{c^2}=1$</span> 图P40 双曲线绕z轴旋转</li>
+<li>椭圆抛物线:<span class="mathjax-exps">$&#x5C;frac{x^2}{a^2}+&#x5C;frac{y^2}{b^2}=z$</span> 图44 抛物线绕z轴旋转</li>
+<li>双曲抛物面:<span class="mathjax-exps">$&#x5C;frac{x^2}{a^2}-&#x5C;frac{y^2}{b^2}=z$</span> 图44</li>
+</ul>
+<h3 class="mume-header" id="%E7%A9%BA%E9%97%B4%E6%9B%B2%E7%BA%BF%E5%8F%8A%E5%85%B6%E6%96%B9%E7%A8%8B">空间曲线及其方程</h3>
+
+<h4 class="mume-header" id="%E4%B8%80%E8%88%AC%E6%96%B9%E7%A8%8B-1">一般方程</h4>
+
+<p>与直线相同,由两个空间曲面的交线定义.</p>
+<h4 class="mume-header" id="%E5%8F%82%E6%95%B0%E6%96%B9%E7%A8%8B">参数方程</h4>
+
+<p>螺旋线的参数方程:<br>
+<div class="mathjax-exps">$$&#x5C;begin{cases}x=a&#x5C;cos &#x5C;theta&#x5C;&#x5C;y=a&#x5C;sin &#x5C;theta&#x5C;&#x5C;z=b&#x5C;theta&#x5C;end{cases}$$</div>其中<span class="mathjax-exps">$&#x5C;theta=&#x5C;omega t$</span>.</p>
+<h4 class="mume-header" id="%E6%9B%B2%E9%9D%A2%E7%9A%84%E5%8F%82%E6%95%B0%E6%96%B9%E7%A8%8B">曲面的参数方程</h4>
+
+<p>略 P48</p>
+<h3 class="mume-header" id="%E7%A9%BA%E9%97%B4%E6%9B%B2%E7%BA%BF%E5%9C%A8%E5%9D%90%E6%A0%87%E9%9D%A2%E4%B8%8A%E7%9A%84%E6%8A%95%E5%BD%B1">空间曲线在坐标面上的投影</h3>
+
+<p>求曲线投影,即是消去非投影面的变量.</p>
+<h1 class="mume-header" id="%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E6%B3%95%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8">多元函数微分法及其应用</h1>
+
+<h2 class="mume-header" id="%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">多元函数的基本概念</h2>
+
+<h3 class="mume-header" id="%E5%B9%B3%E9%9D%A2%E7%82%B9%E9%9B%86-n%E7%BB%B4%E7%A9%BA%E9%97%B4">平面点集  n维空间</h3>
+
+<p>与数轴类似,在二维平面上点的集合叫<strong>平面点集</strong>,记法也与一维相同.邻域的定义与记法也相似.<br>
+一个点与平面点集有三种关系,<strong>内点</strong>在集合内,<strong>边界点</strong>在集合边缘上,<strong>外点</strong>在集合外.<br>
+边界点可以属于集合也可以不属于,边界点构成的集合称为<strong>边界</strong>,记为<span class="mathjax-exps">$&#x5C;partial E$</span><br>
+<strong>聚点</strong>是去心邻域内总有集合中的点,一般来说内点与边界点都是聚点.<br>
+开集,闭集,连通集 P56<br>
+区域(开区域):连通+开集<br>
+闭区域:连通+闭集<br>
+有界集:点坐标均为有限数<br>
+无界集:点坐标存在无限数,由点坐标围成的面积无限大<br>
+n维空间:P56</p>
+<h3 class="mume-header" id="%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E6%A6%82%E5%BF%B5">多元函数概念</h3>
+
+<p>一般定义<span class="mathjax-exps">$z=f(x,y)$</span>其中<span class="mathjax-exps">$x,y$</span>是自变量<span class="mathjax-exps">$z$</span>为因变量,z的取值范围是值域.实际上自变量只是由数变为点而已.<br>
+一般二元函数的图像为曲面.</p>
+<h3 class="mume-header" id="%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E7%9A%84%E6%9E%81%E9%99%90">多元函数的极限</h3>
+
+<p>其与一元函数类似,不过为了区分,它被称为二重极限.<br>
+注意,在这里,由于一元函数只有左右极限,因此左右极限相等即极限存在,但是在二元函数中,需要从任意方向逼近均相等才能仅以此确定极限存在.在一般求极限题目中,可使用极限与函数值相等证明极限存在,或默认极限存在.<br>
+极限求解方法与一元相同,由于xy均为自变量,不存在关系,因此可分别对xy使用极限运算法则.???</p>
+<h3 class="mume-header" id="%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7">多元函数的连续性</h3>
+
+<p><div class="mathjax-exps">$$&#x5C;lim_{(x,y)&#x5C;to(x_0,y_0)}f(x,y)=f(x_0,y_0)$$</div>则<span class="mathjax-exps">$f(x,y)$</span>在<span class="mathjax-exps">$(x_0,y_0)$</span>处连续.否则称<strong>间断点</strong><br>
+P64</p>
+<h2 class="mume-header" id="%E5%81%8F%E5%AF%BC%E6%95%B0">偏导数</h2>
+
+<p>将一个变量看做常数,对另一变量求导,即是<strong>偏导数</strong>.<span class="mathjax-exps">$&#x5C;pd f x$</span>的几何意义为:以<span class="mathjax-exps">$y_0$</span>对曲面切片,其截面曲线的斜率与x的函数关系.</p>
+<h3 class="mume-header" id="%E9%AB%98%E9%98%B6%E6%B7%B7%E5%90%88%E5%81%8F%E5%AF%BC%E6%95%B0">高阶混合偏导数</h3>
+
+<p>高阶即为对偏导数继续求导.<br>
+若二阶混合偏导数连续,则其相等,也就是说,二阶混合偏导数与偏导次序无关.<br>
+拉普拉斯方程P71</p>
+<h2 class="mume-header" id="%E5%85%A8%E5%BE%AE%E5%88%86">全微分</h2>
+
+<p>偏微分是对其中一个变量的微分,全微分是对所有变量微分,在很小的区域内使用线性表示自变量与函数值的关系,其可表示为<br>
+<div class="mathjax-exps">$$&#x5C;Delta z=A&#x5C;Delta x+B&#x5C;Delta y+o(&#x5C;sqrt{&#x5C;Delta x^2+&#x5C;Delta y^2})$$</div>具体示例如下图:<br>
+<img src="assets/%E5%85%A8%E5%BE%AE%E5%88%86.png" alt=""><br>
+其中当红色部分为斜边的高阶无穷小时即在红色部分为0时,斜边还不是0,其可忽略不计.因此<br>
+<div class="mathjax-exps">$$dz=&#x5C;pd z xdx+&#x5C;pd z y dy$$</div>这称之为叠加原理.<br>
+同理,多个自变量的函数也适用叠加原理.<br>
+<strong>定理</strong> 若偏导连续,则在该点可微分.</p>
+<h2 class="mume-header" id="%E5%A4%9A%E5%85%83%E5%A4%8D%E5%90%88%E5%87%BD%E6%95%B0%E6%B1%82%E5%AF%BC%E6%B3%95%E5%88%99">多元复合函数求导法则</h2>
+
+<h3 class="mume-header" id="%E4%B8%80%E5%85%83%E4%B8%8E%E5%A4%9A%E5%85%83">一元与多元</h3>
+
+<p>若函数uv都在t点可导,函数<span class="mathjax-exps">$f(x,y)$</span>在uv处有连续偏导,那么符合函数<span class="mathjax-exps">$f(u,v)$</span>在t点可导,为<br>
+<div class="mathjax-exps">$$&#x5C;d z t=&#x5C;pd z u&#x5C;d u t+&#x5C;pd z v &#x5C;d v t$$</div>实际上就是正常的链式求导法则.</p>
+<h3 class="mume-header" id="%E5%A4%9A%E5%85%83%E4%B8%8E%E5%A4%9A%E5%85%83">多元与多元</h3>
+
+<p>多元不在是函数的导数,而且对应的偏导数.<br>
+<div class="mathjax-exps">$$&#x5C;pd z x=&#x5C;pd z u&#x5C;pd u x+&#x5C;pd z v &#x5C;pd v x$$</div><div class="mathjax-exps">$$&#x5C;pd z y=&#x5C;pd z u&#x5C;pd u y+&#x5C;pd z v &#x5C;pd v y$$</div></p>
+<h3 class="mume-header" id="%E5%85%B6%E4%BB%96%E6%83%85%E5%86%B5">其他情况</h3>
+
+<p>对于uv一个是一元一个二元,可以当作多元对多元使用公式,对不存在的变量求偏导为0.</p>
+<h2 class="mume-header" id="%E9%9A%90%E5%87%BD%E6%95%B0%E7%9A%84%E6%B1%82%E5%AF%BC%E5%85%AC%E5%BC%8F">隐函数的求导公式</h2>
+
+<p><strong>隐函数存在定理1</strong> 若函数在点P的某一邻域内有连续偏导数,且<span class="mathjax-exps">$F(x_0,y_0)=0,F_y(x_0,y_0)&#x5C;neq 0$</span>,那么可确定一个有连续导数的函数<span class="mathjax-exps">$y=f(x)$</span>,且<br>
+<div class="mathjax-exps">$$&#x5C;d y x=-&#x5C;frac {F_x}{F_y}$$</div>这就是隐函数的求导公式.<br>
+<strong>隐函数存在定理2</strong> 若三元函数在点P的某一邻域内有连续偏导数,且<span class="mathjax-exps">$F(x_0,y_0,z_0)=0,F_z(x_0,y_0)&#x5C;neq 0$</span>,那么可确定一个有连续导数的函数<span class="mathjax-exps">$y=f(x)$</span>,且<br>
+<div class="mathjax-exps">$$&#x5C;pd z x=-&#x5C;frac {F_x}{F_z},&#x5C;pd z y=-&#x5C;frac {F_y}{F_z}$$</div></p>
+<h3 class="mume-header" id="%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E6%83%85%E5%86%B5">方程组的情况</h3>
+
+<p>P88</p>
+<h2 class="mume-header" id="%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%AD%A6%E7%9A%84%E5%87%A0%E4%BD%95%E5%BA%94%E7%94%A8">多元函数微分学的几何应用</h2>
+
+
+      </div>
+      <div class="md-sidebar-toc"><ul>
+<li><a href="#%E5%90%91%E9%87%8F%E4%BB%A3%E6%95%B0%E4%B8%8E%E7%A9%BA%E9%97%B4%E8%A7%A3%E6%9E%90%E5%87%A0%E4%BD%95">向量代数与空间解析几何</a>
+<ul>
+<li><a href="#%E5%90%91%E9%87%8F%E5%8F%8A%E5%85%B6%E7%BA%BF%E6%80%A7%E8%BF%90%E7%AE%97">向量及其线性运算</a>
+<ul>
+<li><a href="#%E6%A6%82%E5%BF%B5">概念</a></li>
+<li><a href="#%E7%BA%BF%E6%80%A7%E8%BF%90%E7%AE%97">线性运算</a></li>
+<li><a href="#%E7%A9%BA%E9%97%B4%E7%9B%B4%E8%A7%92%E5%9D%90%E6%A0%87%E7%B3%BB">空间直角坐标系</a></li>
+<li><a href="#%E5%88%A9%E7%94%A8%E5%9D%90%E6%A0%87%E8%BF%9B%E8%A1%8C%E5%90%91%E9%87%8F%E8%AE%A1%E7%AE%97">利用坐标进行向量计算</a></li>
+<li><a href="#%E5%90%91%E9%87%8F%E7%9A%84%E6%A8%A1-%E6%96%B9%E5%90%91%E8%A7%92-%E6%8A%95%E5%BD%B1">向量的模 方向角 投影</a>
+<ul>
+<li><a href="#%E6%A8%A1">模</a></li>
+<li><a href="#%E6%96%B9%E5%90%91%E8%A7%92">方向角</a></li>
+<li><a href="#%E6%8A%95%E5%BD%B1">投影</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E6%95%B0%E9%87%8F%E7%A7%AF-%E5%90%91%E9%87%8F%E7%A7%AF-%E6%B7%B7%E5%90%88%E7%A7%AF">数量积 向量积 混合积</a></li>
+<li><a href="#%E5%B9%B3%E9%9D%A2%E5%8F%8A%E5%85%B6%E6%96%B9%E7%A8%8B">平面及其方程</a>
+<ul>
+<li><a href="#%E6%9B%B2%E9%9D%A2%E6%96%B9%E7%A8%8B%E4%B8%8E%E7%A9%BA%E9%97%B4%E6%9B%B2%E7%BA%BF%E6%96%B9%E7%A8%8B">曲面方程与空间曲线方程</a></li>
+<li><a href="#%E5%B9%B3%E9%9D%A2%E7%9A%84%E7%82%B9%E6%B3%95%E5%BC%8F%E6%96%B9%E7%A8%8B">平面的点法式方程</a></li>
+<li><a href="#%E5%B9%B3%E9%9D%A2%E7%9A%84%E4%B8%80%E8%88%AC%E6%96%B9%E7%A8%8B">平面的一般方程</a></li>
+<li><a href="#%E4%B8%A4%E5%B9%B3%E9%9D%A2%E7%9A%84%E5%A4%B9%E8%A7%92">两平面的夹角</a></li>
+<li><a href="#%E7%A9%BA%E9%97%B4%E7%9B%B4%E7%BA%BF%E5%8F%8A%E5%85%B6%E6%96%B9%E7%A8%8B">空间直线及其方程</a>
+<ul>
+<li><a href="#%E4%B8%80%E8%88%AC%E6%96%B9%E7%A8%8B">一般方程</a></li>
+<li><a href="#%E5%AF%B9%E7%A7%B0%E6%96%B9%E7%A8%8B%E4%B8%8E%E5%8F%82%E6%95%B0%E6%96%B9%E7%A8%8B">对称方程与参数方程</a></li>
+<li><a href="#%E7%9B%B4%E7%BA%BF%E4%B8%8E%E7%9B%B4%E7%BA%BF%E7%9A%84%E5%A4%B9%E8%A7%92">直线与直线的夹角</a></li>
+<li><a href="#%E7%9B%B4%E7%BA%BF%E4%B8%8E%E5%B9%B3%E9%9D%A2%E5%A4%B9%E8%A7%92">直线与平面夹角</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9B%B2%E9%9D%A2%E5%8F%8A%E5%85%B6%E6%96%B9%E7%A8%8B">曲面及其方程</a>
+<ul>
+<li><a href="#%E6%97%8B%E8%BD%AC%E6%9B%B2%E9%9D%A2">旋转曲面</a></li>
+<li><a href="#%E6%9F%B1%E9%9D%A2">柱面</a></li>
+<li><a href="#%E4%BA%8C%E6%AC%A1%E6%9B%B2%E9%9D%A2">二次曲面</a></li>
+</ul>
+</li>
+<li><a href="#%E7%A9%BA%E9%97%B4%E6%9B%B2%E7%BA%BF%E5%8F%8A%E5%85%B6%E6%96%B9%E7%A8%8B">空间曲线及其方程</a>
+<ul>
+<li><a href="#%E4%B8%80%E8%88%AC%E6%96%B9%E7%A8%8B-1">一般方程</a></li>
+<li><a href="#%E5%8F%82%E6%95%B0%E6%96%B9%E7%A8%8B">参数方程</a></li>
+<li><a href="#%E6%9B%B2%E9%9D%A2%E7%9A%84%E5%8F%82%E6%95%B0%E6%96%B9%E7%A8%8B">曲面的参数方程</a></li>
+</ul>
+</li>
+<li><a href="#%E7%A9%BA%E9%97%B4%E6%9B%B2%E7%BA%BF%E5%9C%A8%E5%9D%90%E6%A0%87%E9%9D%A2%E4%B8%8A%E7%9A%84%E6%8A%95%E5%BD%B1">空间曲线在坐标面上的投影</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E6%B3%95%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8">多元函数微分法及其应用</a>
+<ul>
+<li><a href="#%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">多元函数的基本概念</a>
+<ul>
+<li><a href="#%E5%B9%B3%E9%9D%A2%E7%82%B9%E9%9B%86-n%E7%BB%B4%E7%A9%BA%E9%97%B4">平面点集  n维空间</a></li>
+<li><a href="#%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E6%A6%82%E5%BF%B5">多元函数概念</a></li>
+<li><a href="#%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E7%9A%84%E6%9E%81%E9%99%90">多元函数的极限</a></li>
+<li><a href="#%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7">多元函数的连续性</a></li>
+</ul>
+</li>
+<li><a href="#%E5%81%8F%E5%AF%BC%E6%95%B0">偏导数</a>
+<ul>
+<li><a href="#%E9%AB%98%E9%98%B6%E6%B7%B7%E5%90%88%E5%81%8F%E5%AF%BC%E6%95%B0">高阶混合偏导数</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%A8%E5%BE%AE%E5%88%86">全微分</a></li>
+<li><a href="#%E5%A4%9A%E5%85%83%E5%A4%8D%E5%90%88%E5%87%BD%E6%95%B0%E6%B1%82%E5%AF%BC%E6%B3%95%E5%88%99">多元复合函数求导法则</a>
+<ul>
+<li><a href="#%E4%B8%80%E5%85%83%E4%B8%8E%E5%A4%9A%E5%85%83">一元与多元</a></li>
+<li><a href="#%E5%A4%9A%E5%85%83%E4%B8%8E%E5%A4%9A%E5%85%83">多元与多元</a></li>
+<li><a href="#%E5%85%B6%E4%BB%96%E6%83%85%E5%86%B5">其他情况</a></li>
+</ul>
+</li>
+<li><a href="#%E9%9A%90%E5%87%BD%E6%95%B0%E7%9A%84%E6%B1%82%E5%AF%BC%E5%85%AC%E5%BC%8F">隐函数的求导公式</a>
+<ul>
+<li><a href="#%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E6%83%85%E5%86%B5">方程组的情况</a></li>
+</ul>
+</li>
+<li><a href="#%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%AD%A6%E7%9A%84%E5%87%A0%E4%BD%95%E5%BA%94%E7%94%A8">多元函数微分学的几何应用</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    </body>
+    
+    
+    
+    
+    
+    <script>
+(function bindTaskListEvent() {
+  var taskListItemCheckboxes = document.body.getElementsByClassName('task-list-item-checkbox')
+  for (var i = 0; i < taskListItemCheckboxes.length; i++) {
+    var checkbox = taskListItemCheckboxes[i]
+    var li = checkbox.parentElement
+    if (li.tagName !== 'LI') li = li.parentElement
+    if (li.tagName === 'LI') {
+      li.classList.add('task-list-item')
+    }
+  }
+}())    
+</script>
+    
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+      
+  </html>

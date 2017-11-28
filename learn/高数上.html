@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>高数上</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({"extensions":["tex2jax.js"],"jax":["input/TeX","output/HTML-CSS"],"messageStyle":"none","tex2jax":{"processEnvironments":false,"processEscapes":true,"inlineMath":[["$","$"],["\\(","\\)"]],"displayMath":[["$$","$$"],["\\[","\\]"]]},"TeX":{"extensions":["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]},"HTML-CSS":{"availableFonts":["TeX"]}});
+        </script>
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
+        
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+html body {
+  background-color: #f5f5f5;
+  font-family: 'Source Han Sans', 'Consolas', 'Courier New', 'monospace';
+}
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h1 class="mume-header" id="%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%81%E9%99%90">函数与极限</h1>
+
+<h2 class="mume-header" id="%E6%98%A0%E5%B0%84%E4%B8%8E%E5%87%BD%E6%95%B0">映射与函数</h2>
+
+<p>高中基础.略</p>
+<h2 class="mume-header" id="%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90">数列极限</h2>
+
+<p>数列是一个从正整数集到复数集的映射,是无限的.并且定义域一定是<span class="mathjax-exps">$(-&#x5C;infty,+&#x5C;infty)$</span>.</p>
+<h5 class="mume-header" id="%E5%A6%82%E6%9E%9C%E6%95%B0%E5%88%97%E9%A1%B9%E6%B0%B8%E8%BF%9C%E4%B8%8D%E4%BC%9A">如果数列项永远不会</h5>
+
+<ul>
+<li>大于某个正数,那么这个数列有<strong>上界</strong>.</li>
+<li>小于某个负数,那么这个数列有<strong>下界</strong>.</li>
+</ul>
+<p>如果数列既有上界又有下界,那么这个数列<strong>有界</strong>,其他情况这个数列<strong>无界</strong>.<br>
+如果数列越来越无限接近于某个数,那么这个数列是<strong>收敛</strong>的,否则是<strong>发散</strong>的.</p>
+<h5 class="mume-header" id="%E5%A6%82%E6%9E%9C%E6%95%B0%E5%88%97%E6%94%B6%E6%95%9B">如果数列收敛</h5>
+
+<ul>
+<li>那么它有极限且唯一.<code>唯一性</code></li>
+<li>它有上界和下界,因此它有界.<code>有界性</code></li>
+<li>极限的某个左邻域符号与极限符号相同.<code>保号性</code></li>
+<li>它的子数列也收敛于同一个数.<code>与子数列的关系</code>
+<ul>
+<li>
+<blockquote>
+<p>显然,按要求去掉某些点后,不会影响整个&quot;曲线&quot;的形状.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="mume-header" id="%E5%87%BD%E6%95%B0%E6%9E%81%E9%99%90">函数极限</h2>
+
+<p>与数列不同的是,函数是从复数集到复数集的映射,它是连续的.并且定义域不尽相同.</p>
+<h3 class="mume-header" id="%E5%87%BD%E6%95%B0%E6%9E%81%E9%99%90%E7%9A%84%E5%AE%9A%E4%B9%89">函数极限的定义</h3>
+
+<h5 class="mume-header" id="%E8%B6%8B%E4%BA%8E%E6%97%A0%E7%A9%B7%E7%9A%84%E6%9E%81%E9%99%90">趋于无穷的极限</h5>
+
+<p>趋于无穷的极限与数列类似.注意趋于无穷对定义域有要求.</p>
+<h5 class="mume-header" id="%E8%B6%8B%E4%BA%8E%E7%89%B9%E5%AE%9A%E5%80%BC%E7%9A%84%E6%9E%81%E9%99%90">趋于特定值的极限.</h5>
+
+<p>当函数自变量</p>
+<ul>
+<li>从左侧无限向特定值<span class="mathjax-exps">$a$</span>靠近时,函数的值也无限向某一值<span class="mathjax-exps">$A$</span>靠近,那么这个值就是函数趋于特定值的<strong>左极限</strong>.记作:<span class="mathjax-exps">$&#x5C;lim_{x&#x5C;to a^-}f(x)=A$</span>.</li>
+<li>从右侧趋近,叫<strong>右极限</strong>.记作:<span class="mathjax-exps">$&#x5C;lim_{x&#x5C;to a^+}f(x)=A$</span>.</li>
+</ul>
+<p>左极限与右极限统称<strong>单侧极限</strong>.<br>
+如果函数的左极限与右极限相等,那么这个值就是函数趋于<span class="mathjax-exps">$a$</span>的极限.记作:<br>
+<div class="mathjax-exps">$$&#x5C;lim_{x&#x5C;to a}f(x)=A$$</div></p>
+<h3 class="mume-header" id="%E5%87%BD%E6%95%B0%E6%9E%81%E9%99%90%E6%80%A7%E8%B4%A8">函数极限性质</h3>
+
+<p>函数有以下性质:</p>
+<ul>
+<li>如果极限存在那么一定唯一.<code>唯一性</code></li>
+<li>定存在极限的某一去心邻域使得函数有上下界,也就是有界.<code>局部有界性</code></li>
+<li>定存在极限的某一去心邻域使得函数值与极限同号.<code>局部保号性</code>
+<ul>
+<li>如果在极限的某一去心邻域中,函数值恒大于0,那么极限定大于0,反之亦然.</li>
+</ul>
+</li>
+<li>如果函数<span class="mathjax-exps">$&#x5C;lim_{x&#x5C;to a}f(x)=A$</span>,使用一个极限为<span class="mathjax-exps">$a$</span>的数列<span class="mathjax-exps">$&#x5C;{x_n&#x5C;},(x_n&#x5C;neq a)$</span>代替函数的自变量<span class="mathjax-exps">$x$</span>,那么得到的新数列<span class="mathjax-exps">$&#x5C;{f(x_n)&#x5C;}$</span>显然收敛于<span class="mathjax-exps">$A$</span>.<code>函数极限与数列极限关系</code></li>
+</ul>
+<h2 class="mume-header" id="%E6%97%A0%E7%A9%B7%E5%A4%A7%E4%B8%8E%E6%97%A0%E7%A9%B7%E5%B0%8F">无穷大与无穷小</h2>
+
+<h3 class="mume-header" id="%E6%97%A0%E7%A9%B7%E5%B0%8F">无穷小</h3>
+
+<p>当自变量趋近于某值时,函数极限为0,则称此时函数为无穷小.无穷小不是数.</p>
+<blockquote>
+<p>除了0以外任何数的绝对值都大于无穷小的绝对值</p>
+</blockquote>
+<h3 class="mume-header" id="%E6%97%A0%E7%A9%B7%E5%A4%A7">无穷大</h3>
+
+<p>当自变量趋近于某值时,函数值可以大于任意值,则称此时函数为无穷大.无穷大不是数</p>
+<blockquote>
+<p>任何数的绝对值都小于无穷大的绝对值</p>
+</blockquote>
+<h3 class="mume-header" id="%E6%97%A0%E7%A9%B7%E5%A4%A7%E4%B8%8E%E6%97%A0%E7%A9%B7%E5%B0%8F%E7%9A%84%E5%85%B3%E7%B3%BB">无穷大与无穷小的关系</h3>
+
+<p>互为倒数.<br>
+<div class="mathjax-exps">$$&#x5C;text{无穷大} = &#x5C;frac 1 {&#x5C;text{无穷小}}$$</div><div class="mathjax-exps">$$&#x5C;text{无穷小} = &#x5C;frac 1 {&#x5C;text{无穷大}}$$</div></p>
+<h2 class="mume-header" id="%E6%B0%B4%E5%B9%B3%E4%B8%8E%E9%93%85%E7%9B%B4%E6%B8%90%E8%BF%91%E7%BA%BF">水平与铅直渐近线</h2>
+
+<p>如果<span class="mathjax-exps">$&#x5C;lim_{x&#x5C;to &#x5C;infty}f(x)=A$</span>那么<span class="mathjax-exps">$y=A$</span>就是这个函数的水平近线.<br>
+如果<span class="mathjax-exps">$&#x5C;lim_{x&#x5C;to a}f(x)=&#x5C;infty$</span>那么<span class="mathjax-exps">$x=a$</span>就是这个函数的铅直渐近线.</p>
+<blockquote>
+<p>注意,这里的无穷大代表正无穷或负无穷</p>
+</blockquote>
+<h2 class="mume-header" id="%E6%9E%81%E9%99%90%E8%BF%90%E7%AE%97%E6%B3%95%E5%88%99">极限运算法则</h2>
+
+<ul>
+<li>有限个个无穷小的和/乘积是无穷小</li>
+<li>有界函数与无穷小的乘积是无穷小</li>
+<li>两个函数/数列和差积的极限是各自极限的和差积</li>
+<li>如果被除函数/数列的极限不为零,那么两个函数的商的极限是各自极限的商</li>
+<li>若<span class="mathjax-exps">$f(x)&#x5C;geqslant g(x),&#x5C;lim f(x)=A,&#x5C;lim g(x)=B$</span>那么<span class="mathjax-exps">$A&#x5C;geqslant B$</span></li>
+</ul>
+<h2 class="mume-header" id="%E6%9E%81%E9%99%90%E5%AD%98%E5%9C%A8%E5%87%86%E5%88%99-%E4%B8%A4%E4%B8%AA%E9%87%8D%E8%A6%81%E6%9E%81%E9%99%90">极限存在准则 两个重要极限</h2>
+
+<p>极限存在准则又叫夹逼准则,若<span class="mathjax-exps">$g(x)&#x5C;geqslant f(x)&#x5C;geqslant h(x)$</span>且<span class="mathjax-exps">$g(x)$</span>与<span class="mathjax-exps">$h(x)$</span>极限存在且均为<span class="mathjax-exps">$A$</span>,那么<span class="mathjax-exps">$f(x)$</span>的极限存在且同样为<span class="mathjax-exps">$A$</span>.</p>
+<h3 class="mume-header" id="%E9%87%8D%E8%A6%81%E6%9E%81%E9%99%90-lim_xto-0-fracsin-xx">重要极限 : <span class="mathjax-exps">$&#x5C;lim_{x&#x5C;to 0} &#x5C;frac{&#x5C;sin x}{x}$</span></h3>
+
+<p>现利用夹逼定理求<br>
+<div class="mathjax-exps">$$&#x5C;lim_{x&#x5C;to 0} &#x5C;frac{&#x5C;sin x}{x}$$</div>显然在<span class="mathjax-exps">$(0,&#x5C;frac&#x5C;pi2)$</span>上,<span class="mathjax-exps">$&#x5C;cos x&#x5C;leqslant&#x5C;frac{&#x5C;sin x}{x}&#x5C;leqslant1$</span>.如下图</p>
+<div class="code-chunk" data-id="code-chunk-id-0" data-cmd="gnuplot" data-code=""><div class="btn-group"><div class="run-btn btn"><span>▶︎</span></div><div class="run-all-btn btn">all</div></div><div class="status">running...</div><div class="output-div"></div></div>
+<p>由于<span class="mathjax-exps">$&#x5C;lim_{x&#x5C;to 0}&#x5C;cos x=&#x5C;lim_{x&#x5C;to 0}1=1$</span>因此可得<span class="mathjax-exps">$&#x5C;lim_{x&#x5C;to 0} &#x5C;frac{&#x5C;sin x}{x}=1$</span>.</p>
+<h3 class="mume-header" id="%E9%87%8D%E8%A6%81%E6%9E%81%E9%99%90-lim_xto-infty-1frac1xx">重要极限 : <span class="mathjax-exps">$&#x5C;lim_{x&#x5C;to &#x5C;infty} (1+&#x5C;frac1x)^x$</span></h3>
+
+<p>一个数列<strong>单调递增</strong>或<strong>单调递减</strong>,统称为<strong>单调数列</strong>.若单调数列有对应的上界或下界,那么数列一定收敛,极限一定存在.<br>
+推广到函数中,若<span class="mathjax-exps">$f(x)$</span>在<span class="mathjax-exps">$x_0$</span>处某个左邻域内单调且有界,则左极限<span class="mathjax-exps">$&#x5C;lim_{x&#x5C;to x_0^-}f(x)$</span>一定存在.<br>
+下图为<span class="mathjax-exps">$(1+&#x5C;frac1x)^x$</span>的图像:</p>
+<div class="code-chunk" data-id="code-chunk-id-1" data-cmd="gnuplot" data-code=""><div class="btn-group"><div class="run-btn btn"><span>▶︎</span></div><div class="run-all-btn btn">all</div></div><div class="status">running...</div><div class="output-div"></div></div>
+<p>由于<span class="mathjax-exps">$(1+&#x5C;frac1x)^x$</span>在<span class="mathjax-exps">$(0,+&#x5C;infty)$</span>是单调递增函数有上界,在<span class="mathjax-exps">$(-&#x5C;infty,0)$</span>单调递减有下界.且极限相等是无理数,定义<span class="mathjax-exps">$e$</span>为它的极限.<br>
+<div class="mathjax-exps">$$&#x5C;lim_{x&#x5C;to &#x5C;infty} (1+&#x5C;frac1x)^x=e$$</div></p>
+<h2 class="mume-header" id="%E6%97%A0%E7%A9%B7%E5%B0%8F%E7%9A%84%E6%AF%94%E8%BE%83">无穷小的比较</h2>
+
+<p><strong>无穷小的阶</strong>用来描述无穷小的缩小速度,阶越高,无穷小的缩小速度越快.</p>
+<p>如果<span class="mathjax-exps">$&#x5C;lim&#x5C;frac&#x5C;beta&#x5C;alpha=0$</span>,<span class="mathjax-exps">$&#x5C;beta$</span>是<span class="mathjax-exps">$&#x5C;alpha$</span>的<strong>高阶</strong>无穷小,<strong>记为:<span class="mathjax-exps">$&#x5C;beta=o(&#x5C;alpha)$</span></strong>.</p>
+<p>如果<span class="mathjax-exps">$&#x5C;lim&#x5C;frac&#x5C;beta{&#x5C;alpha^k}=c$</span>,<span class="mathjax-exps">$&#x5C;beta$</span>是<span class="mathjax-exps">$&#x5C;alpha$</span>的<strong>k阶</strong>无穷小.</p>
+<p>如果<span class="mathjax-exps">$&#x5C;lim&#x5C;frac&#x5C;beta&#x5C;alpha=c$</span>,<span class="mathjax-exps">$&#x5C;beta$</span>是<span class="mathjax-exps">$&#x5C;alpha$</span>的<strong>同阶</strong>无穷小.</p>
+<p>如果<span class="mathjax-exps">$&#x5C;lim&#x5C;frac&#x5C;beta&#x5C;alpha=1$</span>,<span class="mathjax-exps">$&#x5C;beta$</span>是<span class="mathjax-exps">$&#x5C;alpha$</span>的<strong>等价</strong>无穷小.</p>
+<p>如果<span class="mathjax-exps">$&#x5C;lim&#x5C;frac&#x5C;beta&#x5C;alpha=&#x5C;infty$</span>,<span class="mathjax-exps">$&#x5C;beta$</span>是<span class="mathjax-exps">$&#x5C;alpha$</span>的<strong>低阶</strong>无穷小.</p>
+<p>等价无穷小的充要条件是<span class="mathjax-exps">$&#x5C;beta=&#x5C;alpha+o(&#x5C;alpha)$</span>.此公式意味着式子中的最高阶无穷小项,决定整个式子的阶.</p>
+<h2 class="mume-header" id="%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7%E4%B8%8E%E9%97%B4%E6%96%AD%E7%82%B9">函数的连续性与间断点</h2>
+
+<h3 class="mume-header" id="%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7">函数的连续性</h3>
+
+<p><span class="mathjax-exps">$&#x5C;Delta x$</span>代表对变量<span class="mathjax-exps">$x$</span>的<strong>增量</strong>.如果对<span class="mathjax-exps">$x_0$</span>的增量<span class="mathjax-exps">$&#x5C;Delta x$</span>趋近于0时,<span class="mathjax-exps">$&#x5C;Delta y$</span>也趋近于0,那么这个函数在该点是连续的.<br>
+若<span class="mathjax-exps">$&#x5C;lim_{&#x5C;Delta x&#x5C;to x_0^-}f(x)=f(x_0)$</span>,称<span class="mathjax-exps">$f(x)$</span>在<span class="mathjax-exps">$x_0$</span>处<strong>左连续</strong>.<br>
+若<span class="mathjax-exps">$&#x5C;lim_{&#x5C;Delta x&#x5C;to x_0^+}f(x)=f(x_0)$</span>,称<span class="mathjax-exps">$f(x)$</span>在<span class="mathjax-exps">$x_0$</span>处<strong>右连续</strong>.<br>
+若<span class="mathjax-exps">$&#x5C;lim_{&#x5C;Delta x&#x5C;to x_0}f(x)=f(x_0)$</span>,称<span class="mathjax-exps">$f(x)$</span>在<span class="mathjax-exps">$x_0$</span>处<strong>连续</strong>.</p>
+<h3 class="mume-header" id="%E5%87%BD%E6%95%B0%E7%9A%84%E9%97%B4%E6%96%AD%E7%82%B9">函数的间断点</h3>
+
+<p>间断点顾名思义,函数图像在该点处&quot;断开&quot;.</p>
+<h4 class="mume-header" id="%E6%97%A0%E7%A9%B7%E9%97%B4%E6%96%AD%E7%82%B9">无穷间断点</h4>
+
+<p>函数在该点的极限为无穷.</p>
+<div class="code-chunk" data-id="code-chunk-id-2" data-cmd="gnuplot" data-code=""><div class="btn-group"><div class="run-btn btn"><span>▶︎</span></div><div class="run-all-btn btn">all</div></div><div class="status">running...</div><div class="output-div"></div></div>
+<h4 class="mume-header" id="%E9%9C%87%E8%8D%A1%E9%97%B4%E6%96%AD%E7%82%B9">震荡间断点</h4>
+
+<p>函数在该点的极限跳动无限多次</p>
+<div class="code-chunk" data-id="code-chunk-id-3" data-cmd="gnuplot" data-code=""><div class="btn-group"><div class="run-btn btn"><span>▶︎</span></div><div class="run-all-btn btn">all</div></div><div class="status">running...</div><div class="output-div"></div></div>
+<h4 class="mume-header" id="%E5%8F%AF%E5%8E%BB%E9%97%B4%E6%96%AD%E7%82%B9">可去间断点</h4>
+
+<p>函数在某一点该点没有定义或函数极限不等于函数值</p>
+<h4 class="mume-header" id="%E8%B7%B3%E8%B7%83%E9%97%B4%E6%96%AD%E7%82%B9">跳跃间断点</h4>
+
+<p>函数的左右极限不相等,在函数图像上看,图像突然在某处端口并从其他位置开始.</p>
+<h2 class="mume-header" id="%E8%BF%9E%E7%BB%AD%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%90%E7%AE%97%E4%B8%8E%E5%88%9D%E7%AD%89%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7">连续函数的运算与初等函数的连续性</h2>
+
+<ul>
+<li>连续函数的四则运算:若两函数连续,那么他们的和差积都连续,在除数不为0的情况下,商也连续.</li>
+<li>反函数:连续函数的反函数也连续,且单调性一致.</li>
+<li>复合函数:对于复合函数,从内向外按顺序求极限.</li>
+<li>初等函数:一切初等函数在定义域内都是连续的.</li>
+</ul>
+<h2 class="mume-header" id="%E9%97%AD%E5%8C%BA%E9%97%B4%E4%B8%8A%E8%BF%9E%E7%BB%AD%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8">闭区间上连续函数的性质</h2>
+
+<ul>
+<li><strong>有界性与最大值最小值定理</strong>:在闭区间上,连续函数必有最大值与最小值.</li>
+<li><strong>零点/介值定理</strong>:在闭区间上,函数的值域是连续的,并且也是闭区间,显然给定一个在值域中的值<span class="mathjax-exps">$C$</span>,至少有一个<span class="mathjax-exps">$x=&#x5C;xi$</span>使得<span class="mathjax-exps">$f(&#x5C;xi)=C$</span>.</li>
+<li><strong>一致连续性</strong>:函数自变量的增量<span class="mathjax-exps">$&#x5C;Delta y$</span>如果与<span class="mathjax-exps">$&#x5C;Delta x$</span>是同阶无穷小,那么这个函数是一致连续的,在闭区间上连续函数一定是一致连续.
+<ul>
+<li>
+<blockquote>
+<p><span class="mathjax-exps">$&#x5C;Delta y$</span>如果与<span class="mathjax-exps">$&#x5C;Delta x$</span>是同阶无穷小,那也意味着导数存在.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h1 class="mume-header" id="%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86">导数与微分</h1>
+
+<h2 class="mume-header" id="%E5%AF%BC%E6%95%B0%E6%A6%82%E5%BF%B5">导数概念</h2>
+
+<p><div class="mathjax-exps">$$f&#x27;(x_0)=&#x5C;lim_{&#x5C;Delta x&#x5C;to 0}&#x5C;frac{&#x5C;Delta y}{&#x5C;Delta x}=&#x5C;lim_{&#x5C;Delta x&#x5C;to 0}&#x5C;frac{f(x_0+&#x5C;Delta x)-f(x_0)}{&#x5C;Delta x}$$</div>回忆一致连续性定义,当<span class="mathjax-exps">$&#x5C;Delta y$</span>与<span class="mathjax-exps">$&#x5C;Delta x$</span>是同阶无穷小时,很明显导数为<span class="mathjax-exps">$C$</span>,当<span class="mathjax-exps">$&#x5C;Delta y$</span>是<span class="mathjax-exps">$&#x5C;Delta x$</span>的低阶无穷小时,显然导数不存在.导数不存在,就不能称为一致连续.<br>
+当<span class="mathjax-exps">$&#x5C;Delta x$</span>从左侧或右侧趋近0时,对应得到<strong>左导数</strong>与<strong>右导数</strong>.分别使用<span class="mathjax-exps">$f&#x27;_-(x)$</span>与<span class="mathjax-exps">$f&#x27;_+(x)$</span>来表示.</p>
+<h3 class="mume-header" id="%E5%AF%BC%E6%95%B0%E7%9A%84%E5%87%A0%E4%BD%95%E6%84%8F%E4%B9%89">导数的几何意义</h3>
+
+<p>导数代表了原函数在该点切线的斜率,实际上,导数的计算过程就是在求切线斜率.</p>
+<h3 class="mume-header" id="%E5%87%BD%E6%95%B0%E5%8F%AF%E5%AF%BC%E6%80%A7%E4%B8%8E%E8%BF%9E%E7%BB%AD%E6%80%A7%E7%9A%84%E5%85%B3%E7%B3%BB">函数可导性与连续性的关系</h3>
+
+<p>连续是可导的必要条件,不是充分条件<br>
+可导一定连续,连续不一定可导.<br>
+例如<span class="mathjax-exps">$x=4$</span>是一个竖直连续直线,它的导数不存在.</p>
+<h2 class="mume-header" id="%E5%87%BD%E6%95%B0%E7%9A%84%E6%B1%82%E5%AF%BC%E6%B3%95%E5%88%99">函数的求导法则</h2>
+
+<h3 class="mume-header" id="%E5%92%8C%E5%B7%AE%E7%A7%AF%E5%95%86%E6%B1%82%E5%AF%BC%E6%B3%95%E5%88%99">和差积商求导法则</h3>
+
+<p><span class="mathjax-exps">$(a&#x5C;pm b)&#x27;=a&#x27;&#x5C;pm b&#x27;$</span><br>
+<span class="mathjax-exps">$(ab)&#x27;=a&#x27;b+ab&#x27;$</span><br>
+<span class="mathjax-exps">$(a&#x2F;b)&#x27;=a&#x27;b-ab&#x27;&#x2F;b^2$</span></p>
+<h3 class="mume-header" id="%E5%8F%8D%E5%87%BD%E6%95%B0%E6%B1%82%E5%AF%BC%E6%B3%95%E5%88%99">反函数求导法则</h3>
+
+<p>前面已经说过,连续函数的值域也是连续的,想象将图像沿<span class="mathjax-exps">$y=x$</span>翻转,原函数的导数为0时,翻转后导数不存在,反之亦然.<br>
+<div class="mathjax-exps">$$[f^{-1}(x)]&#x27;=&#x5C;frac 1 {f&#x27;(x)}$$</div>反函数的导数等于原函数导数的倒数.</p>
+<h3 class="mume-header" id="%E5%A4%8D%E5%90%88%E5%87%BD%E6%95%B0%E6%B1%82%E5%AF%BC%E6%B3%95%E5%88%99">复合函数求导法则</h3>
+
+<p>复合函数求导先求外层导数,再与内层导数相乘.<br>
+<div class="mathjax-exps">$$&#x5C;Big[F(g(x))&#x5C;Big]&#x27;=F&#x27;(g(x))*g&#x27;(x)$$</div></p>
+<h3 class="mume-header" id="%E5%9F%BA%E6%9C%AC%E5%88%9D%E7%AD%89%E5%87%BD%E6%95%B0%E7%9A%84%E5%AF%BC%E6%95%B0">基本初等函数的导数</h3>
+
+<p>暂无</p>
+<h2 class="mume-header" id="%E9%AB%98%E9%98%B6%E5%AF%BC%E6%95%B0">高阶导数</h2>
+
+<p>对导数再进行求导,叫高阶导数,求导N次,就是N阶导数.</p>
+<ul>
+<li>在次数较少时使用<strong>撇'的数量</strong>表示,例如<span class="mathjax-exps">$f&#x27;&#x27;(x)$</span>表示<span class="mathjax-exps">$f(x)$</span>的二阶导数.</li>
+<li>在次数较多时使用**(n)**表示,例如<span class="mathjax-exps">$f^{(n)}(x)$</span>表示<span class="mathjax-exps">$f(x)$</span>的<span class="mathjax-exps">$n$</span>阶导数.</li>
+</ul>
+<h2 class="mume-header" id="%E8%8E%B1%E5%B8%83%E5%B0%BC%E8%8C%A8%E5%85%AC%E5%BC%8F">莱布尼茨公式</h2>
+
+<p>类似二项式定理.</p>
+<h2 class="mume-header" id="%E9%9A%90%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E6%96%B9%E7%A8%8B%E7%9A%84%E5%AF%BC%E6%95%B0%E4%B8%8E%E7%9B%B8%E5%85%B3%E5%8F%98%E5%8C%96%E7%8E%87">隐函数/参数方程的导数与相关变化率</h2>
+
+<h3 class="mume-header" id="%E9%9A%90%E5%87%BD%E6%95%B0%E7%9A%84%E5%AF%BC%E6%95%B0">隐函数的导数</h3>
+
+<p><span class="mathjax-exps">$y=&#x5C;cdots$</span>的形式叫做<strong>显函数</strong>,没有将变量分离的函数叫<strong>隐函数</strong>.把一个隐函数转化为显函数叫做<strong>隐函数的显化</strong>.<br>
+一般的如果等式左右两侧导数均存在,可以对等式两端对各个变量分别求导.<br>
+有时将等式两侧取对数后会方便求导.</p>
+<h3 class="mume-header" id="%E5%8F%82%E6%95%B0%E6%96%B9%E7%A8%8B%E7%9A%84%E5%AF%BC%E6%95%B0">参数方程的导数</h3>
+
+<p>对参数方程求导类似于隐函数求导,实际上其核心思想都是将变量看做一个函数.例如对于隐函数<span class="mathjax-exps">$X^2+Y^2=1$</span>两边对x求导得到<br>
+<div class="mathjax-exps">$$2x&#x5C;frac{dx}{dx}+2y&#x5C;frac{dy}{dx}=0 , &#x5C;frac{dy}{dx}=-&#x5C;frac x y$$</div>.<br>
+同理,对于参数方程:<br>
+<div class="mathjax-exps">$$&#x5C;begin{cases}   x=X(t)  &#x5C;&#x5C;   y=Y(t)&#x5C;end{cases}$$</div>同时对t求导可得:<br>
+<div class="mathjax-exps">$$&#x5C;begin{cases}   dx=X&#x27;(t)dt  &#x5C;&#x5C;   dy=Y&#x27;(t)dt&#x5C;end{cases}$$</div>因此显然<br>
+<div class="mathjax-exps">$$&#x5C;begin{aligned}    &#x5C;frac{dy}{dx}&amp;=&#x5C;frac{Y&#x27;(t)dt}{X&#x27;(t)dt}&#x5C;&#x5C;[1em]    &amp;=&#x5C;frac{Y&#x27;(t)}{X&#x27;(t)}&#x5C;end{aligned}$$</div>以上就是参数方程的求导公式.</p>
+<h3 class="mume-header" id="%E7%9B%B8%E5%85%B3%E5%8F%98%E5%8C%96%E7%8E%87">相关变化率</h3>
+
+<p>在参数方程中,对参数求导,各个导数之间的变化率叫做<strong>相关变化率</strong>.例如参数方式是一个与距离相关的一组式子,那么它们的导数就是一组与距离的变化率(速度)相关的式子.这组导数是原参数方程的相关变化率.</p>
+<h2 class="mume-header" id="%E5%87%BD%E6%95%B0%E7%9A%84%E5%BE%AE%E5%88%86">函数的微分</h2>
+
+<p>如果<span class="mathjax-exps">$&#x5C;Delta x$</span>足够小时,<span class="mathjax-exps">$&#x5C;Delta y$</span>可以用<span class="mathjax-exps">$A&#x5C;Delta x+o(&#x5C;Delta x)$</span>线性表示,那么在这点函数是<strong>可微</strong>的,实际上此时<span class="mathjax-exps">$&#x5C;Delta y=dy$</span>.<br>
+<strong>可导必可微,可微必可导</strong><br>
+其实由于dx一定是存在的,因此如果dy存在,那么导数<span class="mathjax-exps">$&#x5C;frac{dy}{dx}$</span>当然存在.</p>
+<h3 class="mume-header" id="%E5%BE%AE%E5%88%86%E8%BF%90%E7%AE%97%E4%BB%A5%E5%8F%8A%E6%B3%95%E5%88%99">微分运算以及法则</h3>
+
+<p>与导数相同</p>
+<h3 class="mume-header" id="%E5%BE%AE%E5%88%86%E5%9C%A8%E8%BF%91%E4%BC%BC%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8">微分在近似计算中的应用</h3>
+
+<p><strong>微分使用导数做增量的线性近似</strong>,因此在计算中适用于近似计算增量.<div class="mathjax-exps">$$F(x_0+&#x5C;Delta x)=F(x_0)+F&#x27;(x_0)&#x5C;Delta x$$</div>使用这种方式估计函数值的时候会产生误差,估计值与精确值相差叫做<strong>绝对误差</strong>,再与近似值的比值叫做<strong>相对误差</strong>.由于实际生活中很难得到精确值,绝对与相对误差很难计算,因此绝对与相对误差这个词也表示估计值的最大误差区间,用于表明精度.</p>
+<h1 class="mume-header" id="%E5%BE%AE%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86%E4%B8%8E%E5%AF%BC%E6%95%B0%E7%9A%84%E5%BA%94%E7%94%A8">微分中值定理与导数的应用</h1>
+
+<h2 class="mume-header" id="%E5%BE%AE%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86">微分中值定理</h2>
+
+<p>在闭区间连续开区                                                                                                                                                                                            间可导的情况下</p>
+<ul>
+<li><strong>罗尔定理</strong>:连接图像端点如果是平行于x轴,那么定有<span class="mathjax-exps">$f&#x27;(&#x5C;xi)=0$</span></li>
+<li><strong>拉格朗日中值定理</strong>:连接图像端点如果斜率是<span class="mathjax-exps">$k$</span>,那么定有<span class="mathjax-exps">$f&#x27;(&#x5C;xi)=k$</span>即<span class="mathjax-exps">$f(b)-f(a)=f&#x27;(&#x5C;xi)(b-a)$</span></li>
+<li><strong>柯西中值定理</strong>:两个函数<span class="mathjax-exps">$F(x),G(x)$</span>在<span class="mathjax-exps">$G&#x27;(&#x5C;xi)$</span>不为0的时候定有<span class="mathjax-exps">$&#x5C;frac{F(b)-F(a)}{G(b)-G(a)}=&#x5C;frac{F&#x27;(&#x5C;xi)}{G&#x27;(&#x5C;xi)}$</span>这里使用罗尔定理可证得.</li>
+</ul>
+<h2 class="mume-header" id="%E6%B4%9B%E5%BF%85%E8%BE%BE%E6%B3%95%E5%88%99">洛必达法则</h2>
+
+<p>对于0与<span class="mathjax-exps">$&#x5C;infty$</span>之间的极限计算叫做<strong>未定式</strong>.<br>
+若x趋近于某值时<span class="mathjax-exps">$F(x)$</span>与<span class="mathjax-exps">$G(x)$</span>都趋于无穷小,且导数的极限存在,那么:<br>
+<div class="mathjax-exps">$$&#x5C;lim_{x&#x5C;to a}&#x5C;frac{F(x)}{G(x)}=&#x5C;lim_{x&#x5C;to a}&#x5C;frac{F&#x27;(x)}{G&#x27;(x)}$$</div>这叫做<strong>洛必达法则</strong>.<br>
+使用柯西中值定理证明:<br>
+<div class="mathjax-exps">$$&#x5C;begin{aligned}&amp;&#x5C;frac{F(b)-F(a)}{G(b)-G(a)}=&#x5C;frac{F&#x27;(&#x5C;xi)}{G&#x27;(&#x5C;xi)}&#x5C;&#x5C;[1em]&amp;&#x5C;lim_{b&#x5C;to a}&#x5C;frac{F(b)-F(a)}{G(b)-G(a)}=&#x5C;lim_{b&#x5C;to a}&#x5C;frac{F&#x27;(&#x5C;xi)}{G&#x27;(&#x5C;xi)}&#x5C;&#x5C;[1em]&amp;&#x5C;xi &#x5C;subset(a,b),b&#x5C;to a&#x5C;&#x5C;&amp;&#x5C;xi&#x5C;to b&#x5C;&#x5C;&amp;&#x5C;lim_{b&#x5C;to a}&#x5C;xi=b&#x5C;&#x5C;&amp;&#x5C;lim_{b&#x5C;to a}&#x5C;frac{F(b)-F(a)}{G(b)-G(a)}=&#x5C;lim_{b&#x5C;to a}&#x5C;frac{F&#x27;(b)}{G&#x27;(b)}&#x5C;end{aligned}$$</div>此时若规定<span class="mathjax-exps">$F(a)=0,G(a)=0$</span>则得到洛必达法则公式.</p>
+<h2 class="mume-header" id="%E6%B3%B0%E5%8B%92%E5%85%AC%E5%BC%8F">泰勒公式</h2>
+
+<p>泰勒公式使用多项式逼近函数使其在0点处的原函数值,导数值,二阶导数值,一直到n阶导数值都与原函数相等,通过这种方式使得多项式在0点附近的值与原函数值近似相等.<br>
+泰勒公式是一个强大的数学工具,它可以在一定范围内近似复杂函数值变化,更方便计算.</p>
+<h3 class="mume-header" id="%E6%B3%B0%E5%8B%92%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%861">泰勒中值定理1</h3>
+
+<p>设函数<span class="mathjax-exps">$f(x)$</span>在<span class="mathjax-exps">$x_0$</span>处有n阶导,那么在<span class="mathjax-exps">$x_0$</span>邻域内恒有<br>
+<div class="mathjax-exps">$$f(x)=f(x_0)+&#x5C;frac{f&#x27;(x_0)}{1!}(x-x_0)+&#x5C;frac{f&#x27;&#x27;(x_0)}{2!}(x-x_0)^2+&#x5C;cdots+&#x5C;frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+R_n(x)$$</div>其中<br>
+<div class="mathjax-exps">$$R_n(x)=o&#x5C;big((x-x_0)^n&#x5C;big)$$</div>注意这里在求的就是在<span class="mathjax-exps">$x$</span>趋近于<span class="mathjax-exps">$x_0$</span>时候值,因此<span class="mathjax-exps">$x-x_0$</span>是无穷小量,<span class="mathjax-exps">$R_n(x)$</span>是比这个无穷小高n阶的无穷小.n取的越大,值越精确.</p>
+<h3 class="mume-header" id="%E6%B3%B0%E5%8B%92%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%862">泰勒中值定理2</h3>
+
+<p>如果以上条件修改为存在<span class="mathjax-exps">$n+1$</span>阶导数,那么<span class="mathjax-exps">$R_n(x)$</span>可写成<br>
+<div class="mathjax-exps">$$R_n(x)=&#x5C;frac{f(&#x5C;xi)^{(n+1)}}{(n+1)!}(x-x_0)^{n+1}$$</div>这一项叫做<strong>拉格朗日余项</strong>.<br>
+如果令<span class="mathjax-exps">$x_0=0$</span>则泰勒公式退化为<strong>麦克劳林公式</strong><br>
+<div class="mathjax-exps">$$f(x)=f(0)+f&#x27;(0)x+&#x5C;frac{f&#x27;&#x27;(0)}{2!}x^2+&#x5C;cdots+&#x5C;frac{f(0)^{n}}{n!}x^n+o(x^n)$$</div>其中高阶无穷小亦然可以使用拉格朗日余项替换.</p>
+<h2 class="mume-header" id="%E5%87%BD%E6%95%B0%E7%9A%84%E5%8D%95%E8%B0%83%E6%80%A7%E4%B8%8E%E5%87%B9%E5%87%B8%E6%80%A7">函数的单调性与凹凸性</h2>
+
+<h3 class="mume-header" id="%E5%8D%95%E8%B0%83%E6%80%A7">单调性</h3>
+
+<p>与导数有关,导数大于零时单调递增,导数小于零时单调递减.导数为0时是极值点.</p>
+<h3 class="mume-header" id="%E5%87%B9%E5%87%B8%E6%80%A7">凹凸性</h3>
+
+<p>与导数的导数有关,二阶导大于零代表导数单调递增,代表函数越来越陡峭,也就是图像下凹.若二阶导小于零图像上凸.二阶导为零时图像凹凸性发生改变,这个点叫做<strong>拐点</strong>.</p>
+<h2 class="mume-header" id="%E5%87%BD%E6%95%B0%E7%9A%84%E6%9E%81%E5%80%BC%E4%B8%8E%E6%9C%80%E5%A4%A7%E6%9C%80%E5%B0%8F%E5%80%BC">函数的极值与最大最小值</h2>
+
+<p>在任意小的去心邻域内,函数的最大值叫函数的<strong>极大值</strong>,<strong>极小值</strong>同理.它们统称为极值.<br>
+若函数连续,在导数为零的点叫做<strong>驻点</strong>.<br>
+判定驻点是否是极大极小值可检测驻点附近函数值大小,如果函数存在二阶导,可检查函数凹凸性判定,二阶导大于零凹函数因此驻点处为极小值,极大值同理.<br>
+函数在给定区间内能取到的最大值叫做<strong>最大值</strong>,<strong>最小值</strong>同理.</p>
+<h2 class="mume-header" id="%E5%87%BD%E6%95%B0%E5%9B%BE%E5%BD%A2%E7%9A%84%E6%8F%8F%E7%BB%98">函数图形的描绘</h2>
+
+<p>略 <code>p163</code></p>
+<h2 class="mume-header" id="%E6%9B%B2%E7%8E%87">曲率</h2>
+
+<h3 class="mume-header" id="%E5%BC%A7%E5%BE%AE%E5%88%86">弧微分</h3>
+
+<p>使用<span class="mathjax-exps">$&#x5C;Delta s$</span>代表弧度增量,那么当其逼近0时,弧长与弦长相等.因此弧长对x的增量的微分<br>
+<div class="mathjax-exps">$$ds=&#x5C;sqrt{1+{y&#x27;}^2}dx$$</div></p>
+<h3 class="mume-header" id="%E6%9B%B2%E7%8E%87%E8%AE%A1%E7%AE%97">曲率计算</h3>
+
+<p>单位弧上切线转过角度的大小.<br>
+<div class="mathjax-exps">$$&#x5C;overline{K}=&#x5C;Big|&#x5C;frac{&#x5C;Delta&#x5C;alpha}{&#x5C;Delta s}&#x5C;Big|$$</div><span class="mathjax-exps">$|&#x5C;overline K|$</span>叫做<strong>平均曲率</strong>,这类似于平均速度,当<span class="mathjax-exps">$&#x5C;Delta s&#x5C;to 0$</span>的时候,即可求出瞬时速度,在这里是曲率,直线的曲率为0.<br>
+圆的曲率为半径分之一,因此圆越小,曲率越大.曲率的计算公式为<code>p171</code><br>
+<div class="mathjax-exps">$$K=&#x5C;frac{|y&#x27;&#x27;|}{(1+y&#x27;^2)^{&#x5C;frac 3 2}}$$</div>对于参数方程,按照参数方程求导法则带入即可.<br>
+<div class="mathjax-exps">$$K=&#x5C;frac{|&#x5C;psi&#x27;(t)&#x5C;varphi&#x27;&#x27;^2(t)-&#x5C;psi&#x27;&#x27;^2(t)&#x5C;varphi&#x27;(t)|}{(&#x5C;varphi&#x27;^2(t)+&#x5C;psi&#x27;^2(t))^{3&#x2F;2}}$$</div>实际上,令<span class="mathjax-exps">$&#x5C;psi(t)=t$</span>上式就会退化为显函数的曲率计算公式.因此记忆此公式更为方便.</p>
+<h3 class="mume-header" id="%E6%9B%B2%E7%8E%87%E5%9C%86%E4%B8%8E%E6%9B%B2%E7%8E%87%E5%8D%8A%E5%BE%84">曲率圆与曲率半径</h3>
+
+<p><strong>曲率圆</strong>是在函数图像上过一点且与该点曲率相同,与该点切线相切的圆.曲率圆的半径叫做<strong>曲率半径</strong>,曲率圆的圆心叫做<strong>曲率中心</strong>.<br>
+实际上由于曲率圆的曲率与该点曲率相同,因此曲率半径就是该点曲率的倒数.</p>
+<h3 class="mume-header" id="%E6%9B%B2%E7%8E%87%E4%B8%AD%E5%BF%83%E7%9A%84%E8%AE%A1%E7%AE%97-%E6%B8%90%E5%B1%88%E7%BA%BF%E4%B8%8E%E6%B8%90%E4%BC%B8%E7%BA%BF">曲率中心的计算 渐屈线与渐伸线</h3>
+
+<p>大纲不要求<code>p174</code></p>
+<h2 class="mume-header" id="%E6%96%B9%E7%A8%8B%E7%9A%84%E8%BF%91%E4%BC%BC%E8%A7%A3">方程的近似解</h2>
+
+<p>二分法,切线法,割线法.<br>
+<strong>TODO</strong></p>
+<h1 class="mume-header" id="%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86">不定积分</h1>
+
+<h2 class="mume-header" id="%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%80%A7%E8%B4%A8">不定积分的概念与性质</h2>
+
+<p>在区间上某函数的原函数就是这个函数的<strong>不定积分</strong>.如果函数连续,则显然定存在原函数,不定积分有意义.所谓不定,即积分上下限不定.不定积分的值代表从0到<span class="mathjax-exps">$x$</span>函数与x轴围成的面积.<br>
+不定积分显然有以下性质:<br>
+<div class="mathjax-exps">$$d&#x5C;Big[&#x5C;int f(x)dx&#x5C;Big]=f(x)dx$$</div>也就是说,函数<span class="mathjax-exps">$f(x)$</span>积分的导数等于它自己,但导数的积分与<span class="mathjax-exps">$f(x)$</span>相差一个常数<span class="mathjax-exps">$c$</span>.</p>
+<h2 class="mume-header" id="%E5%9F%BA%E6%9C%AC%E7%A7%AF%E5%88%86%E8%A1%A8">基本积分表</h2>
+
+<p><code>p188</code></p>
+<h3 class="mume-header" id="%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%80%A7%E8%B4%A8">不定积分的性质</h3>
+
+<p>以下<span class="mathjax-exps">$f(x),g(x)$</span>均存在原函数,<span class="mathjax-exps">$k$</span>为常数<br>
+<div class="mathjax-exps">$$&#x5C;int[f(x)+g(x)]dx=&#x5C;int f(x)dx+&#x5C;int g(x)dx$$</div><div class="mathjax-exps">$$&#x5C;int kf(x)dx=k&#x5C;int f(x)dx$$</div></p>
+<h2 class="mume-header" id="%E6%8D%A2%E5%85%83%E7%A7%AF%E5%88%86%E6%B3%95">换元积分法</h2>
+
+<h3 class="mume-header" id="%E7%AC%AC%E4%B8%80%E7%B1%BB%E6%8D%A2%E5%85%83%E6%B3%95">第一类换元法</h3>
+
+<p><div class="mathjax-exps">$$&#x5C;int f[&#x5C;varphi(x)]&#x5C;varphi&#x27;(x)dx=&#x5C;Big[&#x5C;int f(u)du&#x5C;Big]_{u=&#x5C;varphi(x)}$$</div></p>
+<h3 class="mume-header" id="%E7%AC%AC%E4%BA%8C%E7%B1%BB%E6%8D%A2%E5%85%83%E6%B3%95">第二类换元法</h3>
+
+<p><div class="mathjax-exps">$$&#x5C;int f(x)du=&#x5C;Big[&#x5C;int f[&#x5C;varphi(u)]&#x5C;varphi&#x27;(u)dx&#x5C;Big]_{u=&#x5C;varphi^{-1}(x)}$$</div><br>
+以上两类换元法核心思想是对微分变量的替换.</p>
+<h2 class="mume-header" id="%E5%88%86%E9%83%A8%E7%A7%AF%E5%88%86%E6%B3%95">分部积分法</h2>
+
+<p><div class="mathjax-exps">$$&#x5C;int udv=uv-&#x5C;int vdu$$</div>上述公式由乘积导数公式左右积分求得</p>
+<h2 class="mume-header" id="%E6%9C%89%E7%90%86%E5%87%BD%E6%95%B0%E7%9A%84%E7%A7%AF%E5%88%86">有理函数的积分</h2>
+
+<p>两个多项式的商叫做<strong>有理函数</strong>,其积分可先化为真分式再积分.</p>
+<h2 class="mume-header" id="%E7%A7%AF%E5%88%86%E8%A1%A8%E7%9A%84%E4%BD%BF%E7%94%A8">积分表的使用</h2>
+
+<p><code>p219</code></p>
+<h1 class="mume-header" id="%E5%AE%9A%E7%A7%AF%E5%88%86">定积分</h1>
+
+<h2 class="mume-header" id="%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%80%A7%E8%B4%A8">定积分的概念与性质</h2>
+
+<p>定积分可用于计算函数曲线与x轴的面积.其中定代表确定的积分区间上下限.</p>
+<h3 class="mume-header" id="%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E5%AE%9A%E4%B9%89">定积分的定义</h3>
+
+<p><div class="mathjax-exps">$$&#x5C;int_a^bf(x)dx=&#x5C;lim_{&#x5C;lambda&#x5C;to0}&#x5C;sum_{i=0}^nf(&#x5C;xi_i)&#x5C;Delta x_i$$</div><strong>被积函数</strong><span class="mathjax-exps">$f(x)$</span>,<strong>被积表达式</strong><span class="mathjax-exps">$f(x)dx$</span>,<strong>积分变量</strong><span class="mathjax-exps">$x$</span>,<strong>积分下限</strong><span class="mathjax-exps">$a$</span>,<strong>积分上限</strong><span class="mathjax-exps">$b$</span>,<strong>积分区间</strong><span class="mathjax-exps">$[a,b]$</span></p>
+<h3 class="mume-header" id="%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E8%BF%91%E4%BC%BC%E8%AE%A1%E7%AE%97">定积分的近似计算</h3>
+
+<p><code>p229</code></p>
+<h3 class="mume-header" id="%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%80%A7%E8%B4%A8">定积分的性质</h3>
+
+<p>定积分包含不定积分的性质,此外<br>
+<div class="mathjax-exps">$$&#x5C;int_a^af(x)dx=0$$</div><div class="mathjax-exps">$$&#x5C;int_a^kf(x)dx=-&#x5C;int_k^af(x)dx$$</div><div class="mathjax-exps">$$&#x5C;int_a^bf(x)dx+&#x5C;int_b^cf(x)dx=&#x5C;int_a^cf(x)dx$$</div>定积分中值定理<br>
+<div class="mathjax-exps">$$&#x5C;int_a^bf(x)dx=f(&#x5C;xi)(b-a)$$</div></p>
+<h2 class="mume-header" id="%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9F%BA%E6%9C%AC%E5%85%AC%E5%BC%8F">微积分基本公式</h2>
+
+<p><div class="mathjax-exps">$$&#x5C;int_a^bf(x)dx=F(b)-F(a)$$</div>若 <span class="mathjax-exps">$&#x5C;Phi(x)=&#x5C;int_a^xf(t)dt$</span> 则<div class="mathjax-exps">$$&#x5C;begin{aligned}&#x5C;Phi&#x27;(x)&amp;=&#x5C;frac d {dx}&#x5C;int_a^xf(t)dt&#x5C;&#x5C;&amp;=[F(x)-F(a)]&#x27;&#x5C;&#x5C;&amp;=F&#x27;(x)-0&#x5C;&#x5C;&amp;=f(x)&#x5C;end{aligned}$$</div>注意这里<span class="mathjax-exps">$F(a)$</span>是一个常数,导数为零.</p>
+<h2 class="mume-header" id="%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%8D%A2%E5%85%83%E6%B3%95%E4%B8%8E%E9%83%A8%E5%88%86%E7%A7%AF%E5%88%86%E6%B3%95">定积分的换元法与部分积分法</h2>
+
+<p>与不定积分类似,仅是上下限的区别,在换元时要一并更新上下限.部分积分也要带有上下限.</p>
+<h2 class="mume-header" id="%E5%8F%8D%E5%B8%B8%E7%A7%AF%E5%88%86">反常积分</h2>
+
+<h3 class="mume-header" id="%E6%97%A0%E7%A9%B7%E7%A7%AF%E5%88%86">无穷积分</h3>
+
+<p>积分上下限为无穷的情况,可用莱布尼茨公式计算.<br>
+若<div class="mathjax-exps">$$&#x5C;int_{-&#x5C;infty}^0f(x)dx+&#x5C;int_0^{&#x5C;infty}f(x)dx=C$$</div>则称<span class="mathjax-exps">$&#x5C;int_{-&#x5C;infty}^{&#x5C;infty}f(x)dx$</span>收敛.(显然)</p>
+<h3 class="mume-header" id="%E6%97%A0%E7%95%8C%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%8D%E5%B8%B8%E7%A7%AF%E5%88%86">无界函数的反常积分</h3>
+
+<p>如果函数在点a的任意临界都无界,那么点a为<strong>瑕点</strong>,对无解函数的积分叫<strong>瑕积分</strong>.<br>
+<div class="mathjax-exps">$$&#x5C;int_a^bf(x)dx=&#x5C;lim_{t&#x5C;to a+}&#x5C;int_t^bf(x)dx$$</div>实际上瑕积分与普通积分没有明显不同.</p>
+<h2 class="mume-header" id="%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E5%BA%94%E7%94%A8">定积分的应用</h2>
+
+<h3 class="mume-header" id="%E5%B9%B3%E9%9D%A2%E5%9B%BE%E5%BD%A2">平面图形</h3>
+
+<p>定积分可用于求解面积体积等.</p>
+<h4 class="mume-header" id="%E7%9B%B4%E8%A7%92%E5%9D%90%E6%A0%87">直角坐标</h4>
+
+<p>将图形分割为微小单元,求出<span class="mathjax-exps">$dS$</span>与<span class="mathjax-exps">$dx$</span>的关系后积分即可.</p>
+<h4 class="mume-header" id="%E6%9E%81%E5%9D%90%E6%A0%87">极坐标</h4>
+
+<p>通过微分的扇形面积公式<span class="mathjax-exps">$S=&#x5C;frac 1 2 R^2&#x5C;theta$</span>求出<span class="mathjax-exps">$dS$</span>与<span class="mathjax-exps">$d&#x5C;theta$</span>的关系,注意这里的<span class="mathjax-exps">$&#x5C;theta$</span>不是角度是弧度.</p>
+<h3 class="mume-header" id="%E4%BD%93%E7%A7%AF">体积</h3>
+
+<h4 class="mume-header" id="%E6%97%8B%E8%BD%AC%E4%BD%93">旋转体</h4>
+
+<p>求出<span class="mathjax-exps">$dV$</span>与<span class="mathjax-exps">$dx$</span>的关系,一般来说为<span class="mathjax-exps">$dV=&#x5C;pi [f(x)]^2dx$</span>.</p>
+<h4 class="mume-header" id="%E6%88%AA%E9%9D%A2%E4%BD%93%E7%A7%AF">截面体积</h4>
+
+<p>求出<span class="mathjax-exps">$dV$</span>与<span class="mathjax-exps">$dx$</span>的关系,<span class="mathjax-exps">$dV=A(x)dx$</span>,其中<span class="mathjax-exps">$A(x)$</span>为底面面积.</p>
+<h3 class="mume-header" id="%E5%BC%A7%E7%BA%BF%E9%95%BF">弧线长</h3>
+
+<p>求<span class="mathjax-exps">$ds$</span>与<span class="mathjax-exps">$dx,dy$</span>的关系,一般<span class="mathjax-exps">$dS=&#x5C;sqrt{dx^2+dy^2}$</span>.</p>
+<h3 class="mume-header" id="%E6%B0%B4%E5%8E%8B%E5%BC%95%E5%8A%9B">水压引力</h3>
+
+<p><code>p291</code></p>
+<h1 class="mume-header" id="%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B">微分方程</h1>
+
+<h2 class="mume-header" id="%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">基本概念</h2>
+
+<p>表示<span class="mathjax-exps">$f(x),f^{(n)}(x)$</span>与<span class="mathjax-exps">$x$</span>关系的方程叫做<strong>微分方程</strong>.方程中含有的<span class="mathjax-exps">$n$</span>最高阶是<strong>方程的阶</strong>.使用常数<span class="mathjax-exps">$C$</span>来代表所有可能的解,叫做<strong>通解</strong>.满足<strong>初值条件</strong>的解叫<strong>特解</strong>.</p>
+<h2 class="mume-header" id="%E5%8F%AF%E5%88%86%E7%A6%BB%E5%8F%98%E9%87%8F%E7%9A%84%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B">可分离变量的微分方程</h2>
+
+<p>可将<span class="mathjax-exps">$dx,dy$</span>分别放到等式两侧的微分方程叫做<strong>可分离变量的微分方程</strong>,两端分别积分即可.</p>
+<h2 class="mume-header" id="%E9%BD%90%E6%AC%A1%E6%96%B9%E7%A8%8B">齐次方程</h2>
+
+<p>若微分方程可化为<div class="mathjax-exps">$$&#x5C;frac{dy}{dx}=&#x5C;varphi(&#x5C;frac y x)$$</div>则引入<span class="mathjax-exps">$u=&#x5C;frac y x$</span>即可化为可分离变量的微分方程.<br>
+<div class="mathjax-exps">$$&#x5C;frac{du}{&#x5C;varphi(u)-u}=&#x5C;frac{dx} x$$</div></p>
+<h2 class="mume-header" id="%E5%8F%AF%E5%8C%96%E4%B8%BA%E9%BD%90%E6%AC%A1%E7%9A%84%E6%96%B9%E7%A8%8B">可化为齐次的方程</h2>
+
+<p><code>p312</code></p>
+<h2 class="mume-header" id="%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B">一阶线性微分方程</h2>
+
+<p><div class="mathjax-exps">$$&#x5C;frac{dy}{dx}+P(x)y=Q(x)$$</div>其中若<span class="mathjax-exps">$Q(x)=0$</span>即为齐次,首先讨论齐次情况.<br>
+<div class="mathjax-exps">$$&#x5C;frac{dy}{dx}+P(x)y=0$$</div>分离变量后可得通解<span class="mathjax-exps">$y=Ce^{-&#x5C;int P(x)dx}$</span><br>
+使用<strong>常数变异法</strong>,将常数C变为未知函数u,求导再积分后可得非齐次通解.</p>
+<h3 class="mume-header" id="%E4%BC%AF%E5%8A%AA%E5%88%A9%E6%96%B9%E7%A8%8B">伯努利方程</h3>
+
+<h2 class="mume-header" id="%E5%8F%AF%E9%99%8D%E9%98%B6%E7%9A%84%E9%AB%98%E9%98%B6%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B">可降阶的高阶微分方程</h2>
+
+<p><code>p324</code>待看</p>
+
+      </div>
+      <div class="md-sidebar-toc"><ul>
+<li><a href="#%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%81%E9%99%90">函数与极限</a>
+<ul>
+<li><a href="#%E6%98%A0%E5%B0%84%E4%B8%8E%E5%87%BD%E6%95%B0">映射与函数</a></li>
+<li><a href="#%E6%95%B0%E5%88%97%E6%9E%81%E9%99%90">数列极限</a><br>
+* <a href="#%E5%A6%82%E6%9E%9C%E6%95%B0%E5%88%97%E9%A1%B9%E6%B0%B8%E8%BF%9C%E4%B8%8D%E4%BC%9A">如果数列项永远不会</a><br>
+* <a href="#%E5%A6%82%E6%9E%9C%E6%95%B0%E5%88%97%E6%94%B6%E6%95%9B">如果数列收敛</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0%E6%9E%81%E9%99%90">函数极限</a>
+<ul>
+<li><a href="#%E5%87%BD%E6%95%B0%E6%9E%81%E9%99%90%E7%9A%84%E5%AE%9A%E4%B9%89">函数极限的定义</a><br>
+* <a href="#%E8%B6%8B%E4%BA%8E%E6%97%A0%E7%A9%B7%E7%9A%84%E6%9E%81%E9%99%90">趋于无穷的极限</a><br>
+* <a href="#%E8%B6%8B%E4%BA%8E%E7%89%B9%E5%AE%9A%E5%80%BC%E7%9A%84%E6%9E%81%E9%99%90">趋于特定值的极限.</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0%E6%9E%81%E9%99%90%E6%80%A7%E8%B4%A8">函数极限性质</a></li>
+</ul>
+</li>
+<li><a href="#%E6%97%A0%E7%A9%B7%E5%A4%A7%E4%B8%8E%E6%97%A0%E7%A9%B7%E5%B0%8F">无穷大与无穷小</a>
+<ul>
+<li><a href="#%E6%97%A0%E7%A9%B7%E5%B0%8F">无穷小</a></li>
+<li><a href="#%E6%97%A0%E7%A9%B7%E5%A4%A7">无穷大</a></li>
+<li><a href="#%E6%97%A0%E7%A9%B7%E5%A4%A7%E4%B8%8E%E6%97%A0%E7%A9%B7%E5%B0%8F%E7%9A%84%E5%85%B3%E7%B3%BB">无穷大与无穷小的关系</a></li>
+</ul>
+</li>
+<li><a href="#%E6%B0%B4%E5%B9%B3%E4%B8%8E%E9%93%85%E7%9B%B4%E6%B8%90%E8%BF%91%E7%BA%BF">水平与铅直渐近线</a></li>
+<li><a href="#%E6%9E%81%E9%99%90%E8%BF%90%E7%AE%97%E6%B3%95%E5%88%99">极限运算法则</a></li>
+<li><a href="#%E6%9E%81%E9%99%90%E5%AD%98%E5%9C%A8%E5%87%86%E5%88%99-%E4%B8%A4%E4%B8%AA%E9%87%8D%E8%A6%81%E6%9E%81%E9%99%90">极限存在准则 两个重要极限</a>
+<ul>
+<li><a href="#%E9%87%8D%E8%A6%81%E6%9E%81%E9%99%90-lim_xto-0-fracsin-xx">重要极限 : <span class="mathjax-exps">$&#x5C;lim_{x&#x5C;to 0} &#x5C;frac{&#x5C;sin x}{x}$</span></a></li>
+<li><a href="#%E9%87%8D%E8%A6%81%E6%9E%81%E9%99%90-lim_xto-infty-1frac1xx">重要极限 : <span class="mathjax-exps">$&#x5C;lim_{x&#x5C;to &#x5C;infty} (1+&#x5C;frac1x)^x$</span></a></li>
+</ul>
+</li>
+<li><a href="#%E6%97%A0%E7%A9%B7%E5%B0%8F%E7%9A%84%E6%AF%94%E8%BE%83">无穷小的比较</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7%E4%B8%8E%E9%97%B4%E6%96%AD%E7%82%B9">函数的连续性与间断点</a>
+<ul>
+<li><a href="#%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7">函数的连续性</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0%E7%9A%84%E9%97%B4%E6%96%AD%E7%82%B9">函数的间断点</a>
+<ul>
+<li><a href="#%E6%97%A0%E7%A9%B7%E9%97%B4%E6%96%AD%E7%82%B9">无穷间断点</a></li>
+<li><a href="#%E9%9C%87%E8%8D%A1%E9%97%B4%E6%96%AD%E7%82%B9">震荡间断点</a></li>
+<li><a href="#%E5%8F%AF%E5%8E%BB%E9%97%B4%E6%96%AD%E7%82%B9">可去间断点</a></li>
+<li><a href="#%E8%B7%B3%E8%B7%83%E9%97%B4%E6%96%AD%E7%82%B9">跳跃间断点</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E8%BF%9E%E7%BB%AD%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%90%E7%AE%97%E4%B8%8E%E5%88%9D%E7%AD%89%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7">连续函数的运算与初等函数的连续性</a></li>
+<li><a href="#%E9%97%AD%E5%8C%BA%E9%97%B4%E4%B8%8A%E8%BF%9E%E7%BB%AD%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8">闭区间上连续函数的性质</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86">导数与微分</a>
+<ul>
+<li><a href="#%E5%AF%BC%E6%95%B0%E6%A6%82%E5%BF%B5">导数概念</a>
+<ul>
+<li><a href="#%E5%AF%BC%E6%95%B0%E7%9A%84%E5%87%A0%E4%BD%95%E6%84%8F%E4%B9%89">导数的几何意义</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0%E5%8F%AF%E5%AF%BC%E6%80%A7%E4%B8%8E%E8%BF%9E%E7%BB%AD%E6%80%A7%E7%9A%84%E5%85%B3%E7%B3%BB">函数可导性与连续性的关系</a></li>
+</ul>
+</li>
+<li><a href="#%E5%87%BD%E6%95%B0%E7%9A%84%E6%B1%82%E5%AF%BC%E6%B3%95%E5%88%99">函数的求导法则</a>
+<ul>
+<li><a href="#%E5%92%8C%E5%B7%AE%E7%A7%AF%E5%95%86%E6%B1%82%E5%AF%BC%E6%B3%95%E5%88%99">和差积商求导法则</a></li>
+<li><a href="#%E5%8F%8D%E5%87%BD%E6%95%B0%E6%B1%82%E5%AF%BC%E6%B3%95%E5%88%99">反函数求导法则</a></li>
+<li><a href="#%E5%A4%8D%E5%90%88%E5%87%BD%E6%95%B0%E6%B1%82%E5%AF%BC%E6%B3%95%E5%88%99">复合函数求导法则</a></li>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E5%88%9D%E7%AD%89%E5%87%BD%E6%95%B0%E7%9A%84%E5%AF%BC%E6%95%B0">基本初等函数的导数</a></li>
+</ul>
+</li>
+<li><a href="#%E9%AB%98%E9%98%B6%E5%AF%BC%E6%95%B0">高阶导数</a></li>
+<li><a href="#%E8%8E%B1%E5%B8%83%E5%B0%BC%E8%8C%A8%E5%85%AC%E5%BC%8F">莱布尼茨公式</a></li>
+<li><a href="#%E9%9A%90%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E6%96%B9%E7%A8%8B%E7%9A%84%E5%AF%BC%E6%95%B0%E4%B8%8E%E7%9B%B8%E5%85%B3%E5%8F%98%E5%8C%96%E7%8E%87">隐函数/参数方程的导数与相关变化率</a>
+<ul>
+<li><a href="#%E9%9A%90%E5%87%BD%E6%95%B0%E7%9A%84%E5%AF%BC%E6%95%B0">隐函数的导数</a></li>
+<li><a href="#%E5%8F%82%E6%95%B0%E6%96%B9%E7%A8%8B%E7%9A%84%E5%AF%BC%E6%95%B0">参数方程的导数</a></li>
+<li><a href="#%E7%9B%B8%E5%85%B3%E5%8F%98%E5%8C%96%E7%8E%87">相关变化率</a></li>
+</ul>
+</li>
+<li><a href="#%E5%87%BD%E6%95%B0%E7%9A%84%E5%BE%AE%E5%88%86">函数的微分</a>
+<ul>
+<li><a href="#%E5%BE%AE%E5%88%86%E8%BF%90%E7%AE%97%E4%BB%A5%E5%8F%8A%E6%B3%95%E5%88%99">微分运算以及法则</a></li>
+<li><a href="#%E5%BE%AE%E5%88%86%E5%9C%A8%E8%BF%91%E4%BC%BC%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8">微分在近似计算中的应用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%BE%AE%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86%E4%B8%8E%E5%AF%BC%E6%95%B0%E7%9A%84%E5%BA%94%E7%94%A8">微分中值定理与导数的应用</a>
+<ul>
+<li><a href="#%E5%BE%AE%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86">微分中值定理</a></li>
+<li><a href="#%E6%B4%9B%E5%BF%85%E8%BE%BE%E6%B3%95%E5%88%99">洛必达法则</a></li>
+<li><a href="#%E6%B3%B0%E5%8B%92%E5%85%AC%E5%BC%8F">泰勒公式</a>
+<ul>
+<li><a href="#%E6%B3%B0%E5%8B%92%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%861">泰勒中值定理1</a></li>
+<li><a href="#%E6%B3%B0%E5%8B%92%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%862">泰勒中值定理2</a></li>
+</ul>
+</li>
+<li><a href="#%E5%87%BD%E6%95%B0%E7%9A%84%E5%8D%95%E8%B0%83%E6%80%A7%E4%B8%8E%E5%87%B9%E5%87%B8%E6%80%A7">函数的单调性与凹凸性</a>
+<ul>
+<li><a href="#%E5%8D%95%E8%B0%83%E6%80%A7">单调性</a></li>
+<li><a href="#%E5%87%B9%E5%87%B8%E6%80%A7">凹凸性</a></li>
+</ul>
+</li>
+<li><a href="#%E5%87%BD%E6%95%B0%E7%9A%84%E6%9E%81%E5%80%BC%E4%B8%8E%E6%9C%80%E5%A4%A7%E6%9C%80%E5%B0%8F%E5%80%BC">函数的极值与最大最小值</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0%E5%9B%BE%E5%BD%A2%E7%9A%84%E6%8F%8F%E7%BB%98">函数图形的描绘</a></li>
+<li><a href="#%E6%9B%B2%E7%8E%87">曲率</a>
+<ul>
+<li><a href="#%E5%BC%A7%E5%BE%AE%E5%88%86">弧微分</a></li>
+<li><a href="#%E6%9B%B2%E7%8E%87%E8%AE%A1%E7%AE%97">曲率计算</a></li>
+<li><a href="#%E6%9B%B2%E7%8E%87%E5%9C%86%E4%B8%8E%E6%9B%B2%E7%8E%87%E5%8D%8A%E5%BE%84">曲率圆与曲率半径</a></li>
+<li><a href="#%E6%9B%B2%E7%8E%87%E4%B8%AD%E5%BF%83%E7%9A%84%E8%AE%A1%E7%AE%97-%E6%B8%90%E5%B1%88%E7%BA%BF%E4%B8%8E%E6%B8%90%E4%BC%B8%E7%BA%BF">曲率中心的计算 渐屈线与渐伸线</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%B9%E7%A8%8B%E7%9A%84%E8%BF%91%E4%BC%BC%E8%A7%A3">方程的近似解</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86">不定积分</a>
+<ul>
+<li><a href="#%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%80%A7%E8%B4%A8">不定积分的概念与性质</a></li>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E7%A7%AF%E5%88%86%E8%A1%A8">基本积分表</a>
+<ul>
+<li><a href="#%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%80%A7%E8%B4%A8">不定积分的性质</a></li>
+</ul>
+</li>
+<li><a href="#%E6%8D%A2%E5%85%83%E7%A7%AF%E5%88%86%E6%B3%95">换元积分法</a>
+<ul>
+<li><a href="#%E7%AC%AC%E4%B8%80%E7%B1%BB%E6%8D%A2%E5%85%83%E6%B3%95">第一类换元法</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E7%B1%BB%E6%8D%A2%E5%85%83%E6%B3%95">第二类换元法</a></li>
+</ul>
+</li>
+<li><a href="#%E5%88%86%E9%83%A8%E7%A7%AF%E5%88%86%E6%B3%95">分部积分法</a></li>
+<li><a href="#%E6%9C%89%E7%90%86%E5%87%BD%E6%95%B0%E7%9A%84%E7%A7%AF%E5%88%86">有理函数的积分</a></li>
+<li><a href="#%E7%A7%AF%E5%88%86%E8%A1%A8%E7%9A%84%E4%BD%BF%E7%94%A8">积分表的使用</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AE%9A%E7%A7%AF%E5%88%86">定积分</a>
+<ul>
+<li><a href="#%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%80%A7%E8%B4%A8">定积分的概念与性质</a>
+<ul>
+<li><a href="#%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E5%AE%9A%E4%B9%89">定积分的定义</a></li>
+<li><a href="#%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E8%BF%91%E4%BC%BC%E8%AE%A1%E7%AE%97">定积分的近似计算</a></li>
+<li><a href="#%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%80%A7%E8%B4%A8">定积分的性质</a></li>
+</ul>
+</li>
+<li><a href="#%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9F%BA%E6%9C%AC%E5%85%AC%E5%BC%8F">微积分基本公式</a></li>
+<li><a href="#%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E6%8D%A2%E5%85%83%E6%B3%95%E4%B8%8E%E9%83%A8%E5%88%86%E7%A7%AF%E5%88%86%E6%B3%95">定积分的换元法与部分积分法</a></li>
+<li><a href="#%E5%8F%8D%E5%B8%B8%E7%A7%AF%E5%88%86">反常积分</a>
+<ul>
+<li><a href="#%E6%97%A0%E7%A9%B7%E7%A7%AF%E5%88%86">无穷积分</a></li>
+<li><a href="#%E6%97%A0%E7%95%8C%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%8D%E5%B8%B8%E7%A7%AF%E5%88%86">无界函数的反常积分</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AE%9A%E7%A7%AF%E5%88%86%E7%9A%84%E5%BA%94%E7%94%A8">定积分的应用</a>
+<ul>
+<li><a href="#%E5%B9%B3%E9%9D%A2%E5%9B%BE%E5%BD%A2">平面图形</a>
+<ul>
+<li><a href="#%E7%9B%B4%E8%A7%92%E5%9D%90%E6%A0%87">直角坐标</a></li>
+<li><a href="#%E6%9E%81%E5%9D%90%E6%A0%87">极坐标</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BD%93%E7%A7%AF">体积</a>
+<ul>
+<li><a href="#%E6%97%8B%E8%BD%AC%E4%BD%93">旋转体</a></li>
+<li><a href="#%E6%88%AA%E9%9D%A2%E4%BD%93%E7%A7%AF">截面体积</a></li>
+</ul>
+</li>
+<li><a href="#%E5%BC%A7%E7%BA%BF%E9%95%BF">弧线长</a></li>
+<li><a href="#%E6%B0%B4%E5%8E%8B%E5%BC%95%E5%8A%9B">水压引力</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B">微分方程</a>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">基本概念</a></li>
+<li><a href="#%E5%8F%AF%E5%88%86%E7%A6%BB%E5%8F%98%E9%87%8F%E7%9A%84%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B">可分离变量的微分方程</a></li>
+<li><a href="#%E9%BD%90%E6%AC%A1%E6%96%B9%E7%A8%8B">齐次方程</a></li>
+<li><a href="#%E5%8F%AF%E5%8C%96%E4%B8%BA%E9%BD%90%E6%AC%A1%E7%9A%84%E6%96%B9%E7%A8%8B">可化为齐次的方程</a></li>
+<li><a href="#%E4%B8%80%E9%98%B6%E7%BA%BF%E6%80%A7%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B">一阶线性微分方程</a>
+<ul>
+<li><a href="#%E4%BC%AF%E5%8A%AA%E5%88%A9%E6%96%B9%E7%A8%8B">伯努利方程</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%AF%E9%99%8D%E9%98%B6%E7%9A%84%E9%AB%98%E9%98%B6%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B">可降阶的高阶微分方程</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    </body>
+    
+    
+    
+    
+    
+    <script>
+(function bindTaskListEvent() {
+  var taskListItemCheckboxes = document.body.getElementsByClassName('task-list-item-checkbox')
+  for (var i = 0; i < taskListItemCheckboxes.length; i++) {
+    var checkbox = taskListItemCheckboxes[i]
+    var li = checkbox.parentElement
+    if (li.tagName !== 'LI') li = li.parentElement
+    if (li.tagName === 'LI') {
+      li.classList.add('task-list-item')
+    }
+  }
+}())    
+</script>
+    
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+      
+  </html>

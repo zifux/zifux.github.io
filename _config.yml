@@ -1,257 +1,84 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'jekyll serve'. If you change this file, please restart the server process.
+# Mandatory settings
 
-# Site settings
-title:  zifux
-subtitle: zifux
-name: zifux 
-email: zifux
-description: zifux
-keywords: zifux
-encoding: "utf-8"
-favicon: favicon.ico 
+blog_theme: light # Or use dark
+name: Chalk
+paginate: 25
+url: http://chalk.nielsenramon.com
 
-# repository: zifux/zifux.github.io
-# github_url: https://github.com/zifux
-# url: http://www.zifux.com
-# enforce_ssl: zifux.com
 
-## Gem
+# Optional settings
+
+about_enabled: true # Change to true if you wish to show an icon in the navigation that redirects to the about page
+discus_identifier: chalk-1 # Add your Disqus identifier
+ga_analytics: UA-28631876-6 # Add your GA Tracking Id
+local_fonts: false # Change to true if you wish to use local fonts
+rss_enabled: true # Change to false if not
+scrollappear_enabled: true # Change to false to disable
+tag_nav_enabled: false # Change to true if you wish to show an additional 'tag-list' navigation below the header
+theme_toggle: false # Change to true if you wish to show an icon in the navigation for dynamic theme toggling
+social:
+  dribbble: nielsenramon # Add your Dribbble handle
+  facebook: # Add your Facebook handle
+  flickr: # Add your Flickr handle
+  github: nielsenramon # Add your GitHub handle
+  linkedin: # Add your LinkedIn handle
+  twitter: nielsenramon # Add your Twitter handle
+  email: # Add your Email address
+  bitcoin: # Add your Bitcoin link or address
+  ethereum: # Add your Ethereum link or address
+  gitlab: # Add your GitLab handle
+  youtube: # Add your Youtube handle
+  twitch: # Add your Twitch handle
+  discord: # Add you Discord server invitation ID
+  tumblr: # Add your Tumblr handle
+  bitbucket: # Add your Bitbucket handle
+  docker: # Add your Docker Hub handle
+  instagram: # Add your Instagram handle
+  keybase: # Add your Keybase handle
+  medium: # Add your Medium handle
+  spotify: # Add your Spotify handle
+  stackoverflow: # Add your Stack Overflow ID number
+  steam: # Add your Steam handle
+
+
+# Important settings (change at own risk)
+
+assets:
+  plugins:
+    css: { autoprefixer: {}}
+    img: { optim: {}}
+  source_maps: false
+  sources:
+    - _assets/icons
+    - _assets/javascripts
+    - _assets/stylesheets
+    - _assets/yarn
+collections:
+  my_tags:
+    output: true
+    permalink: /tag/:slug/
+defaults:
+  -
+    scope:
+      path: ""
+      type: my_tags
+    values:
+      layout: articles_by_tag
+exclude:
+  - .travis.yml
+  - bin/*
+  - circle.yml
+  - Gemfile
+  - Gemfile.lock
+  - package.json
+  - package-lock.json
+  - README.md
+  - vendor/
+  - yarn.lock
 plugins:
+  - jekyll-assets
   - jekyll-paginate
-  - jekyll-geo-pattern
-  - rouge
-  - kramdown
-  - jekyll-github-metadata
-
-# Build settings
-markdown: kramdown
-highlighter: rouge
-lsi:         false
-excerpt_separator: "\n\n"
-
-source:      .
-destination: ./_site
-
-quiet:    false
-defaults: []
-
-kramdown:
-  input: GFM
-  enable_coderay: true
-  syntax_highlighter: rouge
-
-syntax_highlighter_opts:
-   coderay_line_numbers:  nil
-
-# Pagination
-paginate: 12
-paginate_path: 'page:num'
-
-# Navigation. top menu list
-menus:
-
-  -
-    href: http://favorites.ren/stock.html
-    label: 股票
-    target: _blank  
-
-  -
-    href: /money.html
-    label: 挣钱
-    target: _self   
-
-  -
-    href: /it.html
-    label: 深度
-    target: _self
-
-  -
-    href: /life.html
-    label: 故事
-    target: _self
-
-  -
-    href: /arch.html
-    label: 架构
-    target: _self
-
-  -
-    href: /link.html
-    label: 友链
-    target: _self
-
-  -
-    href: /about.html
-    label: 关于
-    target: _self
-
-# Navigation. main menu list
-navs:
-
-  -
-    href: /
-    label: Home
-
-  -
-    href: http://laughyouth.com/
-    label: Comics
-    target: _blank
-
-  -
-    href: /spring-boot.html
-    label: Spring Boot
-    target: _self
-    subnav:
-
-      -
-        subHref: /spring-boot.html
-        subLabel: Spring Boot
-
-      -
-        subHref: /spring-cloud.html
-        subLabel: Spring Cloud
-
-  -
-    href: http://www.justdojava.com
-    label: Java
-    target: _blank
-    subnav:
-
-      -
-        subHref: /java.html
-        subLabel: Jvm 系列文章
-        
-      -
-        subHref: http://www.justdojava.com
-        subLabel: Java 极客技术
-        target: _blank
-
-  -
-    
-    href: /python.html
-    label: Python
-    subnav:
-
-      -
-        subHref: /python.html
-        subLabel: Python 教程
-        
-      -
-        subHref: http://www.justdopython.com
-        subLabel: Python 技术
-        target: _blank
-
-  -
-    href: /archives.html
-    label: Archives
-    target: _self
-
-
-
-# labels. my blog key words
-labels:
-
-  -
-    href: /payment.html
-    label: Pay     
-    target: _self
-
-  -
-    href: /fastdfs.html
-    label: FastDFS
-    target: _blank
-
-  -
-    href: /mongodb.html
-    label: MongoDB
-    target: _blank
-
-  -
-    href: /docker.html
-    label: Docker
-    target: _blank
-
-  -
-    href: /open-source.html
-    label: Code  
-    target: _blank
-
-  -
-    href: /gitchat.html
-    label: Chat
-    target: _blank
-
-
-# selected articles
-classes:
-
-  -
-    href: /cartoon.html
-    name: 不会笑青年
-    describe: 内心沉稳 ，放荡不羁。
-
-  -
-    href: /life.html
-    name: 我的故事
-    describe: 生活就是故事，故事就是生活
-
-  -
-    href: /it.html
-    name: IT行业深度报道
-    describe: IT大佬，互联网知名公司的故事
-
-
-
-
-# ---------------- #
-#       RSS        #
-# ---------------- #
-subscribe_rss: /feed.xml
-
-# Sidebar to show popular repo
-side_bar_repo_limit: 6 # Number of repos to show
-
-# Google Analytics
-# analytics :
-# provider : google
-#   google :
-#     tracking_id : ''  # ex. UA-72165600-X
-
-
-# For about.html. Fell free to create your own!
-skill_software_keywords: [Java, MySQL, Oracle, Design Patterns]
-skill_j2ee_keywords: [Spring, Struct, Hibernet, MyBatis, JSP]
-skill_web_keywords: [HTML, CSS, JS, JQuery, Ajax, NodeJS, ExpressJS, MongoDB, Redis, PHP,  Boostrap]
-skill_mobile_app_keywords: [vuejs, hyhird app]
-
-
-# ---------------- #
-#      Comments    #
-# ---------------- #
-# support provider: disqus, gitment, gitalk
-comments_provider: gitalk
-# !!!重要!!! 请修改下面这些信息为你自己申请的
-# !!!Important!!! Please modify infos below to yours
-# https://disqus.com
-disqus:
-    username: zifux
-# https://imsun.net/posts/gitment-introduction/
-# gitment:
-#     owner: owner
-#     repo: gitment-comment
-#     oauth:
-#         client_id: id
-#         client_secret: secret
-# https://github.com/gitalk/gitalk#install
-gitalk:
-    owner: zifux
-    repo: gitalk-comment
-    clientID: 7d5d22ba51979746c4ef
-    clientSecret: 32c02b4a90e91c56157400f2f7f2d459f0e4eb82
-# 在使用其它评论组件时可点击显示 Disqus
-lazy_load_disqus : true
+  - jekyll-sitemap
+  - jemoji
+paginate_path: /posts/page/:num/
+permalink: posts/:slug

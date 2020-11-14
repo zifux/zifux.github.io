@@ -1,2 +1,0 @@
-sc config i8042prt start= disabled
-sc config i8042prt start= auto

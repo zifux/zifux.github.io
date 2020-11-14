@@ -47,10 +47,10 @@ assets:
     img: { optim: {}}
   source_maps: false
   sources:
-    - _assets/icons
-    - _assets/javascripts
-    - _assets/stylesheets
-    - _assets/yarn
+    - assets/icons
+    - assets/javascripts
+    - assets/stylesheets
+    - assets/yarn
 collections:
   my_tags:
     output: true

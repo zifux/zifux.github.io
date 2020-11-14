@@ -92,8 +92,8 @@ name: Design
 
 #### SCSS
 
-You can change colors, fonts, sizes in the `_assets/stylesheets/_variables.scss` file.
-For each specific theme (light or dark) you can change the variables in `_assets/stylesheets/dark.scss` and `_assets/stylesheets/light.scss`.
+You can change colors, fonts, sizes in the `assets/stylesheets/_variables.scss` file.
+For each specific theme (light or dark) you can change the variables in `assets/stylesheets/dark.scss` and `assets/stylesheets/light.scss`.
 
 {% highlight scss %}
 // =============================================================================
@@ -147,7 +147,7 @@ $base-transition-speed: .2s;
 
 #### Fonts
 
-Chalk uses Google Fonts by default. You can change the font in `_assets/javascripts/webfonts.js` and in `404.html`.
+Chalk uses Google Fonts by default. You can change the font in `assets/javascripts/webfonts.js` and in `404.html`.
 
 {% highlight javascript %}
 WebFont.load({

@@ -21,47 +21,50 @@
       <meta property="og:image" content="{{ page.thumb_image }}">
       <meta name="twitter:image" content="{{ page.thumb_image }}">
     {% else %}
-      <meta property="og:image" content="{{ site.url }}assets/images/{{ page.thumb_image }}">
-      <meta name="twitter:image" content="{{ site.url }}assets/images/{{ page.thumb_image }}">
+      <meta property="og:image" content="{{ site.url }}{% asset '{{ page.thumb_image }}' @path %}">
+      <meta name="twitter:image" content="{{ site.url }}{% asset '{{ page.thumb_image }}' @path %}">
     {% endif %}
   {% else %}
-    <meta property="og:image" content="{{ site.url }}assets/images/og-image.jpg">
-    <meta name="twitter:image" content="{{ site.url }}assets/images/og-image.jpg">
+    <meta property="og:image" content="{{ site.url }}{% asset og-image.jpg @path %}">
+    <meta name="twitter:image" content="{{ site.url }}{% asset og-image.jpg @path %}">
   {% endif %}
 
-  {% include javascripts.html %}
-  
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/webfont/1.6.9/webfontloader.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/retina.js/2.1.3/retina.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/svgxuse/1.2.6/svgxuse.min.js"></script>
+
   <link href="{{ 'feed.xml' | absolute_url }}" type="application/rss+xml" rel="alternate" title="{{ site.name }} Last 10 blog posts" />
 
   {% if site.local_fonts %}
-    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/fonts.css">
+    {% asset fonts.css %}
   {% endif %}
 
   {% if site.theme_toggle == true %}
 
     {% if site.blog_theme == "light" %}
-      <link rel="icon" type="image/x-icon" href="assets/images/favicon-light.ico @path %}">
-      <link rel="apple-touch-icon" href="assets/apple-touch-icon-light.png">
-      <link rel="stylesheet" type="text/css" title="light" id="light" href="/assets/stylesheets/light.css">
-      <link rel="stylesheet" type="text/css" title="dark" id="dark" href="/assets/stylesheets/dark.css" disabled="true">
+      <link rel="icon" type="image/x-icon" href="{% asset favicon-light.ico @path %}">
+      <link rel="apple-touch-icon" href="{% asset apple-touch-icon-light.png @path %}">
+      <link rel="stylesheet" type="text/css" title="light" id="light" href="{% asset light.css @path%}">
+      <link rel="stylesheet" type="text/css" title="dark" id="dark" href="{% asset dark.css @path%}" disabled="true">
     {% else %}
-      <link rel="icon" type="image/x-icon" href="/assets/images/favicon-dark.ico">
-      <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon-dark.png">
-      <link rel="stylesheet" type="text/css" title="light" id="light" href="/assets/stylesheets/light.css">
-      <link rel="stylesheet" type="text/css" title="dark" id="dark" href="/assets/stylesheets/dark.css" disabled="false">
+      <link rel="icon" type="image/x-icon" href="{% asset favicon-dark.ico @path %}">
+      <link rel="apple-touch-icon" href="{% asset apple-touch-icon-dark.png @path %}">
+      <link rel="stylesheet" type="text/css" title="light" id="light" href="{% asset light.css @path%}">
+      <link rel="stylesheet" type="text/css" title="dark" id="dark" href="{% asset dark.css @path%}" disabled="false">
     {% endif %}
 
   {% else %}
 
     {% if site.blog_theme == "light" %}
-      <link rel="icon" type="image/x-icon" href="/assets/images/favicon-light.ico">
-      <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon-light.png">
-      <link rel="stylesheet" type="text/css" href="/assets/stylesheets/fonts.css">
-      <link rel="stylesheet" type="text/css" title="light" id="light" href="/assets/stylesheets/light.css">
+      <link rel="icon" type="image/x-icon" href="{% asset favicon-light.ico @path %}">
+      <link rel="apple-touch-icon" href="{% asset apple-touch-icon-light.png @path %}">
+      {% asset light.css %}
     {% else %}
-      <link rel="icon" type="image/x-icon" href="/assets/images/favicon-dark.ico">
-      <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon-dark.png">
-      <link rel="stylesheet" type="text/css" title="dark" id="dark" href="/assets/stylesheets/dark.css">
+      <link rel="icon" type="image/x-icon" href="{% asset favicon-dark.ico @path %}">
+      <link rel="apple-touch-icon" href="{% asset apple-touch-icon-dark.png @path %}">
+      {% asset dark.css %}
     {% endif %}
 
   {% endif %}

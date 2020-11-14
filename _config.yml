@@ -249,7 +249,7 @@ disqus:
 #         client_secret: secret
 # https://github.com/gitalk/gitalk#install
 gitalk:
-    owner: ityouknow
+    owner: zifux
     repo: zifuxComment
     clientID: 7d5d22ba51979746c4ef
     clientSecret: 32c02b4a90e91c56157400f2f7f2d459f0e4eb82

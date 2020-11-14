@@ -243,14 +243,14 @@ disqus:
 # https://imsun.net/posts/gitment-introduction/
 # gitment:
 #     owner: owner
-#     repo: zifuxComment
+#     repo: gitment-comment
 #     oauth:
 #         client_id: id
 #         client_secret: secret
 # https://github.com/gitalk/gitalk#install
 gitalk:
     owner: zifux
-    repo: zifuxComment
+    repo: gitalk-comment
     clientID: 7d5d22ba51979746c4ef
     clientSecret: 32c02b4a90e91c56157400f2f7f2d459f0e4eb82
 # 在使用其它评论组件时可点击显示 Disqus

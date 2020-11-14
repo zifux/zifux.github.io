@@ -21,44 +21,45 @@
       <meta property="og:image" content="{{ page.thumb_image }}">
       <meta name="twitter:image" content="{{ page.thumb_image }}">
     {% else %}
-      <meta property="og:image" content="{{ site.url }}{% asset '{{ page.thumb_image }}' @path %}">
-      <meta name="twitter:image" content="{{ site.url }}{% asset '{{ page.thumb_image }}' @path %}">
+      <meta property="og:image" content="{{ site.url }}_assets/images/{{ page.thumb_image }}">
+      <meta name="twitter:image" content="{{ site.url }}_assets/images/{{ page.thumb_image }}">
     {% endif %}
   {% else %}
-    <meta property="og:image" content="{{ site.url }}{% asset og-image.jpg @path %}">
-    <meta name="twitter:image" content="{{ site.url }}{% asset og-image.jpg @path %}">
+    <meta property="og:image" content="{{ site.url }}_assets/images/og-image.jpg">
+    <meta name="twitter:image" content="{{ site.url }}_assets/images/og-image.jpg">
   {% endif %}
 
   <link href="{{ 'feed.xml' | absolute_url }}" type="application/rss+xml" rel="alternate" title="{{ site.name }} Last 10 blog posts" />
 
   {% if site.local_fonts %}
-    {% asset fonts.css %}
+    <link rel="stylesheet" type="text/css" href="/_assets/stylesheets/fonts.css">
   {% endif %}
 
   {% if site.theme_toggle == true %}
 
     {% if site.blog_theme == "light" %}
-      <link rel="icon" type="image/x-icon" href="{% asset favicon-light.ico @path %}">
-      <link rel="apple-touch-icon" href="{% asset apple-touch-icon-light.png @path %}">
-      <link rel="stylesheet" type="text/css" title="light" id="light" href="{% asset light.css @path%}">
-      <link rel="stylesheet" type="text/css" title="dark" id="dark" href="{% asset dark.css @path%}" disabled="true">
+      <link rel="icon" type="image/x-icon" href="_assets/images/favicon-light.ico @path %}">
+      <link rel="apple-touch-icon" href="_assets/apple-touch-icon-light.png">
+      <link rel="stylesheet" type="text/css" title="light" id="light" href="/_assets/stylesheets/light.css">
+      <link rel="stylesheet" type="text/css" title="dark" id="dark" href="/_assets/stylesheets/dark.css" disabled="true">
     {% else %}
-      <link rel="icon" type="image/x-icon" href="{% asset favicon-dark.ico @path %}">
-      <link rel="apple-touch-icon" href="{% asset apple-touch-icon-dark.png @path %}">
-      <link rel="stylesheet" type="text/css" title="light" id="light" href="{% asset light.css @path%}">
-      <link rel="stylesheet" type="text/css" title="dark" id="dark" href="{% asset dark.css @path%}" disabled="false">
+      <link rel="icon" type="image/x-icon" href="/_assets/images/favicon-dark.ico">
+      <link rel="apple-touch-icon" href="/_assets/images/apple-touch-icon-dark.png">
+      <link rel="stylesheet" type="text/css" title="light" id="light" href="/_assets/stylesheets/light.css">
+      <link rel="stylesheet" type="text/css" title="dark" id="dark" href="/_assets/stylesheets/dark.css" disabled="false">
     {% endif %}
 
   {% else %}
 
     {% if site.blog_theme == "light" %}
-      <link rel="icon" type="image/x-icon" href="{% asset favicon-light.ico @path %}">
-      <link rel="apple-touch-icon" href="{% asset apple-touch-icon-light.png @path %}">
-      {% asset light.css %}
+      <link rel="icon" type="image/x-icon" href="/_assets/images/favicon-light.ico">
+      <link rel="apple-touch-icon" href="/_assets/images/apple-touch-icon-light.png">
+      <link rel="stylesheet" type="text/css" href="/_assets/stylesheets/fonts.css">
+      <link rel="stylesheet" type="text/css" title="light" id="light" href="/_assets/stylesheets/light.css">
     {% else %}
-      <link rel="icon" type="image/x-icon" href="{% asset favicon-dark.ico @path %}">
-      <link rel="apple-touch-icon" href="{% asset apple-touch-icon-dark.png @path %}">
-      {% asset dark.css %}
+      <link rel="icon" type="image/x-icon" href="/_assets/images/favicon-dark.ico">
+      <link rel="apple-touch-icon" href="/_assets/images/apple-touch-icon-dark.png">
+      <link rel="stylesheet" type="text/css" title="dark" id="dark" href="/_assets/stylesheets/dark.css">
     {% endif %}
 
   {% endif %}

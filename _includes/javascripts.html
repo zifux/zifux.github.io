@@ -2,18 +2,18 @@
 
 {% endif %}
 
-{% asset vendor.js %}
+<script type="text/javascript" src="/_assets/javascripts/vendor.js"></script>
 
 {% unless site.local_fonts %}
-  {% asset webfonts.js %}
+  <script type="text/javascript" src="/_assets/javascripts/webfonts.js"></script>
 {% endunless %}
 
 {% if site.scrollappear_enabled %}
-  {% asset scrollappear.js %}
+  <script type="text/javascript" src="/_assets/javascripts/scrollappear.js"></script>
 {% endif %}
 
-{% asset application.js %}
+<script type="text/javascript" src="/_assets/javascripts/application.js"></script>
 
 {% if site.theme_toggle == true %}
-  {% asset themetoggle.js %}
+  <script type="text/javascript" src="/_assets/javascripts/themetoggle.js"></script>
 {% endif %}

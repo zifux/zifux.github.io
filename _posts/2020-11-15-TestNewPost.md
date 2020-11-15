@@ -1,5 +1,13 @@
 ---
-published: false
+published: true
+layout: post
+description: >-
+  Chalk is a high quality, completely customizable, performant and 100% free
+  blog template for Jekyll.
+thumb_image: documentation/sample-image.jpg
+tags:
+  - web
+  - jekyll
 ---
 ## A New Post
 
